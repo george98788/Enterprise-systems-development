@@ -24,6 +24,10 @@
         <servlet-name>loginservlet</servlet-name>
         <servlet-class>com.login.controller.loginservlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerRegistration</servlet-name>
+        <servlet-class>pages.CustomerRegistration</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>loginservlet</servlet-name>
         <url-pattern>/loginservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerRegistration</servlet-name>
+        <url-pattern>/CustomerRegistration</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

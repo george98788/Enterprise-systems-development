@@ -133,16 +133,16 @@ public class Jdbc {
          String userRole ="";
           try {
             
-            select("select * from users where username='" + user + "'"+ " AND password='" +password+"'"+" AND role='Admin'");
+            select("select * from users where username='" + user + "'"+ " AND password='" +password+"'"+" AND role='admin'");
             if (rs.next()) {
                 System.out.println("TRUE");
-                userRole = "Admin";
+                userRole = "admin";
                 return userRole;
             }
-             select("select * from users where username='" + user + "'"+ " AND password='" +password+"'"+" AND role='Driver'");
+             select("select * from users where username='" + user + "'"+ " AND password='" +password+"'"+" AND role='driver'");
             if (rs.next()) {
                 System.out.println("TRUE");
-                userRole = "Driver";
+                userRole = "driver";
                 return userRole;
             }
              select("select * from users where username='" + user + "'"+ " AND password='" +password+"'"+" AND role='customer'");
@@ -166,7 +166,7 @@ public class Jdbc {
             ps = connection.prepareStatement("INSERT INTO Users VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, str[0].trim());
             ps.setString(2, str[1]);
-            ps.setString(3, str[2]);
+            ps.setString(3, str[2].toLowerCase());
             ps.executeUpdate();
 
             ps.close();
@@ -176,6 +176,35 @@ public class Jdbc {
         }
 
     }
+
+    /**
+     *
+     * @param str
+     */
+    public void registerCustomer(String[] str) {
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        try {
+            ps = connection.prepareStatement("INSERT INTO Users VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, str[5].trim());
+            ps.setString(2, str[6]);
+             ps.setString(3, "'customer'");
+            ps.executeUpdate();
+             ps2 = connection.prepareStatement("INSERT INTO customer VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps2.setString(1, str[0]);
+            ps2.setString(2, str[1] + ", " + str[2]  + ", " + str[3]  + ", " + str[4]  );
+             
+            ps2.executeUpdate();
+
+            ps2.close();
+            ps.close();
+            System.out.println("1 row added.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
 
     public void update(String[] str) {
         PreparedStatement ps = null;

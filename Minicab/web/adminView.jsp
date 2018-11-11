@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>This is expected to serve as a proper Web Page</h1>
+        <h1>Admin View</h1>
         <h1>   <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
