@@ -12,12 +12,20 @@
         <title>Driver Page</title>
     </head>
     <body>
-        <h1>You are a driver!</h1>
+        <h1>Welcome driver!</h1>
           <h1>   <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
                 
             }
         %> </h1>
+          <form>
+        <p />
+            Driver Details <br />
+            <input type="radio" name="tbl" value="jobDone">Completed journeys<br />
+            <input type="radio" name="tbl" value="Update">Password Change<br />
+            <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
+            <input type=submit value="Action"> <br />
+        </form> 
     </body>
 </html>

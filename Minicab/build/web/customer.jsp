@@ -19,5 +19,17 @@
                 
             }
         %> </h1>
+        <form>
+        <p />
+            User options <br />
+            <input type="radio" name="tbl" value="RequestCab">Request Cab<br />
+            <input type="radio" name="tbl" value="Update">Password Change<br />
+            <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
+            <input type=submit value="Action"> <td> <input type="submit" value="Logout"/></td><br />
+            <tr> 
+                    
+                </tr>
+        </form> 
+        
     </body>
 </html>

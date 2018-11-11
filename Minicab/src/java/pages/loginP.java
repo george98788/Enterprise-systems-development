@@ -47,7 +47,7 @@ public class loginP extends HttpServlet {
         String[] query = new String[2];
         query[0] = (String) request.getParameter("username");
         query[1] = (String) request.getParameter("password");
-
+        
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
 
         if (jdbc == null) {
@@ -55,39 +55,32 @@ public class loginP extends HttpServlet {
         }
 
         if (query[0].equals("") || query[1].equals("")) {
-            request.setAttribute("message", "Username or Password cannot be NULL");
-        } else if (jdbc.existsForlogin(query[0],query[1])) {
-                if (jdbc.role(query[0],query[1])== "Admin") {
-                    request.setAttribute("message", "Logged in as " + query[0]);
-            request.getRequestDispatcher("adminView.jsp").forward(request, response);
-        RequestDispatcher view = request.getRequestDispatcher("adminView.jsp");
-        view.forward(request, response);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("adminView.jsp");
-        requestDispatcher.forward(request, response);
-                }
-                else if(jdbc.role(query[0],query[1])== "Driver"){
-                     request.setAttribute("message", "Logged in as " + query[0]);
-            request.getRequestDispatcher("driver.jsp").forward(request, response);
-        RequestDispatcher view = request.getRequestDispatcher("driver.jsp");
-        view.forward(request, response);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("driver.jsp");
-        requestDispatcher.forward(request, response);
-                }else{
-                       request.setAttribute("message", "Logged in as " + query[0]);
-            request.getRequestDispatcher("customer.jsp").forward(request, response);
-        RequestDispatcher view = request.getRequestDispatcher("customer.jsp");
-        view.forward(request, response);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer.jsp");
-        requestDispatcher.forward(request, response);
-                }
-            
+            session.setAttribute("message", "Username or Password cannot be NULL");
+        } else if (jdbc.existsForlogin(query[0], query[1])) {
+            if (jdbc.role(query[0], query[1]) == "admin") {
+                request.setAttribute("message", "Logged in as " + query[0]);
+                request.getRequestDispatcher("adminView.jsp").forward(request, response);
 
-        } else{
+
+            } else if (jdbc.role(query[0], query[1]) == "driver") {
+                request.setAttribute("message", "Logged in as " + query[0]);
+                request.getRequestDispatcher("driver.jsp").forward(request, response);
+               
+
+            }          
+            else {
+                request.setAttribute("message", "Logged in as " + query[0]);
+                request.getRequestDispatcher("customer.jsp").forward(request, response);
+                
+                
+            }
+
+        } else {
             request.setAttribute("message", "Incorrect username or password ");
         }
-
-        request.getRequestDispatcher("login.jsp").forward(request, response);
         
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

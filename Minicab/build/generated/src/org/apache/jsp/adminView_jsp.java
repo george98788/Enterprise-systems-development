@@ -3,15 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import model.Jdbc;
 
-public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class adminView_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
- ;
-              String str = "login";
-            String url = "loginP.do";
-        
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
@@ -54,47 +49,30 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Login Main Page</title>\n");
+      out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h2>Login Page:</h2>\n");
-      out.write("        ");
-      out.write("\n");
-      out.write("\n");
-      out.write("        <form method=\"POST\" action=\"loginP.do\">     \n");
-      out.write("            <table>\n");
-      out.write("                <tr>\n");
-      out.write("                    <th></th>\n");
-      out.write("                    <th>Please provide your following details</th>\n");
-      out.write("                </tr>\n");
-      out.write("                <tr>\n");
-      out.write("                    <td>Username:</td>\n");
-      out.write("                    <td><input type=\"text\" name=\"username\" placeholder=\"Username\"/></td>\n");
-      out.write("                </tr>\n");
-      out.write("                <tr>\n");
-      out.write("                    <td>Password:</td>\n");
-      out.write("                    <td><input type=\"password\" name=\"password\" placeholder=\"Password\"/></td>\n");
-      out.write("                </tr>\n");
-      out.write("                <tr> \n");
-      out.write("                    <td> <input type=\"submit\" value=\"Login\"/></td>\n");
-      out.write("                    <td> </form><form method=\"POST\" action=\"register.jsp\"><input type=\"submit\" value=\"Register\"/>   </td>        \n");
-      out.write("                </tr>\n");
-      out.write("            </table>\n");
-      out.write("        </form>   \n");
-      out.write("    </form>   \n");
-      out.write("    ");
+      out.write("        <h1>Admin View</h1>\n");
+      out.write("        <h1>   ");
 
-        if (request.getAttribute("message") != null) {
-            out.println(request.getAttribute("message"));
-
-        }
-    
-      out.write("\n");
-      out.write("\n");
-      out.write("    </br>\n");
-      out.write("\n");
-      out.write("</body>\n");
-      out.write("</html>\n");
+            if ( session.getAttribute("user")!=null) {
+                
+                out.println(request.getAttribute("user"));
+                
+            }
+        
+      out.write(" </h1>\n");
+      out.write("        <form method=\"POST\" action=\"UserService.do\">\n");
+      out.write("        <p />\n");
+      out.write("            View a table <br />\n");
+      out.write("            <input type=\"radio\" name=\"tbl\" value=\"List\">List Users<br />\n");
+      out.write("            <input type=\"radio\" name=\"tbl\" value=\"NewUser\">New User<br />\n");
+      out.write("            <input type=\"radio\" name=\"tbl\" value=\"Update\">Password Change<br />\n");
+      out.write("            <input type=\"radio\" name=\"tbl\" value=\"Delete\">Delete a User<br />\n");
+      out.write("            <input type=submit value=\"Action\"> <br />\n");
+      out.write("        </form> \n");
+      out.write("    </body>\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

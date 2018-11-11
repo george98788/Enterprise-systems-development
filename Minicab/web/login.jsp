@@ -14,11 +14,11 @@
     </head>
     <body>
         <h2>Login Page:</h2>
-      <%! ;
-            String str="login"; 
+        <%! ;
+              String str = "login";
             String url = "loginP.do";
         %>
-      
+
         <form method="POST" action="loginP.do">     
             <table>
                 <tr>
@@ -27,26 +27,27 @@
                 </tr>
                 <tr>
                     <td>Username:</td>
-                    <td><input type="text" name="username" placeholder="username"/></td>
+                    <td><input type="text" name="username" placeholder="Username"/></td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="password" name="password" placeholder="password"/></td>
+                    <td><input type="password" name="password" placeholder="Password"/></td>
                 </tr>
                 <tr> 
-                    <td> <input type="submit" value="login"/></td>
+                    <td> <input type="submit" value="Login"/></td>
+                    <td> </form><form method="POST" action="register.jsp"><input type="submit" value="Register"/>   </td>        
                 </tr>
             </table>
         </form>   
-                  </form>   
-        <%
-            if ( request.getAttribute("message")!=null) {
-                out.println(request.getAttribute("message"));
-                
-            }
-        %>
-       
-        </br>
-        
-    </body>
+    </form>   
+    <%
+        if (request.getAttribute("message") != null) {
+            out.println(request.getAttribute("message"));
+
+        }
+    %>
+
+    </br>
+
+</body>
 </html>
