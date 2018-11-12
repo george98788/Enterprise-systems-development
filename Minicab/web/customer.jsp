@@ -10,9 +10,35 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Customer Page</title>
+               <style>
+            * {
+                box-sizing: border-box;
+            }
+            header {
+                background-color: #666;
+                padding: 5px;
+                text-align: center;
+                font-size: 35px;
+                color: white;
+            }
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            
+            .centre {
+                margin: auto;
+                width: 25%;
+                    padding:10px;
+                
+            }
+            
+        </style>
     </head>
+      <header>
+        <h2>Hello Customer</h2>
+        </header>
     <body>
-        <h1>Hello Customer</h1>
+        <div class="centre">
           <h1>   <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
@@ -28,7 +54,7 @@
             <input type=submit value="Action">  </form>  <form method="POST" action="Logout.do"><input type="submit" value="Logout"/><br />
             
         </form> 
-       
+            <div/>
         
     </body>
 </html>

@@ -11,9 +11,36 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+               <style>
+            * {
+                box-sizing: border-box;
+            }
+            header {
+                background-color: #666;
+                padding: 5px;
+                text-align: center;
+                font-size: 35px;
+                color: white;
+            }
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            
+            .centre {
+                margin: auto;
+                width: 25%;
+                    padding:10px;
+                
+            }
+            
+        </style>
     </head>
+        <header>
+        <h2>Admin View</h2>
+        </header>
     <body>
-        <h1>Admin View</h1>
+         <div class="centre">
+         
         <h1>   <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
@@ -28,6 +55,6 @@
             <input type="radio" name="tbl" value="Update">Password Change<br />
             <input type="radio" name="tbl" value="Delete">Delete a User<br />
             <input type=submit value="Action"></form><form method="POST" action="Logout.do"><input type="submit" value="Logout"/> </form>   <br /> 
-       
+         </div>
     </body>
 </html>
