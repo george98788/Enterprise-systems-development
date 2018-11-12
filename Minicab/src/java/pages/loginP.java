@@ -60,19 +60,14 @@ public class loginP extends HttpServlet {
             if (jdbc.role(query[0], query[1]) == "admin") {
                 request.setAttribute("message", "Logged in as " + query[0]);
                 request.getRequestDispatcher("adminView.jsp").forward(request, response);
-
-
             } else if (jdbc.role(query[0], query[1]) == "driver") {
                 request.setAttribute("message", "Logged in as " + query[0]);
                 request.getRequestDispatcher("driver.jsp").forward(request, response);
-               
-
+              
             }          
             else {
                 request.setAttribute("message", "Logged in as " + query[0]);
-                request.getRequestDispatcher("customer.jsp").forward(request, response);
-                
-                
+                request.getRequestDispatcher("customer.jsp").forward(request, response);    
             }
 
         } else {

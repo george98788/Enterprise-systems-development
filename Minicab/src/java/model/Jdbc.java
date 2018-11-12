@@ -115,11 +115,12 @@ public class Jdbc {
         }
         return bool;
     }
-     public boolean existsForlogin(String user, String password) {
+
+    public boolean existsForlogin(String user, String password) {
         boolean bool = false;
         try {
-            
-            select("select * from users where username='" + user + "'"+ " AND password='" +password+"'");
+
+            select("select * from users where username='" + user + "'" + " AND password='" + password + "'");
             if (rs.next()) {
                 System.out.println("TRUE");
                 bool = true;
@@ -129,23 +130,24 @@ public class Jdbc {
         }
         return bool;
     }
-     public String role(String user, String password){
-         String userRole ="";
-          try {
-            
-            select("select * from users where username='" + user + "'"+ " AND password='" +password+"'"+" AND role='admin'");
+
+    public String role(String user, String password) {
+        String userRole = "";
+        try {
+
+            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND role='admin'");
             if (rs.next()) {
                 System.out.println("TRUE");
                 userRole = "admin";
                 return userRole;
             }
-             select("select * from users where username='" + user + "'"+ " AND password='" +password+"'"+" AND role='driver'");
+            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND role='driver'");
             if (rs.next()) {
                 System.out.println("TRUE");
                 userRole = "driver";
                 return userRole;
             }
-             select("select * from users where username='" + user + "'"+ " AND password='" +password+"'"+" AND role='customer'");
+            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND role='customer'");
             if (rs.next()) {
                 System.out.println("TRUE");
                 userRole = "customer";
@@ -154,11 +156,9 @@ public class Jdbc {
         } catch (SQLException ex) {
             Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-         
-         
-         return userRole;
-     }
+
+        return userRole;
+    }
 
     public void insert(String[] str) {
         PreparedStatement ps = null;
@@ -188,23 +188,22 @@ public class Jdbc {
             ps = connection.prepareStatement("INSERT INTO Users VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, str[5].trim());
             ps.setString(2, str[6]);
-             ps.setString(3, "'customer'");
+            ps.setString(3, "customer");
             ps.executeUpdate();
-             ps2 = connection.prepareStatement("INSERT INTO customer VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps2 = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps2.setString(1, str[0]);
-            ps2.setString(2, str[1] + ", " + str[2]  + ", " + str[3]  + ", " + str[4]  );
-             
+            ps2.setString(2, str[1] + ", " + str[2] + ", " + str[3] + ", " + str[4]);
+            ps2.setInt(3, 8);
             ps2.executeUpdate();
 
             ps2.close();
             ps.close();
+            
             System.out.println("1 row added.");
         } catch (SQLException ex) {
             Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    
 
     public void update(String[] str) {
         PreparedStatement ps = null;
@@ -247,7 +246,7 @@ public class Jdbc {
 
     public static void main(String[] args) throws SQLException {
         String str = "select * from users";
-        
+
         String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('meaydin', 'meaydin')";
         String update = "UPDATE `Users` SET `password`='eaydin' WHERE `username`='meaydin' ";
         String db = "MyDB";
@@ -278,7 +277,7 @@ public class Jdbc {
     }
 
     public void login(String username, String password) throws SQLException {
-      String str = "select * from users";
+        String str = "select * from users";
         String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('meaydin', 'meaydin')";
         String update = "UPDATE `Users` SET `password`='eaydin' WHERE `username`='meaydin' ";
         String db = "MyDB";
@@ -306,8 +305,7 @@ public class Jdbc {
 
         System.out.println(jdbc.retrieve(str));
         jdbc.closeAll();
-        
-        
+
     }
 } //class
 

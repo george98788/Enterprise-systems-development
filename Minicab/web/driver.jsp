@@ -25,7 +25,7 @@
             <input type="radio" name="tbl" value="jobDone">Completed journeys<br />
             <input type="radio" name="tbl" value="Update">Password Change<br />
             <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
-            <input type=submit value="Action"> <br />
+            <input type=submit value="Action"> </form>  <form method="POST" action="Logout.do"><input type="submit" value="Logout"/><br />
         </form> 
     </body>
 </html>

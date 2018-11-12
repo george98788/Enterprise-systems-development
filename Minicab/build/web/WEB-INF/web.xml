@@ -28,6 +28,10 @@
         <servlet-name>CustomerRegistration</servlet-name>
         <servlet-class>pages.CustomerRegistration</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>pages.Logout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -46,11 +50,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>loginservlet</servlet-name>
-        <url-pattern>/loginservlet</url-pattern>
+        <url-pattern>/loginservlet.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerRegistration</servlet-name>
-        <url-pattern>/CustomerRegistration</url-pattern>
+        <url-pattern>/CustomerRegistration.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

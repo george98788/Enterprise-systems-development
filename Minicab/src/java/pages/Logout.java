@@ -8,6 +8,7 @@ package pages;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +18,9 @@ import model.Jdbc;
 
 /**
  *
- * @author georg
+ * @author saphi
  */
-public class CustomerRegistration extends HttpServlet {
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,37 +36,21 @@ public class CustomerRegistration extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession();
-
         Jdbc dbBean = new Jdbc();
         dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
+//        session.setMaxInactiveInterval(1200);
+        session.invalidate();
+        
+        request.setAttribute("message", "Successfully logged out");
+        request.getRequestDispatcher("logout.jsp").forward(request, response);
+        RequestDispatcher view = request.getRequestDispatcher("logout.jsp");
+        view.forward(request, response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("logout.jsp");
+        requestDispatcher.forward(request, response);
 
-        String[] query = new String[7];
-        query[0] = (String) request.getParameter("fullname");
-        query[1] = (String) request.getParameter("houseNo");
-        query[2] = (String) request.getParameter("roadName");
-        query[3] = (String) request.getParameter("cityName");
-        query[4] = (String) request.getParameter("postcode");
-        query[5] = (String) request.getParameter("usernameReg");
-        query[6] = (String) request.getParameter("passwordReg");
-        //String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('";
-
-        Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
-
-        if (jdbc == null) {
-            request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
-        }
-        if (jdbc.exists(query[5])) {
-            request.setAttribute("message", query[5] + " is already taken as username");
-           
-        } else {
-            jdbc.registerCustomer(query);
-            request.setAttribute("message", query[5] + " is added");
-            request.getRequestDispatcher("customer.jsp").forward(request, response);
-        }
- 
-      
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+//        PrintWriter out = response.getWriter();
+//        out.println("Logged out!");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
