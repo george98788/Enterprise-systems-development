@@ -8,20 +8,20 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema MiniCabDatabase
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema MiniCabDatabase
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `MiniCabDatabase` DEFAULT CHARACTER SET utf8 ;
 SHOW WARNINGS;
-USE `mydb` ;
+USE `MiniCabDatabase` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Users`
+-- Table `MiniCabDatabase`.`Users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
+CREATE TABLE IF NOT EXISTS `MiniCabDatabase`.`Users` (
   `ID` INT NOT NULL,
   `Username` VARCHAR(45) NOT NULL,
   `Password` VARCHAR(45) NOT NULL,
@@ -32,9 +32,9 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Customer`
+-- Table `MiniCabDatabase`.`Customer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Customer` (
+CREATE TABLE IF NOT EXISTS `MiniCabDatabase`.`Customer` (
   `ID` INT NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
   `Address` VARCHAR(45) CHARACTER SET 'dec8' NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Customer` (
   INDEX `fk_Customer_Users1_idx` (`Users_ID` ASC),
   CONSTRAINT `fk_Customer_Users1`
     FOREIGN KEY (`Users_ID`)
-    REFERENCES `mydb`.`Users` (`ID`)
+    REFERENCES `MiniCabDatabase`.`Users` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -51,9 +51,9 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Journey`
+-- Table `MiniCabDatabase`.`Journey`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Journey` (
+CREATE TABLE IF NOT EXISTS `MiniCabDatabase`.`Journey` (
   `ID` INT NOT NULL,
   `JID` INT NOT NULL,
   `Destination` VARCHAR(45) NOT NULL,
@@ -67,9 +67,9 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Demands`
+-- Table `MiniCabDatabase`.`Demands`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Demands` (
+CREATE TABLE IF NOT EXISTS `MiniCabDatabase`.`Demands` (
   `ID` INT NOT NULL,
   `Destination` VARCHAR(45) NOT NULL,
   `Date` DATE NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Demands` (
   INDEX `fk_Demands_Journey1_idx` (`Journey_ID` ASC),
   CONSTRAINT `fk_Demands_Journey1`
     FOREIGN KEY (`Journey_ID`)
-    REFERENCES `mydb`.`Journey` (`ID`)
+    REFERENCES `MiniCabDatabase`.`Journey` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -88,9 +88,9 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Drivers`
+-- Table `MiniCabDatabase`.`Drivers`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Drivers` (
+CREATE TABLE IF NOT EXISTS `MiniCabDatabase`.`Drivers` (
   `ID` INT NOT NULL,
   `Name` VARCHAR(45) NOT NULL,
   `Registration` VARCHAR(45) NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Drivers` (
   INDEX `fk_Drivers_Users1_idx` (`Users_ID` ASC),
   CONSTRAINT `fk_Drivers_Users1`
     FOREIGN KEY (`Users_ID`)
-    REFERENCES `mydb`.`Users` (`ID`)
+    REFERENCES `MiniCabDatabase`.`Users` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -107,9 +107,9 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Demands_has_Customer`
+-- Table `MiniCabDatabase`.`Demands_has_Customer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Demands_has_Customer` (
+CREATE TABLE IF NOT EXISTS `MiniCabDatabase`.`Demands_has_Customer` (
   `Demands_ID` INT NOT NULL,
   `Customer_ID` INT NOT NULL,
   PRIMARY KEY (`Demands_ID`, `Customer_ID`),
@@ -117,12 +117,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Demands_has_Customer` (
   INDEX `fk_Demands_has_Customer_Demands_idx` (`Demands_ID` ASC),
   CONSTRAINT `fk_Demands_has_Customer_Demands`
     FOREIGN KEY (`Demands_ID`)
-    REFERENCES `mydb`.`Demands` (`ID`)
+    REFERENCES `MiniCabDatabase`.`Demands` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Demands_has_Customer_Customer1`
     FOREIGN KEY (`Customer_ID`)
-    REFERENCES `mydb`.`Customer` (`ID`)
+    REFERENCES `MiniCabDatabase`.`Customer` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -130,9 +130,9 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Drivers_has_Journey`
+-- Table `MiniCabDatabase`.`Drivers_has_Journey`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Drivers_has_Journey` (
+CREATE TABLE IF NOT EXISTS `MiniCabDatabase`.`Drivers_has_Journey` (
   `Drivers_ID` INT NOT NULL,
   `Journey_ID` INT NOT NULL,
   PRIMARY KEY (`Drivers_ID`, `Journey_ID`),
@@ -140,12 +140,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Drivers_has_Journey` (
   INDEX `fk_Drivers_has_Journey_Drivers1_idx` (`Drivers_ID` ASC),
   CONSTRAINT `fk_Drivers_has_Journey_Drivers1`
     FOREIGN KEY (`Drivers_ID`)
-    REFERENCES `mydb`.`Drivers` (`ID`)
+    REFERENCES `MiniCabDatabase`.`Drivers` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Drivers_has_Journey_Journey1`
     FOREIGN KEY (`Journey_ID`)
-    REFERENCES `mydb`.`Journey` (`ID`)
+    REFERENCES `MiniCabDatabase`.`Journey` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
