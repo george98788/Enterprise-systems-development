@@ -48,16 +48,29 @@ public final class adminView_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css\" integrity=\"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO\" crossorigin=\"anonymous\">  <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>JSP Page</title>\n");
+      out.write("             \n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>Admin View</h1>\n");
+      out.write("         <nav class =\"navbar navbar-inverse bg-dark\">\n");
+      out.write("            <a class=\"navbar-brand\" href=\"/Minicab/login.jsp\">Log in</a>\n");
+      out.write("            <a class=\"navbar-brand\" href=\"/Minicab/register.jsp\">Register</a>\n");
+      out.write("            <a class=\"navbar-brand\" href=\"/Minicab/driver.jsp\">Driver</a>\n");
+      out.write("            <a class=\"navbar-brand\" href=\"/Minicab/customer.jsp\">Customer</a>\n");
+      out.write("        </nav>\n");
+      out.write("         <div class=\"centre\">\n");
+      out.write("        <header>\n");
+      out.write("        <h2>Admin View</h2>\n");
+      out.write("        </header>\n");
+      out.write("    \n");
+      out.write("        \n");
+      out.write("         </div>\n");
       out.write("        <h1>   ");
 
-            if ( session.getAttribute("user")!=null) {
-                
-                out.println(request.getAttribute("user"));
+            if ( request.getAttribute("message")!=null) {
+                out.println(request.getAttribute("message"));
                 
             }
         
@@ -69,9 +82,13 @@ public final class adminView_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <input type=\"radio\" name=\"tbl\" value=\"NewUser\">New User<br />\n");
       out.write("            <input type=\"radio\" name=\"tbl\" value=\"Update\">Password Change<br />\n");
       out.write("            <input type=\"radio\" name=\"tbl\" value=\"Delete\">Delete a User<br />\n");
-      out.write("            <input type=submit value=\"Action\"> <br />\n");
-      out.write("        </form> \n");
+      out.write("            <input type=submit value=\"Action\"></form><form method=\"POST\" action=\"Logout.do\"><input type=\"submit\" value=\"Logout\"/> </form>   <br /> \n");
+      out.write("         </div>\n");
       out.write("    </body>\n");
+      out.write("    <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\" integrity=\"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo\" crossorigin=\"anonymous\"></script>\n");
+      out.write("<script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\" integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\" crossorigin=\"anonymous\"></script>\n");
+      out.write("<script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js\" integrity=\"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy\" crossorigin=\"anonymous\"></script>\n");
+      out.write("\n");
       out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
