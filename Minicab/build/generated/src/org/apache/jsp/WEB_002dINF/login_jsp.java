@@ -1,12 +1,16 @@
-package org.apache.jsp;
+package org.apache.jsp.WEB_002dINF;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
+ ;
+            String str="loginP"; 
+            String url = "loginP.do";
+        
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
@@ -44,62 +48,47 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <title>Login Main Page</title>\n");
       out.write("    </head>\n");
-      out.write("    <form method=\"POST\" action=\"loginP.do\">     \n");
+      out.write("    <body>\n");
+      out.write("        <h2>Login Page:</h2>\n");
+      out.write("      ");
+      out.write("\n");
+      out.write("      \n");
+      out.write("        <form method=\"POST\" action=\"");
+      out.print(url);
+      out.write("\">     \n");
       out.write("            <table>\n");
       out.write("                <tr>\n");
       out.write("                    <th></th>\n");
       out.write("                    <th>Please provide your following details</th>\n");
       out.write("                </tr>\n");
       out.write("                <tr>\n");
-      out.write("                    <td>Full name:</td>\n");
-      out.write("                    <td><input type=\"text\" name=\"fullname\" placeholder=\"Full Name\" required/></td>\n");
-      out.write("                </tr>\n");
-      out.write("                <tr>\n");
-      out.write("                    <td>House/Flat Number:</td>\n");
-      out.write("                    <td><input type=\"text\" name=\"houseNo\" placeholder=\"House/Flat Number\" required/></td>\n");
-      out.write("                </tr>\n");
-      out.write("                <tr>\n");
-      out.write("                    <td>Street/Road Name:</td>\n");
-      out.write("                    <td><input type=\"text\" name=\"roadName\" placeholder=\"Street/Road\" required/></td>\n");
-      out.write("                </tr>\n");
-      out.write("                 <tr>\n");
-      out.write("                    <td>City/Town name:</td>\n");
-      out.write("                    <td><input type=\"text\" name=\"cityName\" placeholder=\"City/Town\" required/></td>\n");
-      out.write("                </tr>\n");
-      out.write("                 <tr>\n");
-      out.write("                    <td>Postal Code:</td>\n");
-      out.write("                    <td><input type=\"text\" name=\"postcode\" placeholder=\"Postal Code\" required/></td>\n");
-      out.write("                </tr>\n");
-      out.write("                <tr>\n");
       out.write("                    <td>Username:</td>\n");
-      out.write("                    <td><input type=\"text\" name=\"username\" placeholder=\"Username\" required/></td>\n");
+      out.write("                    <td><input type=\"text\" name=\"username\"/></td>\n");
       out.write("                </tr>\n");
-      out.write("                  <tr>\n");
+      out.write("                <tr>\n");
       out.write("                    <td>Password:</td>\n");
-      out.write("                    <td><input type=\"password\" name=\"password\" placeholder=\"Password\"required/></td>\n");
+      out.write("                    <td><input type=\"password\" name=\"password\"/></td>\n");
       out.write("                </tr>\n");
       out.write("                <tr> \n");
-      out.write("                    <td> <input type=\"submit\" value=\"Login\"/></td>\n");
-      out.write("                         \n");
+      out.write("                    <td> <input type=\"submit\" value=\"");
+      out.print(str);
+      out.write("\"/></td>\n");
       out.write("                </tr>\n");
-      out.write("                 </form>   \n");
-      out.write("        ");
-
-            if ( request.getAttribute("message")!=null) {
-                out.println(request.getAttribute("message"));
-              
-            }
-        
-      out.write("\n");
       out.write("            </table>\n");
       out.write("        </form>   \n");
-      out.write("    </form>   \n");
+      out.write("       \n");
+      out.write("        </br>\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "foot.jsp", out, false);
+      out.write("\n");
+      out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
