@@ -31,7 +31,6 @@
                 str="Driver"; 
                 url = "DriverDetails.do";
             }
-            
             %>
          
          
@@ -50,21 +49,21 @@
         <input type="radio" name="tbl" value="jobDone">Completed journeys<br />
             <input type="radio" name="tbl" value="Update">Password Change<br />
             <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
-            
-           
       
             <div class="col-md-10 col-md-offset-5">
               <div class="text-center">
                 <input type="submit" value="Action" class="btn btn-primary" />
                 <a href="register.jsp" class="btn btn-primary">Register</a>
-                <form method="POST" action="Logout.do">
+                
+          <form method="POST" action="Logout.do">
             <input type="submit" value="Logout"/>
             <br />
           </form> 
               </div>
             </div>
             <input type=submit value="Action"> 
-            </form>  <form method="POST" action="Logout.do">
+            </form>  
+        <form method="POST" action="Logout.do">
             <input type="submit" value="Logout"/>
             <br />
           </form> 

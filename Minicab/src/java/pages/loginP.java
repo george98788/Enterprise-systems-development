@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
+import model.UserObject;
 
 /**
  *
@@ -47,6 +48,8 @@ public class loginP extends HttpServlet {
         String[] query = new String[2];
         query[0] = (String) request.getParameter("username");
         query[1] = (String) request.getParameter("password");
+        UserObject userObject = new UserObject(query);
+        session.setAttribute("user", userObject);
         
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
 

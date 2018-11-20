@@ -4,6 +4,7 @@
     Author     : me-aydin
 --%>
 
+<%@page import="model.UserObject"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,15 +14,20 @@
     </head>
     <body>
         <h2>Password change</h2>
-           <form method="POST" action="Update.do">     
+        <form method="POST" action="Update.do">     
             <table>
                 <tr>
                     <th></th>
                     <th>Please provide your following details</th>
                 </tr>
                 <tr>
-                    <td>Username:</td>
-                    <td><input type="text" name="username"/></td>
+                    <td> User:          <%
+                        if (session.getAttribute("user") != null) {  
+                         UserObject userObject = (UserObject) session.getAttribute("user");
+                         out.println(userObject.getUsername());
+                         
+                        }%> </td>
+
                 </tr>
                 <tr>
                     <td>New Password:</td>
@@ -36,7 +42,7 @@
                 </tr>
             </table>
         </form>
-        <%=((String)(request.getAttribute("msg"))!=null)?(String)(request.getAttribute("msg")):""%>
-         <jsp:include page="foot.jsp"/>
+        <%=((String) (request.getAttribute("msg")) != null) ? (String) (request.getAttribute("msg")) : ""%>
+        <jsp:include page="foot.jsp"/>
     </body>
 </html>

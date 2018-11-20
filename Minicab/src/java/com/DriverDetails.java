@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pages;
+package com;
 
 import com.UserServLet;
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class DriverDetails extends HttpServlet {
         
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
        String qry = "select * from USERNAME.Drivers";
-//       String journeyqry = "Select * from USERNAME.Journey";
+       String journeyqry = "Select * from USERNAME.Journey";
        
         response.setContentType("text/html;charset=UTF-8");
 
@@ -72,9 +72,23 @@ public class DriverDetails extends HttpServlet {
             request.getRequestDispatcher("/driverDetails.jsp").forward(request, response);
         }
         
+        else if (request.getParameter("tbl").equals("jobDone")){
+            String journeymsg="No journeys";
+            try {
+                journeymsg = dbBean.retrieve(journeyqry);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            request.setAttribute("journeyquery", journeymsg);
+            request.getRequestDispatcher("/driverJourneys.jsp").forward(request, response);
+            
+//            request.getRequestDispatcher("/driverJourneys.jsp").forward(request, response);
+        }
+        
 //        else if (request.getParameter("tbl").equals("jobDone")){
 //            request.getRequestDispatcher("/driverJourneys.jsp").forward(request, response);
 //        }
+        
 //        
 //        else{   
 //            request.setAttribute("msg", "del");

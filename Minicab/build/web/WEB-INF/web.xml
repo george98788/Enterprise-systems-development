@@ -34,7 +34,7 @@
     </servlet>
     <servlet>
         <servlet-name>DriverDetails</servlet-name>
-        <servlet-class>pages.DriverDetails</servlet-class>
+        <servlet-class>com.DriverDetails</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DriverJourneys</servlet-name>
@@ -43,6 +43,11 @@
     <servlet>
         <servlet-name>DriverPassword</servlet-name>
         <servlet-class>pages.DriverPassword</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-class>com.CustomerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
@@ -68,9 +73,14 @@
         <servlet-name>CustomerRegistration</servlet-name>
         <url-pattern>/CustomerRegistration.do</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/CustomerServlet.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DriverDetails</servlet-name>
