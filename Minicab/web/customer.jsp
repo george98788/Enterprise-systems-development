@@ -4,6 +4,7 @@
     Author     : georg
 --%>
 
+<%@page import="model.UserObject"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,19 +30,21 @@
           <h1>   <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
-                
+             
             }
         %> </h1>
-        <form>
-        <p />
-            User options <br />
-            <input type="radio" name="tbl" value="RequestCab">Request Cab<br />
-            <input type="radio" name="tbl" value="Update">Password Change<br />
-            <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
+       
+    
+        <form method="POST" action="CustomerServlet.do">
+       
+            User options <br/>
+            <input type="radio" name="tbl" value="RequestCab">Request Cab<br/>
+            <input type="radio" name="tbl" value="Update">Password Change<br/>
+            <input type="radio" name="tbl" value="UserDeatils">View Your Details<br/>
             <input type=submit value="Action">  </form>  <form method="POST" action="Logout.do"><input type="submit" value="Logout"/><br />
-            
+           
         </form> 
-            </div>
+            <div/>
         
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
