@@ -27,6 +27,7 @@
           <h2>Hello Customer</h2>
           
         </header>
+<<<<<<< HEAD
          </p>
       
       
@@ -34,12 +35,22 @@
   
        <div class="row justify-content-md-center">
           
+=======
+        <div class="centre">
+          <h1>   <%
+            if ( request.getAttribute("message")!=null) {
+                out.println(request.getAttribute("message"));
+                
+            }
+        %> </h1>
+>>>>>>> parent of 39915f3... merged customer and driver
         <form>
         <p />
             User options <br />
             <input type="radio" name="tbl" value="RequestCab">Request Cab<br />
             <input type="radio" name="tbl" value="Update">Password Change<br />
             <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
+<<<<<<< HEAD
           
           <input type=submit value="Action">    <form method="POST" action="Logout.do"><input type="submit" value="Logout"/>
           
@@ -47,6 +58,13 @@
         </form> 
             </div>
          </div>
+=======
+            <input type=submit value="Action">  </form>  <form method="POST" action="Logout.do"><input type="submit" value="Logout"/><br />
+            
+        </form> 
+            </div>
+        
+>>>>>>> parent of 39915f3... merged customer and driver
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

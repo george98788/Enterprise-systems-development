@@ -32,6 +32,21 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>pages.Logout</servlet-class>
     </servlet>
+<<<<<<< HEAD
+=======
+    <servlet>
+        <servlet-name>DriverDetails</servlet-name>
+        <servlet-class>pages.DriverDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DriverJourneys</servlet-name>
+        <servlet-class>pages.DriverJourneys</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DriverPassword</servlet-name>
+        <servlet-class>pages.DriverPassword</servlet-class>
+    </servlet>
+>>>>>>> parent of 39915f3... merged customer and driver
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -60,6 +75,21 @@
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout.do</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
+=======
+    <servlet-mapping>
+        <servlet-name>DriverDetails</servlet-name>
+        <url-pattern>/DriverDetails.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverJourneys</servlet-name>
+        <url-pattern>/DriverJourneys.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverPassword</servlet-name>
+        <url-pattern>/DriverPassword.do</url-pattern>
+    </servlet-mapping>
+>>>>>>> parent of 39915f3... merged customer and driver
     <session-config>
         <session-timeout>
             30
