@@ -31,7 +31,7 @@
         <h1>   <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
-                
+       
             }
         %> </h1>
         <form method="POST" action="UserService.do">

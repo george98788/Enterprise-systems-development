@@ -65,20 +65,16 @@ public class loginP extends HttpServlet {
                 request.getRequestDispatcher("adminView.jsp").forward(request, response);
             } else if (jdbc.role(query[0], query[1]) == "driver") {
                 request.setAttribute("message", "Logged in as " + query[0]);
-                request.getRequestDispatcher("driver.jsp").forward(request, response);
-              
+                request.getRequestDispatcher("driver.jsp").forward(request, response);   
             }          
             else {
                 request.setAttribute("message", "Logged in as " + query[0]);
                 request.getRequestDispatcher("customer.jsp").forward(request, response);    
             }
-
         } else {
             request.setAttribute("message", "Incorrect username or password ");
         }
-        
         request.getRequestDispatcher("login.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
