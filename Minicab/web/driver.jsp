@@ -86,7 +86,6 @@
           </div>
           <div class="row justify-content-md-center">
             <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
-<<<<<<< HEAD
           </div>
            
       
@@ -99,24 +98,6 @@
                  
                   <button type="submit" value="Logout" class="btn btn-outline-danger">Log Out</button>
              </div>
-=======
-            
-           
-      
-            <div class="col-md-10 col-md-offset-5">
-              <div class="text-center">
-                <input type="submit" value="Action" class="btn btn-primary" />
-                <a href="register.jsp" class="btn btn-primary">Register</a>
-                <form method="POST" action="Logout.do">
-            <input type="submit" value="Logout"/>
-            <br />
-          </form> 
-              </div>
-            </div>
-            <input type=submit value="Action"> 
-            </form>  <form method="POST" action="Logout.do">
-            <input type="submit" value="Logout"/>
->>>>>>> parent of 39915f3... merged customer and driver
             <br />
           </form> 
         </div>
