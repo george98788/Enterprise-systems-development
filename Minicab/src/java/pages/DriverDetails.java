@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com;
+package pages;
 
+import com.UserServLet;
 import java.io.IOException;
-//import java.io.PrintWriter;
+import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +23,9 @@ import model.Jdbc;
 
 /**
  *
- * @author me-aydin
+ * @author saphi
  */
-public class UserServLet extends HttpServlet {
+public class DriverDetails extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +38,22 @@ public class UserServLet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String qry = "select * from users";
-        String qry = "select * from Drivers";
-        HttpSession session = request.getSession(); 
         response.setContentType("text/html;charset=UTF-8");
-        
+        HttpSession session = request.getSession();
         Jdbc dbBean = new Jdbc();
+        dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
+        session.setAttribute("dbbean", dbBean);
+        
+
+//        query[0] = (String) request.getParameter("name");
+//        query[1] = (String) request.getParameter("registration");
+        
+        Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
+       String qry = "select * from USERNAME.Drivers";
+//       String journeyqry = "Select * from USERNAME.Journey";
+       
+        response.setContentType("text/html;charset=UTF-8");
+
         dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
 
@@ -49,7 +61,7 @@ public class UserServLet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
             
-        if (request.getParameter("tbl").equals("List")){
+        if (request.getParameter("tbl").equals("UserDetails")){
             String msg="No users";
             try {
                 msg = dbBean.retrieve(qry);
@@ -57,20 +69,31 @@ public class UserServLet extends HttpServlet {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.setAttribute("query", msg);
-            request.getRequestDispatcher("/WEB-INF/results.jsp").forward(request, response);
+            request.getRequestDispatcher("/driverDetails.jsp").forward(request, response);
         }
-        else if(request.getParameter("tbl").equals("NewUser")){
-            request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
-        } 
-        else if(request.getParameter("tbl").equals("Update")){
-            request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response);    
-        }
-        else {
-            request.setAttribute("msg", "del");
-            request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response); 
-        }
+        
+//        else if (request.getParameter("tbl").equals("jobDone")){
+//            request.getRequestDispatcher("/driverJourneys.jsp").forward(request, response);
+//        }
+//        
+//        else{   
+//            request.setAttribute("msg", "del");
+//            request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response); 
+//        }
+//        Statement stmtName = null;
+//        String query="SELECT * from USERNAME.DRIVERS";
+//        try{
+////            driverName = connection.prepareStatement("SELECT NAME from USERNAME.DRIVERS", PreparedStatement.RETURN_GENERATED_KEYS);
+//            stmtName = connection.createStatement();
+//            ResultSet rs = stmtName.executeQuery(query);
+//            while(rs.next()){
+//                String driverName = rs.getString("NAME"); 
+//            }
+//       
+//        }catch (SQLException ex) {
+//            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
-      
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

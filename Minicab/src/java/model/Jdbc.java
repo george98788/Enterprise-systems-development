@@ -5,6 +5,7 @@
  */
 package model;
 
+import com.sun.rowset.internal.Row;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Statement;
@@ -91,7 +92,7 @@ public class Jdbc {
         String results = "";
         select(query);
 //        try {
-//            
+//          
 //            if (rs==null)
 //                System.out.println("rs is null");
 //            else
@@ -168,7 +169,6 @@ public class Jdbc {
             ps.setString(2, str[1]);
             ps.setString(3, str[2].toLowerCase());
             ps.executeUpdate();
-
             ps.close();
             System.out.println("1 row added.");
         } catch (SQLException ex) {
@@ -176,6 +176,23 @@ public class Jdbc {
         }
 
     }
+    
+//    public void driverDetails(String[] str){
+//        Statement stmtName = null;
+//        String query="SELECT * from DRIVERS";
+//        try{
+////            driverName = connection.prepareStatement("SELECT NAME from USERNAME.DRIVERS", PreparedStatement.RETURN_GENERATED_KEYS);
+//            stmtName = connection.createStatement();
+//            ResultSet rs = stmtName.executeQuery(query);
+//            while(rs.next()){
+//                String driverName = rs.getString("NAME"); 
+//            }
+//       
+//        }catch (SQLException ex) {
+//            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//    }
 
     /**
      *
@@ -293,19 +310,15 @@ public class Jdbc {
 
         }
         jdbc.connect(conn);
-//        String[] users = {"george", "benim", "benim"};
-//        System.out.println(jdbc.retrieve(str));
-//        if (!jdbc.exists(users[0])) {
-//            jdbc.insert(users);
-//        } else {
-//            jdbc.update(users);
-//            System.out.println("user name exists, change to another");
-//        }
         jdbc.delete("aydinme");
 
         System.out.println(jdbc.retrieve(str));
         jdbc.closeAll();
 
+    }
+
+    public String retrieve(String[] query) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 } //class
 

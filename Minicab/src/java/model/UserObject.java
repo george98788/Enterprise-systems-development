@@ -36,4 +36,8 @@ public class UserObject {
         this.username = username;
         this.password = password;
     }
+    public class Row{
+      private String name;
+      private String registration;
+    }
 }
