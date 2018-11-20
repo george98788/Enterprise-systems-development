@@ -23,23 +23,26 @@
         </nav>
           <div class="container">
            <%! ;
-            String str="Action"; 
-            String url = "Update.do";
-        %>
+            String str=""; 
+            String url = "";    
+            %>
+            <% 
+            if((String)request.getAttribute("qry") !="No users") {
+                str="Driver"; 
+                url = "DriverDetails.do";
+            }
+            
+            %>
          
          
              
         <header>
         <h2>Driver View</h2>
         </header>
-               <div class="centre">
-          <h2>   <%
-            if ( request.getAttribute("message")!=null) {
-                out.println(request.getAttribute("message"));
-                
-            }
-        %> </h2>
-        <form>
+               <div class="centre"> 
+         
+          
+        <form method="POST" action="<%=url%>">
         <p />
          <div class="centre">
             <h3>Driver details</h3>
