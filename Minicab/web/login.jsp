@@ -9,6 +9,7 @@
         
     </head>
     <body>
+        
         <nav class ="navbar navbar-inverse bg-dark">
             <a class="navbar-brand" href="/Minicab/login.jsp">Log in</a>
             <a class="navbar-brand" href="/Minicab/register.jsp">Register</a>
