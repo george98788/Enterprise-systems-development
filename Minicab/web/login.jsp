@@ -16,42 +16,44 @@
             <a class="navbar-brand" href="/Minicab/customer.jsp">Customer</a>
         </nav>
         
-   <div class="container">
-<%! ;
+  <div class="container">
+  <%! ;
             String str="login"; 
             String url = "loginP.do";
         %>
-  <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center">
 
-    <br>
-    <br/>
-    <form method="POST" action="loginP.do">
-
-      <h3> Please provide your following details </3>
-
-        <table>
-          <tr>
-            <td>Username:</td>
-            <td><input type="text" name="username" placeholder="username" /></td>
-          </tr>
-          <tr>
-            <td>Password:</td>
-            <td><input type="password" name="password" placeholder="password" /></td>
-          </tr>
-        </table>
-
-        <div class="row">
+      <br>
+      <br/>
+      <form method="POST" action="loginP.do">
+          <div class="col-md-12 col-md-offset-5">
+              <h3> Please provide your following details </h3>
+          </div>
+          <br/>
           <div class="col-md-10 col-md-offset-5">
-            <div class="input-group mb-3">
-              <input type="submit" value="Login" class="btn btn-primary" />
-              <a href="register.jsp" class="btn btn-primary">Register</a>
+              <table>
+            <tr>
+              <td>Username:</td>
+              <td><input type="text" name="username" placeholder="username" /></td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td><input type="password" name="password" placeholder="password" /></td>
+            </tr>
+          </table>
+</div>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-5">
+              <div class="text-center">
+                <input type="submit" value="Login" class="btn btn-primary" />
+                <a href="register.jsp" class="btn btn-primary">Register</a>
+              </div>
             </div>
           </div>
-        </div>
-    </form>
-  </div>
+      </form>
+    </div>
 </div>
-
+    
         <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
