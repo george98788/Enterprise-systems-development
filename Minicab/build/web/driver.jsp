@@ -21,30 +21,56 @@
             <a class="navbar-brand" href="/Minicab/driver.jsp">Driver</a>
             <a class="navbar-brand" href="/Minicab/customer.jsp">Customer</a>
         </nav>
-         <div class="centre">
+          <div class="container">
+           <%! ;
+            String str="Action"; 
+            String url = "Update.do";
+        %>
+         
+         
+             
         <header>
         <h2>Driver View</h2>
         </header>
-         
-         <div class="centre">
-       
+               <div class="centre">
           <h2>   <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
                 
             }
         %> </h2>
-          <form>
+        <form>
         <p />
-            Driver Details <br />
-            <input type="radio" name="tbl" value="jobDone">Completed journeys<br />
+         <div class="centre">
+            <h3>Driver details</h3>
+         </div>
+        <input type="radio" name="tbl" value="jobDone">Completed journeys<br />
             <input type="radio" name="tbl" value="Update">Password Change<br />
             <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
-            <input type=submit value="Action"> </form>  <form method="POST" action="Logout.do"><input type="submit" value="Logout"/><br />
-        </form> 
-            <div/>
+            
+           
+      
+            <div class="col-md-10 col-md-offset-5">
+              <div class="text-center">
+                <input type="submit" value="Action" class="btn btn-primary" />
+                <a href="register.jsp" class="btn btn-primary">Register</a>
+                <form method="POST" action="Logout.do">
+            <input type="submit" value="Logout"/>
+            <br />
+          </form> 
+              </div>
+            </div>
+            <input type=submit value="Action"> 
+            </form>  <form method="POST" action="Logout.do">
+            <input type="submit" value="Logout"/>
+            <br />
+          </form> 
+          </div>  
+          </div>
+         
+      
     </body>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
