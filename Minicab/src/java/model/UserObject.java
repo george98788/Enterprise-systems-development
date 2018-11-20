@@ -13,8 +13,7 @@ public class UserObject {
     String username;
     String password;
 
-    public UserObject() {
-    }
+    
 
     public String getUsername() {
         return username;
@@ -32,8 +31,8 @@ public class UserObject {
         this.password = password;
     }
 
-    public UserObject(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public UserObject(String user[]) {
+        this.username = user[0];
+        this.password = user[1];
     }
 }

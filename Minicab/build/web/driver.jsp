@@ -21,50 +21,55 @@
             <a class="navbar-brand" href="/Minicab/driver.jsp">Driver</a>
             <a class="navbar-brand" href="/Minicab/customer.jsp">Customer</a>
         </nav>
-          
+          <div class="container">
            <%! ;
-            String str="Action"; 
-            String url = "Update.do";
-        %>
+            String str=""; 
+            String url = "";    
+            %>
+            <% 
+            if((String)request.getAttribute("qry") !="No users") {
+                str="Driver"; 
+                url = "DriverDetails.do";
+            }
+            %>
          
          
-            <div class="row justify-content-md-center">  
+             
         <header>
         <h2>Driver View</h2>
         </header>
-            </div>
-        
-                <div class="row justify-content-md-center">
-          <h2>   <%
-            if ( request.getAttribute("message")!=null) {
-                out.println(request.getAttribute("message"));
-                
-            }
-        %> </h2>
-        <form>
+               <div class="centre"> 
+         
+          
+        <form method="POST" action="<%=url%>">
         <p />
-          <div class="center">
+         <div class="centre">
             <h3>Driver details</h3>
          </div>
         <input type="radio" name="tbl" value="jobDone">Completed journeys<br />
             <input type="radio" name="tbl" value="Update">Password Change<br />
             <input type="radio" name="tbl" value="UserDetails">View Your Details<br />
-            
-           
       
-            </div>
-        <div class="row justify-content-md-center">
-            <button type="submit" value="Action" class="btn btn-outline-success">Submit</button>
-            
-              <form method="POST" action="Logout.do">
-                 
-                  <button type="submit" value="Logout" class="btn btn-outline-danger">Log Out</button>
-             </div>
-            <br /></form>
+            <div class="col-md-10 col-md-offset-5">
+              <div class="text-center">
+                <input type="submit" value="Action" class="btn btn-primary" />
+                <a href="register.jsp" class="btn btn-primary">Register</a>
+                
+          <form method="POST" action="Logout.do">
+            <input type="submit" value="Logout"/>
+            <br />
           </form> 
-        </div>
+              </div>
+            </div>
+            <input type=submit value="Action"> 
+            </form>  
+        <form method="POST" action="Logout.do">
+            <input type="submit" value="Logout"/>
+            <br />
+          </form> 
           </div>  
           </div>
+         
       
     </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
