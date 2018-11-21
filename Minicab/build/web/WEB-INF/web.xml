@@ -32,6 +32,23 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>pages.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DriverDetails</servlet-name>
+        <servlet-class>com.DriverDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DriverJourneys</servlet-name>
+        <servlet-class>pages.DriverJourneys</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DriverPassword</servlet-name>
+        <servlet-class>pages.DriverPassword</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-class>com.CustomerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -56,9 +73,26 @@
         <servlet-name>CustomerRegistration</servlet-name>
         <url-pattern>/CustomerRegistration.do</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/CustomerServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverDetails</servlet-name>
+        <url-pattern>/DriverDetails.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverJourneys</servlet-name>
+        <url-pattern>/DriverJourneys.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverPassword</servlet-name>
+        <url-pattern>/DriverPassword.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
+import model.UserObject;
 
 /**
  *
@@ -47,6 +48,8 @@ public class loginP extends HttpServlet {
         String[] query = new String[2];
         query[0] = (String) request.getParameter("username");
         query[1] = (String) request.getParameter("password");
+        UserObject userObject = new UserObject(query);
+        session.setAttribute("user", userObject);
         
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
 
@@ -62,20 +65,16 @@ public class loginP extends HttpServlet {
                 request.getRequestDispatcher("adminView.jsp").forward(request, response);
             } else if (jdbc.role(query[0], query[1]) == "driver") {
                 request.setAttribute("message", "Logged in as " + query[0]);
-                request.getRequestDispatcher("driver.jsp").forward(request, response);
-              
+                request.getRequestDispatcher("driver.jsp").forward(request, response);   
             }          
             else {
                 request.setAttribute("message", "Logged in as " + query[0]);
                 request.getRequestDispatcher("customer.jsp").forward(request, response);    
             }
-
         } else {
             request.setAttribute("message", "Incorrect username or password ");
         }
-        
         request.getRequestDispatcher("login.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

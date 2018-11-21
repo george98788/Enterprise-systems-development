@@ -1,19 +1,19 @@
 <%-- 
-    Document   : results
-    Created on : 30-Oct-2015, 10:02:53
-    Author     : me-aydin
+    Document   : customerDetails
+    Created on : 20-Nov-2018, 16:59:31
+    Author     : georg
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>DB Results</title>
+        <title>Customer Details</title>
     </head>
     <body>
-         <nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="#">
     <img src="Alpha_Cab_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
     logo
@@ -39,18 +39,16 @@
     </ul>
   </div>
 </nav>
-           <div class="row justify-content-md-center">
-                
-        <h1>The retrieved Data :</h1>
-           </div>
-<div class="row justify-content-md-center">
-                
-        <%=(String)(request.getAttribute("query"))%>
-</div>
-<div class="row justify-content-md-center">
-                
-        <jsp:include page="foot.jsp"/>
-           </div>
+    <div class="row justify-content-md-center">
+        <h1>Customer Details!</h1>
+    </div>
+        <div class="row justify-content-md-center">
+        <p>Unable to pull data as database needs to be changed, linking user table and customer</p>
+        </div>
+        
+        <div class="row justify-content-md-center">
+         <a href="register.jsp" class="btn btn-success">Register</a>
+    </div> 
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

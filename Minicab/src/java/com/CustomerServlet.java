@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pages;
+package com;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +21,9 @@ import model.UserObject;
 
 /**
  *
- * @author me-aydin
+ * @author georg
  */
-public class Update extends HttpServlet {
+public class CustomerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,31 +36,25 @@ public class Update extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
-       
-         HttpSession session = request.getSession(false);
-        
-        Jdbc jdbc = (Jdbc)session.getAttribute("dbbean"); 
-        if (jdbc == null)
+      // UserObject userObject = (UserObject) request.getAttribute("user");
+        Jdbc dbBean = new Jdbc();
+        dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
+        session.setAttribute("dbbean", dbBean);
+
+        if ((Connection) request.getServletContext().getAttribute("connection") == null) {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
-        else {
-            String [] query = new String[3];
-              UserObject userObject = (UserObject) session.getAttribute("user");
-                         
-            query[0] = (String)userObject.getUsername();
-            query[1] = (String)request.getParameter("password");
-            query[2] = (String)request.getParameter("newpasswd");  
-            
-            if(!query[1].trim().equals(query[2].trim())) {
-                request.setAttribute("msg", "Your two passwords are not the same. </br> Please make sure you confirm the password</br>");
-                request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response); 
-            }
-             else {
-                jdbc.update(query);
-                request.setAttribute("msg", ""+query[0]+"'s passwd is changed</br>");
-                request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response);
-            }
         }
+        if (request.getParameter("tbl").equals("RequestCab")) {
+            request.getRequestDispatcher("requestCab.jsp").forward(request, response);
+        } else if (request.getParameter("tbl").equals("Update")) {
+            request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response);
+        } else if (request.getParameter("tbl").equals("UserDeatils")) {
+            request.getRequestDispatcher("customerDetails.jsp").forward(request, response);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
