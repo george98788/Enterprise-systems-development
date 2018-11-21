@@ -23,12 +23,32 @@
     </head>
      
       <body>
-         <nav class ="navbar navbar-inverse bg-dark">
-            <a class="navbar-brand" href="/Minicab/login.jsp">Log in</a>
-            <a class="navbar-brand" href="/Minicab/register.jsp">Register</a>
-            <a class="navbar-brand" href="/Minicab/driver.jsp">Driver</a>
-            <a class="navbar-brand" href="/Minicab/customer.jsp">Customer</a>
-        </nav>
+                 <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="Alpha_Cab_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    logo
+  </a>
+  <a class="navbar-brand" href="#">Minicab</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/Minicab/login.jsp">Log In <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Minicab/register.jsp">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Minicab/driver.jsp">Driver</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Minicab/customer.jsp">Customer</a>
+      </li>
+    </ul>
+  </div>
+</nav>
           <div class="container">
            <%! ;
             String str=""; 
@@ -64,17 +84,14 @@
                 <a href="register.jsp" class="btn btn-primary">Register</a>
                 
           <form method="POST" action="Logout.do">
-            <input type="submit" value="Logout"/>
+            <button type="submit" value="Logout" class="btn btn-danger">Log Out</button>
             <br />
           </form> 
               </div>
             </div>
-            <input type=submit value="Action"> 
-            </form>  
-        <form method="POST" action="Logout.do">
-            <input type="submit" value="Logout"/>
-            <br />
-          </form> 
+            
+         
+      
           </div>  
           </div>
          
