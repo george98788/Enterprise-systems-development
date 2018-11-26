@@ -39,7 +39,6 @@ public class Logout extends HttpServlet {
         Jdbc dbBean = new Jdbc();
         dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
-//        session.setMaxInactiveInterval(1200);
         session.invalidate();
         
         request.setAttribute("message", "Successfully logged out");

@@ -72,7 +72,7 @@
                 </div>
                         <div class="row justify-content-md-center">
                 <tr> 
-                    <td> <button type="button" value="Change" class="btn btn-info">Update</button></td>
+                    <td> <button type="submit" value="Change" class="btn btn-info">Update</button></td>
                 </tr>
             
          </div>

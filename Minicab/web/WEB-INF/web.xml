@@ -44,7 +44,6 @@
         <servlet-name>DriverPassword</servlet-name>
         <servlet-class>pages.DriverPassword</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>CustomerServlet</servlet-name>
         <servlet-class>com.CustomerServlet</servlet-class>
@@ -73,7 +72,6 @@
         <servlet-name>CustomerRegistration</servlet-name>
         <url-pattern>/CustomerRegistration.do</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout.do</url-pattern>

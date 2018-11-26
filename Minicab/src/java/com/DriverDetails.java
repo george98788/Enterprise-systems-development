@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
+import model.UserObject;
 
 /**
  *
@@ -43,16 +44,21 @@ public class DriverDetails extends HttpServlet {
         Jdbc dbBean = new Jdbc();
         dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
+        UserObject userObject = (UserObject) session.getAttribute("user");
+        Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
+        String userName = userObject.getUsername();
+        
+        String journeyqry = "SELECT USERS.ID,USERS.USERNAME,DRIVERS.*,JOURNEYS.* FROM "
+                + "(USERS INNER JOIN DRIVERS ON "
+                + "USERS.ID=DRIVERS.USERS_ID)" +
+                "LEFT OUTER JOIN JOURNEYS ON DRIVERS.ID = JOURNEYS.DRIVERS_ID "
+                + "WHERE USERS.USERNAME='"+userName+"'";
         
 
-//        query[0] = (String) request.getParameter("name");
-//        query[1] = (String) request.getParameter("registration");
-        
-        Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
-       String qry = "select * from USERNAME.Drivers";
-       String journeyqry = "Select * from USERNAME.Journey";
+        String driverDetailsqry="SELECT USERS.ID,USERS.USERNAME, DRIVERS.*"
+                + " from (USERS INNER JOIN DRIVERS On "
+                + "USERS.ID = DRIVERS.USERS_ID) where USERS.USERNAME='"+userName+"'";//
        
-        response.setContentType("text/html;charset=UTF-8");
 
         dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
@@ -62,13 +68,13 @@ public class DriverDetails extends HttpServlet {
         }
             
         if (request.getParameter("tbl").equals("UserDetails")){
-            String msg="No users";
+            String Drivermsg="No users";
             try {
-                msg = dbBean.retrieve(qry);
+                Drivermsg = dbBean.retrieve(driverDetailsqry);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("query", msg);
+            request.setAttribute("driverDetailsqry", Drivermsg);
             request.getRequestDispatcher("/driverDetails.jsp").forward(request, response);
         }
         
@@ -82,12 +88,11 @@ public class DriverDetails extends HttpServlet {
             request.setAttribute("journeyquery", journeymsg);
             request.getRequestDispatcher("/driverJourneys.jsp").forward(request, response);
             
-//            request.getRequestDispatcher("/driverJourneys.jsp").forward(request, response);
         }
         
-//        else if (request.getParameter("tbl").equals("jobDone")){
-//            request.getRequestDispatcher("/driverJourneys.jsp").forward(request, response);
-//        }
+        else if (request.getParameter("tbl").equals("Update")){
+            request.getRequestDispatcher("WEB-INF/passwdChange.jsp").forward(request, response);
+        }
         
 //        
 //        else{   

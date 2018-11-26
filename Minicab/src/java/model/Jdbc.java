@@ -135,19 +135,19 @@ public class Jdbc {
         String userRole = "";
         try {
 
-            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND role='admin'");
+            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND roles='admin'");
             if (rs.next()) {
                 System.out.println("TRUE");
                 userRole = "admin";
                 return userRole;
             }
-            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND role='driver'");
+            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND roles='driver'");
             if (rs.next()) {
                 System.out.println("TRUE");
                 userRole = "driver";
                 return userRole;
             }
-            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND role='customer'");
+            select("select * from users where username='" + user + "'" + " AND password='" + password + "'" + " AND roles='customer'");
             if (rs.next()) {
                 System.out.println("TRUE");
                 userRole = "customer";
@@ -185,17 +185,19 @@ public class Jdbc {
         PreparedStatement ps = null;
         PreparedStatement ps2 = null;
         try {
-            ps = connection.prepareStatement("INSERT INTO Users VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps = connection.prepareStatement("INSERT INTO Users(USERNAME,PASSWORD,ROLES) VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, str[5].trim());
             ps.setString(2, str[6]);
             ps.setString(3, "customer");
             ps.executeUpdate();
-            ps2 = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps2 = connection.prepareStatement("INSERT INTO Customers(NAME,ADDRESS"
+                    + ",USER_ID) VALUES (?,?,(SELECT ID from Users where "
+                    + "username='"+str[5]+"'))", PreparedStatement.RETURN_GENERATED_KEYS);
+            
             ps2.setString(1, str[0]);
             ps2.setString(2, str[1] + ", " + str[2] + ", " + str[3] + ", " + str[4]);
-            ps2.setInt(3, 8);
-            ps2.executeUpdate();
 
+            ps2.executeUpdate();
             ps2.close();
             ps.close();
             
@@ -204,6 +206,37 @@ public class Jdbc {
             Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void requestCab(String[] str){
+        PreparedStatement ps = null;
+        try {
+//            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME),"
+//                    + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME"
+//                    + "STATUS,JOURRNEY_ID "
+//                    + "VALUES (?,(SELECT ID from Customers where name='"+str[0]+")"
+//                            + ",?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME),"
+                    + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
+                    + "STATUS,JOURNEY_ID "
+                    + "VALUES (?,(SELECT ID from Customers where name='"+str[0]+")"
+                            + ",?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, str[0]); //customername
+            ps.setString(3, str[3]); //address
+            ps.setString(4, str[4]); //destination
+            ps.setDate(5,java.sql.Date.valueOf("2013-09-04"));
+            ps.setTime(6, java.sql.Time.valueOf("09:00:00")); //time
+            ps.setString(5, str[7]);//status
+            ps.setInt(8,2);
+            ps.executeUpdate();
+            ps.close();
+            
+            System.out.println("1 row added.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+   
 
     public void update(String[] str) {
         PreparedStatement ps = null;
@@ -256,7 +289,7 @@ public class Jdbc {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
 //Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/MiniCabDatabase", "username", "password");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/AlphaCab", "group10", "groupten");
 //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db.trim(), "root", "");
         } catch (ClassNotFoundException | SQLException e) {
 

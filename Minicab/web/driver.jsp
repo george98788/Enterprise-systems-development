@@ -15,10 +15,12 @@
         <%
             UserObject userObject = (UserObject) session.getAttribute("user");
             Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
-            if (jdbc.role(userObject.getUsername(), userObject.getPassword()) != "driver" ||  jdbc.role(userObject.getUsername(), userObject.getPassword()) != "admin"){
+            if (jdbc.role(userObject.getUsername(), userObject.getPassword()) == "customer" ) {
                 request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
             }
         %>
+        
+       
         <title>Driver Page</title>
     </head>
      
@@ -50,26 +52,19 @@
   </div>
 </nav>
           <div class="container">
-           <%! ;
-            String str=""; 
-            String url = "";    
-            %>
-            <% 
-            if((String)request.getAttribute("qry") !="No users") {
-                str="Driver"; 
-                url = "DriverDetails.do";
-            }
-            %>
-         
-         
-             
+
         <header>
         <h2>Driver View</h2>
         </header>
                <div class="centre"> 
-         
+          <%
+                if (request.getAttribute("message") != null) {
+                    out.println(request.getAttribute("message"));
+                }
+                %>
           
-        <form method="POST" action="<%=url%>">
+        <form method="POST" action="DriverDetails.do">
+            
         <p />
          <div class="centre">
             <h3>Driver details</h3>
@@ -90,7 +85,7 @@
               </div>
             </div>
             
-         
+        </form>
       
           </div>  
           </div>

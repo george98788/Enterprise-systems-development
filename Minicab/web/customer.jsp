@@ -4,6 +4,7 @@
     Author     : georg
 --%>
 
+<%@page import="model.CustomerObject"%>
 <%@page import="model.Jdbc"%>
 <%@page import="model.UserObject"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -58,7 +59,6 @@
             <h1>   <%
                 if (request.getAttribute("message") != null) {
                     out.println(request.getAttribute("message"));
-
                 }
                 %> </h1>
 
@@ -81,7 +81,7 @@
                 <button type="submit" value="Action" class="btn btn-success">Submit</button> 
                 <form method="POST" action="Logout.do">
                      <button type="submit" value="Logout" class="btn btn-danger">Log Out</button><br />
- </form> 
+                </form> 
             </form> 
             </div>
         

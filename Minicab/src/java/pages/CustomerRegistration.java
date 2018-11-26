@@ -49,7 +49,7 @@ public class CustomerRegistration extends HttpServlet {
         query[5] = (String) request.getParameter("usernameReg");
         query[6] = (String) request.getParameter("passwordReg");
         //String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('";
-
+         
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
 
         if (jdbc == null) {
@@ -62,6 +62,8 @@ public class CustomerRegistration extends HttpServlet {
             jdbc.registerCustomer(query);
             request.setAttribute("message", query[5] + " is added");
             request.getRequestDispatcher("customer.jsp").forward(request, response);
+           
+            
         }
  
       

@@ -4,6 +4,7 @@
     Author     : georg
 --%>
 
+<%@page import="model.UserObject"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,7 +43,52 @@
 </nav>
        <div class="row justify-content-md-center">
         <h2>Request Cab</h2>
+        
+        <form method="POST" action="CustomerServlet.do">
+            <h2> Please provide your following details</h2>
+            <table> 
+                <tr>
+                    <td>Customer Name:</td>
+                    <td><%
+                        if (session.getAttribute("user") != null) {  
+                         UserObject userObject = (UserObject) session.getAttribute("user");
+                         out.println(userObject.getUsername());
+                         
+                        }%></td>
+                </tr>
+                
+                <tr>
+                    <td>Pick up Address:</td>
+                    <td><input type="text" name="pickUpAdd" placeholder="PickUpAddress" required/></td>
+                </tr>
+                <tr>
+                    <td>Destination:</td>
+                    <td><input type="text" name="destination" placeholder="Destination" required/></td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td><input type="date" name="date" placeholder="Date" required/></td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td><input type="time" name="time" placeholder="Time" required/></td>
+                </tr>
+                <tr>
+                    <td>Status: </td>
+                    <td name="status">Outstanding</td>
+                </tr>
+                
+            </table>
+               <div class="col-md-10 col-md-offset-5">
+              <div class="text-center">
+                <button type="submit" value="Register" class="btn btn-success">Register</button>
+               
+              </div>
+            </div>
+          </div>
+        </form>
        </div>
+        
     </body>
        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

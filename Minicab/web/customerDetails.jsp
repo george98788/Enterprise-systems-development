@@ -39,12 +39,18 @@
     </ul>
   </div>
 </nav>
+        
     <div class="row justify-content-md-center">
         <h1>Customer Details!</h1>
     </div>
-        <div class="row justify-content-md-center">
-        <p>Unable to pull data as database needs to be changed, linking user table and customer</p>
-        </div>
+       <%! ;
+                String str="CustomerDetails"; 
+                String url = "CustomerServlet.do";
+                %>
+            
+        <form method="POST" action="<%=url%>">
+            <%=(String)(request.getAttribute("customerDetailsqry"))%>
+        </form>
         
         <div class="row justify-content-md-center">
          <a href="register.jsp" class="btn btn-success">Register</a>

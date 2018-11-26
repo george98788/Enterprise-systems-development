@@ -49,6 +49,7 @@ public class loginP extends HttpServlet {
         query[0] = (String) request.getParameter("username");
         query[1] = (String) request.getParameter("password");
         UserObject userObject = new UserObject(query);
+//        CustomerObject customerObject = new CustomerObject();
         session.setAttribute("user", userObject);
         
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
