@@ -62,11 +62,12 @@
                 </tr>
                 <tr>
                     <td>New Password:</td>
-                    <td><input type="password" name="password"/></td>
+                    
+                    <td><input type="password" pattern=".{6,12}" required title="6 to 12 characters" name="password"></td>
                 </tr>
                 <tr>
                     <td>Confirm Password:</td>
-                    <td><input type="password" name="newpasswd"/></td>
+                    <td><input type="password" pattern=".{6,12}" required title="6 to 12 characters" name="newpassword"></td>
                 </tr>
             </table>
                 </div>

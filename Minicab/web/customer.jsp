@@ -18,7 +18,7 @@
             UserObject userObject = (UserObject) session.getAttribute("user");
             Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
             if (jdbc.role(userObject.getUsername(), userObject.getPassword()) == "driver" ) {
-                request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
+                request.getRequestDispatcher("incorrectPermission.jsp").forward(request, response);
             }
         %>
     </head>
