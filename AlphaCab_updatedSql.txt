@@ -1,0 +1,69 @@
+CREATE TABLE USERS(
+ID int not null GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+Username varchar(45) not null,
+Password varchar(45) not null,
+Roles varchar(45) not null,
+PRIMARY KEY(ID)
+);
+
+
+#######
+
+Create Table CUSTOMERS (
+ID int not null GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+Name varchar(20),
+Address varchar(60),
+User_ID int REFERENCES Users (ID),
+PRIMARY KEY (ID)
+);
+
+######
+CREATE TABLE Journeys(
+ID int not null GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+Destination varchar(45) not null,
+Distance int not null,
+Journey_Date date not null,
+Journey_Time time not null,
+Drivers_ID int REFERENCES DRIVERS(ID),
+PRIMARY KEY (ID)
+);
+
+#######
+Create Table DEMANDS (
+ID int not null GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+Customer_Name varchar(45) not null,
+Customer_ID int REFERENCES CUSTOMERS(ID),
+Address varchar(60) not null,
+Destination varchar(45) not null,
+Demands_date date not null,
+Demands_time time not null,
+Status varchar(45) not null,
+Journey_ID int REFERENCES JOURNEYS (ID),
+PRIMARY KEY (ID)
+);
+
+############
+CREATE TABLE DRIVERS(
+ID int not null GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+Name varchar(45) not null,
+Registration varchar(45) not null,
+Users_ID int REFERENCES USERS(ID),
+PRIMARY KEY(ID)
+);
+
+########
+
+ID	NAME	ADDRESS	USER_ID
+1	Eva Smith	129 Station Rd, London, N3 2AS	4
+2	Rob Manton	23 Bow Lane, London, N3	5
+3	Bob Currie	54 Teignmouth Rd, London, NW2	6
+4	Jim Hunter	765 High Road, London, N12	7
+5	Phil Johnson	75 Squires Lane, London, N3	8
+6	Saim Soyler	2 Rosemary Ave, London, N3	9
+7	Gul Hikmet	31 Clifton Rd, London, N3 2SG	10
+
+
+ID	CUSTOMER_ID	DESTINATION	DEMANDS_DATE	DEMANDS_TIME	STATUS	JOURNEY_ID
+1	2	Heathrow Terminal 3, London	2018-11-24	17:57:26	Outstanding	2
+
+
