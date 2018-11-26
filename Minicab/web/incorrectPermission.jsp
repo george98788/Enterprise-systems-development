@@ -14,4 +14,5 @@
     <body>
         <h1>Sorry you do not have the correct permissions to view this page</h1>
     </body>
+       <jsp:include page="WEB-INF/foot.jsp"/>
 </html>

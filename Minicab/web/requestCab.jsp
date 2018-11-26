@@ -82,12 +82,14 @@
                <div class="col-md-10 col-md-offset-5">
               <div class="text-center">
                 <button type="submit" value="Register" class="btn btn-success">Register</button>
-               
+              
               </div>
+               <jsp:include page="WEB-INF/foot.jsp"/>
             </div>
           </div>
         </form>
        </div>
+       
         
     </body>
        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

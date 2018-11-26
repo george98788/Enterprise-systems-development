@@ -58,7 +58,7 @@
             </tr>
             <tr>
               <td>Password:</td>
-              <td><input type="password" name="password" placeholder="password" /></td>
+              <td><input type="password" pattern=".{6,12}" required title="6 to 12 characters" name="password"></td>
             </tr>
           </table>
 </div>
