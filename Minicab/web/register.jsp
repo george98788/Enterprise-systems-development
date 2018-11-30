@@ -13,32 +13,7 @@
         <title>Register</title>
     </head>
     <body>
-                  <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="Alpha_Cab_Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    logo
-  </a>
-  <a class="navbar-brand" href="#">Minicab</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/Minicab/login.jsp">Log In <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Minicab/register.jsp">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Minicab/driver.jsp">Driver</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Minicab/customer.jsp">Customer</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+        <%@include  file="WEB-INF/newbar.html" %>
         <div class="row justify-content-md-center">
     <form method="POST" action="CustomerRegistration.do">    
         <h2> Please provide your following details</h2>
@@ -69,7 +44,9 @@
                 </tr>
                   <tr>
                     <td>Password:</td>
-                    <td><input type="password" pattern=".{6,12}" required title="6 to 12 characters" name="passwordReg"></td>
+                    <td>
+                        <input type="password" name="passwordReg" placeholder="Password"required pattern=".{8,12}" required title="8 to 12 characters"/>
+                    </td>
                 </tr>
             </table>
         <div class="row">
@@ -81,18 +58,18 @@
             </div>
           </div>
         
-                 </form>   
+         </form>   
         </div>
+       <!--</table>-->
+
         <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
               
             }
         %>
-    </table>
-        </form>   
-    </form> 
-       <jsp:include page="WEB-INF/foot.jsp"/>
+<!--        </form>   -->
+    <!--</form>-->  
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

@@ -215,18 +215,18 @@ public class Jdbc {
 //                    + "STATUS,JOURRNEY_ID "
 //                    + "VALUES (?,(SELECT ID from Customers where name='"+str[0]+")"
 //                            + ",?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME),"
+            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME,"
                     + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
-                    + "STATUS,JOURNEY_ID "
-                    + "VALUES (?,(SELECT ID from Customers where name='"+str[0]+")"
-                            + ",?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, str[0]); //customername
-            ps.setString(3, str[3]); //address
-            ps.setString(4, str[4]); //destination
-            ps.setDate(5,java.sql.Date.valueOf("2013-09-04"));
-            ps.setTime(6, java.sql.Time.valueOf("09:00:00")); //time
-            ps.setString(5, str[7]);//status
-            ps.setInt(8,2);
+                    + "STATUS) VALUES ((SELECT NAME from CUSTOMERS where "
+                    + "USER_ID =(SELECT ID from USERS where USERNAME='"+str[0]+"')),"
+                    + "(SELECT ID from CUSTOMERS where"
+                    + " USER_ID=(SELECT ID from USERS where USERNAME='"+str[0]+"')),"
+                            + "?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, str[1]); //address
+            ps.setString(2, str[2]); //destination
+            ps.setString(3, str[3]); //str[3]
+            ps.setString(4, str[4]); //str[4]
+            ps.setString(5, str[5]); //status
             ps.executeUpdate();
             ps.close();
             

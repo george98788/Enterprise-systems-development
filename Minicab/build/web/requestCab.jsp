@@ -44,7 +44,7 @@
        <div class="row justify-content-md-center">
         <h2>Request Cab</h2>
         
-        <form method="POST" action="CustomerServlet.do">
+        <form method="POST" action="CustomerRequestServlet.do">
             <h2> Please provide your following details</h2>
             <table> 
                 <tr>
@@ -56,7 +56,6 @@
                          
                         }%></td>
                 </tr>
-                
                 <tr>
                     <td>Pick up Address:</td>
                     <td><input type="text" name="pickUpAdd" placeholder="PickUpAddress" required/></td>
@@ -67,29 +66,31 @@
                 </tr>
                 <tr>
                     <td>Date:</td>
-                    <td><input type="date" name="date" placeholder="Date" required/></td>
+                    <td><input type="text" name="demands_date" placeholder="Date" required/></td>
                 </tr>
                 <tr>
                     <td>Time:</td>
-                    <td><input type="time" name="time" placeholder="Time" required/></td>
+                    <td><input type="text" name="demands_time" placeholder="Time" required/></td>
                 </tr>
                 <tr>
                     <td>Status: </td>
-                    <td name="status">Outstanding</td>
+                    <td><input type="text" name="status"/></td>
                 </tr>
                 
             </table>
                <div class="col-md-10 col-md-offset-5">
               <div class="text-center">
-                <button type="submit" value="Register" class="btn btn-success">Register</button>
-              
+                <button type="submit" value="Register" class="btn btn-success">Book a cab</button>
               </div>
-               <jsp:include page="WEB-INF/foot.jsp"/>
-            </div>
+             
+            </form>
+               <%=((String) (request.getAttribute("msg")) != null) ? (String) (request.getAttribute("msg")) : ""%>
+                <jsp:include page="WEB-INF/foot.jsp"/>
+               
+           </div>
           </div>
-        </form>
-       </div>
        
+       </div>
         
     </body>
        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
