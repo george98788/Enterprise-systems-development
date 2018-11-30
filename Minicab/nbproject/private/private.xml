@@ -3,8 +3,27 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/src/java/com/DriverDetails.java</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/WEB-INF/conErr.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/driverJourneys.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/driver.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/WEB-INF/driverFoot.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/logout.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/customerDetails.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/WEB-INF/passwdChange.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/customer.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/login.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/adminView.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/WEB-INF/user.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/driverDetails.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/WEB-INF/results.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/WEB-INF/newbar.html</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/register.jsp</file>
             <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/src/java/model/Jdbc.java</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/src/java/com/CustomerServlet.java</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/driverPassword.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/WEB-INF/foot.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/requestCab.jsp</file>
+            <file>file:/C:/Users/saphi/Documents/FINAL%20YEAR/Enterprise%20Systems%20Development/25Nov/Minicab/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -22,6 +22,10 @@
                     <td>Full name:</td>
                     <td><input type="text" name="fullname" placeholder="Full Name" required/></td>
                 </tr>
+                 <tr>
+                    <td>E-mail address:</td>
+                    <td><input type="text" name="email" placeholder="E-mail address" required/></td>
+                </tr>
                 <tr>
                     <td>House/Flat Number:</td>
                     <td><input type="text" name="houseNo" placeholder="House/Flat Number" required/></td>

@@ -88,7 +88,7 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <h2> Please provide your following details</h2>\n");
       out.write("            <table> \n");
       out.write("                <tr>\n");
-      out.write("                    <td>Customer ID:</td>\n");
+      out.write("                    <td>Customer Name:</td>\n");
       out.write("                    <td>");
 
                         if (session.getAttribute("user") != null) {  
@@ -98,9 +98,7 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
                         }
       out.write("</td>\n");
       out.write("                </tr>\n");
-      out.write("                <td>Customer ID:</td>\n");
-      out.write("                    <td name=\"custId\">INSERT ID HERE</td>\n");
-      out.write("                </tr>\n");
+      out.write("                \n");
       out.write("                <tr>\n");
       out.write("                    <td>Pick up Address:</td>\n");
       out.write("                    <td><input type=\"text\" name=\"pickUpAdd\" placeholder=\"PickUpAddress\" required/></td>\n");
@@ -111,22 +109,30 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </tr>\n");
       out.write("                <tr>\n");
       out.write("                    <td>Date:</td>\n");
-      out.write("                    <td><input type=\"date\" name=\"date\" required/></td>\n");
+      out.write("                    <td><input type=\"text\" name=\"demands_date\" placeholder=\"Date\" required/></td>\n");
       out.write("                </tr>\n");
       out.write("                <tr>\n");
       out.write("                    <td>Time:</td>\n");
-      out.write("                    <td><input type=\"time\" name=\"time\" placeholder=\"Time\" required/></td>\n");
+      out.write("                    <td><input type=\"text\" name=\"demands_time\" placeholder=\"Time\" required/></td>\n");
       out.write("                </tr>\n");
       out.write("                <tr>\n");
       out.write("                    <td>Status: </td>\n");
       out.write("                    <td name=\"status\">Outstanding</td>\n");
       out.write("                </tr>\n");
+      out.write("                \n");
       out.write("            </table>\n");
       out.write("               <div class=\"col-md-10 col-md-offset-5\">\n");
       out.write("              <div class=\"text-center\">\n");
       out.write("                <button type=\"submit\" value=\"Register\" class=\"btn btn-success\">Register</button>\n");
       out.write("               \n");
       out.write("              </div>\n");
+      out.write("               ");
+      out.print(((String) (request.getAttribute("msg")) != null) ? (String) (request.getAttribute("msg")) : "");
+      out.write("\n");
+      out.write("                ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "WEB-INF/foot.jsp", out, false);
+      out.write("\n");
+      out.write("               \n");
       out.write("            </div>\n");
       out.write("          </div>\n");
       out.write("        </form>\n");

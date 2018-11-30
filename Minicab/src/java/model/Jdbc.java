@@ -15,6 +15,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Time;
 import static java.sql.Types.NULL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,29 +45,42 @@ public class Jdbc {
 
     private ArrayList rsToList() throws SQLException {
         ArrayList aList = new ArrayList();
-
+        ArrayList aList2 = new ArrayList();
+        
         int cols = rs.getMetaData().getColumnCount();
+        String columnName = rs.getMetaData().getColumnName(cols);
         while (rs.next()) {
             String[] s = new String[cols];
             for (int i = 1; i <= cols; i++) {
                 s[i - 1] = rs.getString(i);
             }
             aList.add(s);
-        } // while    
+            
+        } // while  
         return aList;
     } //rsToList
+    
+//    private ArrayList getColumnNames() throws SQLException {
+//        ArrayList aList = new ArrayList();
+//        int cols = rs.getMetaData().getColumnCount();
+//        String columnName = rs.getMetaData().getColumnName(cols);
+//        return columnName;
+//    } //rsToList
 
     private String makeTable(ArrayList list) {
         StringBuilder b = new StringBuilder();
         String[] row;
-        b.append("<table border=\"3\">");
+
+        b.append("<table>");
         for (Object s : list) {
+          
             b.append("<tr>");
             row = (String[]) s;
             for (String row1 : row) {
                 b.append("<td>");
                 b.append(row1);
                 b.append("</td>");
+                b.append("<br>");
             }
             b.append("</tr>\n");
         } // for
@@ -74,6 +88,26 @@ public class Jdbc {
         return b.toString();
     }//makeHtmlTable
 
+    private String displayDetails(ArrayList list){
+        StringBuilder b = new StringBuilder();
+        String[] row;
+        b.append("<table>");
+        for (Object s : list) {
+            
+            row=(String[]) s; 
+            for  (String row1: row){
+                b.append("<tr>");
+                b.append("<td>");
+                b.append(row1);
+                b.append("<br>");
+                b.append("</td>");
+                b.append("</tr>");
+            }
+        }
+        b.append("</table>");
+        return b.toString();
+    }
+    
     private void select(String query) {
         //Statement statement = null;
 
@@ -86,21 +120,15 @@ public class Jdbc {
             //results = e.toString();
         }
     }
+    
 
     public String retrieve(String query) throws SQLException {
         String results = "";
         select(query);
-//        try {
-//            
-//            if (rs==null)
-//                System.out.println("rs is null");
-//            else
-//                results = makeTable(rsToList());
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        return makeTable(rsToList());//results;
+//        return makeTable(rsToList());//results;
+        return displayDetails(rsToList());
     }
+    
 
     public boolean exists(String user) {
         boolean bool = false;
@@ -186,17 +214,17 @@ public class Jdbc {
         PreparedStatement ps2 = null;
         try {
             ps = connection.prepareStatement("INSERT INTO Users(USERNAME,PASSWORD,ROLES) VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, str[5].trim());
-            ps.setString(2, str[6]);
+            ps.setString(1, str[6].trim());
+            ps.setString(2, str[7]);
             ps.setString(3, "customer");
             ps.executeUpdate();
-            ps2 = connection.prepareStatement("INSERT INTO Customers(NAME,ADDRESS"
-                    + ",USER_ID) VALUES (?,?,(SELECT ID from Users where "
-                    + "username='"+str[5]+"'))", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps2 = connection.prepareStatement("INSERT INTO CUSTOMERS(NAME,"
+                    + "ADDRESS,USER_ID,EMAIL) VALUES (?,?,(SELECT ID from Users where "
+                    + "USERNAME='"+str[6]+"'),?)", PreparedStatement.RETURN_GENERATED_KEYS);
             
             ps2.setString(1, str[0]);
-            ps2.setString(2, str[1] + ", " + str[2] + ", " + str[3] + ", " + str[4]);
-
+            ps2.setString(2, str[2]+", "+str[3] + ", " + str[4] + ", " + str[5] + ", ");
+            ps2.setString(3, str[1]);
             ps2.executeUpdate();
             ps2.close();
             ps.close();
@@ -208,13 +236,13 @@ public class Jdbc {
     }
     
     public void requestCab(String[] str){
-        PreparedStatement ps = null;
+        PreparedStatement ps = null;     
         try {
-//            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME),"
-//                    + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME"
-//                    + "STATUS,JOURRNEY_ID "
-//                    + "VALUES (?,(SELECT ID from Customers where name='"+str[0]+")"
-//                            + ",?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+//            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME,"
+//                    + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
+//                    + "STATUS) VALUES (?,(SELECT ID from CUSTOMERS where"
+//                    + " USER_ID=(SELECT ID from USERS where USERNAME='"+str[0]+"')),"
+//                    + "?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME,"
                     + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
                     + "STATUS) VALUES ((SELECT NAME from CUSTOMERS where "
@@ -253,14 +281,16 @@ public class Jdbc {
         }
     }
 
-//    public void delete(String user) {
-    public void delete(String[] str) {
-        String query = "DELETE FROM Users "
-                + "WHERE username = '" + str[0] + "'";
+    public void delete(String[] user) {
+
+        String query="DELETE FROM CUSTOMERS where CUSTOMERS.USER_ID ="
+                + "(SELECT ID FROM USERS WHERE USERNAME='" + user[0] + "')";
+        String query2 ="DELETE FROM USERS where USERNAME='" + user[0] + "';" ;
 
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query);
+            statement.executeUpdate(query2);
         } catch (SQLException e) {
             System.out.println("way way" + e);
             //results = e.toString();
@@ -334,7 +364,7 @@ public class Jdbc {
 //            jdbc.update(users);
 //            System.out.println("user name exists, change to another");
 //        }
-        //
+//        jdbc.delete("aydinme");
 
         System.out.println(jdbc.retrieve(str));
         jdbc.closeAll();

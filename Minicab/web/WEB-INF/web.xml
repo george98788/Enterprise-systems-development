@@ -52,6 +52,10 @@
         <servlet-name>CustomerRequestServlet</servlet-name>
         <servlet-class>com.CustomerRequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerReceipts</servlet-name>
+        <servlet-class>pages.CustomerReceipts</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -99,6 +103,10 @@
     <servlet-mapping>
         <servlet-name>CustomerRequestServlet</servlet-name>
         <url-pattern>/CustomerRequestServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerReceipts</servlet-name>
+        <url-pattern>/CustomerReceipts.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

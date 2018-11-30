@@ -18,6 +18,7 @@ Create Table CUSTOMERS (
 ID int not null GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
 Name varchar(20),
 Address varchar(60),
+Email varchar(45),
 User_ID int REFERENCES Users (ID),
 PRIMARY KEY (ID)
 );
@@ -40,10 +41,9 @@ Customer_Name varchar(45) not null,
 Customer_ID int REFERENCES CUSTOMERS(ID),
 Address varchar(60) not null,
 Destination varchar(45) not null,
-Demands_date date not null,
-Demands_time time not null,
+Demands_date varchar(45) not null,
+Demands_time varchar(45) not null,
 Status varchar(45) not null,
-Journey_ID int REFERENCES JOURNEYS (ID),
 PRIMARY KEY (ID)
 );
 
@@ -56,9 +56,6 @@ Users_ID int REFERENCES USERS(ID),
 PRIMARY KEY(ID)
 );
 
-########
-
-INSERT INTO DRIVERS(NAME,REGISTRATION,USERS_ID) VALUES('Mark Johnson','R34AKP',)
 ############
 INSERT INTO GROUP10.USERS (USERNAME, PASSWORD, ROLES) 
 	VALUES ('Bob', '1', 'driver');
@@ -81,7 +78,7 @@ INSERT INTO GROUP10.USERS (USERNAME, PASSWORD, ROLES)
 INSERT INTO GROUP10.USERS (USERNAME, PASSWORD, ROLES) 
 	VALUES ('Gul', 'H', 'customer');
 INSERT INTO GROUP10.USERS (USERNAME, PASSWORD, ROLES) 
-	VALUES ('Mark', 'J', 'driver');
+	VALUES ('Mark', 'driver123', 'driver');
 INSERT INTO GROUP10.USERS (USERNAME, PASSWORD, ROLES) 
 	VALUES ('saph', 'saph', 'customer');
 ############
@@ -114,3 +111,11 @@ INSERT INTO GROUP10.DRIVERS ("NAME", REGISTRATION, USERS_ID)
 INSERT INTO GROUP10.DEMANDS (CUSTOMER_NAME, CUSTOMER_ID, ADDRESS, DESTINATION, DEMANDS_DATE, DEMANDS_TIME, STATUS, JOURNEY_ID) 
 	VALUES ('Eva', 4, 'Swindon, SN4', 'Heathrow Terminal 3', '2018-11-25', '19:03:38', 'Outstanding', 2);
 ###############
+INSERT INTO GROUP10.CUSTOMERS ("NAME", ADDRESS, USER_ID,EMAIL) 
+	VALUES ('Eva Smith', '129 Station Rd, London, N3 2AS', 4, 'eva@gmail.com');
+INSERT INTO GROUP10.CUSTOMERS ("NAME", ADDRESS, USER_ID, EMAIL) 
+	VALUES ('Saphire', '12, Glenville Close, Swindon, SN4 7EU', 27,'saph@gmail.com');
+
+##########################
+
+

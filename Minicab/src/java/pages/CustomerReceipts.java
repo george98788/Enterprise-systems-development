@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com;
+package pages;
 
 import com.UserServLet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -26,7 +24,7 @@ import model.UserObject;
  *
  * @author saphi
  */
-public class DriverDetails extends HttpServlet {
+public class CustomerReceipts extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,80 +37,34 @@ public class DriverDetails extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
         Jdbc dbBean = new Jdbc();
         dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
         UserObject userObject = (UserObject) session.getAttribute("user");
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
+
         String userName = userObject.getUsername();
+
+        String customerDemands ="SELECT * FROM DEMANDS where CUSTOMER_ID = "
+                + "(SELECT ID FROM CUSTOMERS WHERE "
+                + "USER_ID=(SELECT ID FROM USERS WHERE USERNAME='saaa'))";//"+userName+"
         
-        String journeyqry = "SELECT USERS.ID,USERS.USERNAME,DRIVERS.*,JOURNEYS.* FROM "
-                + "(USERS INNER JOIN DRIVERS ON "
-                + "USERS.ID=DRIVERS.USERS_ID)" +
-                "LEFT OUTER JOIN JOURNEYS ON DRIVERS.ID = JOURNEYS.DRIVERS_ID "
-                + "WHERE USERS.USERNAME='"+userName+"'";
-        
-
-        String driverDetailsqry="SELECT USERS.ID,USERS.USERNAME, DRIVERS.ID,"
-                + "DRIVERS.\"NAME\", DRIVERS.REGISTRATION"
-                + " from (USERS INNER JOIN DRIVERS On "
-                + "USERS.ID = DRIVERS.USERS_ID) where USERS.USERNAME='"+userName+"'";//
-       
-
-        dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
-        session.setAttribute("dbbean", dbBean);
-
-        if((Connection)request.getServletContext().getAttribute("connection")==null){
+        if (jdbc == null) {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
-            
-        if (request.getParameter("tbl").equals("UserDetails")){
-            String Drivermsg="No users";
+        else{
+//            String msg="No Customer";
+            String customerdemandsmsg="";
             try {
-                Drivermsg = dbBean.retrieve(driverDetailsqry);
+                customerdemandsmsg = dbBean.retrieve(customerDemands);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("driverDetailsqry", Drivermsg);
-            request.getRequestDispatcher("/driverDetails.jsp").forward(request, response);
+            request.setAttribute("customerDemands",customerdemandsmsg);
+            request.getRequestDispatcher("/customerDetails.jsp").forward(request, response);
         }
-        
-        else if (request.getParameter("tbl").equals("jobDone")){
-            String journeymsg="No journeys";
-            try {
-                journeymsg = dbBean.retrieve(journeyqry);
-            } catch (SQLException ex) {
-                Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            request.setAttribute("journeyquery", journeymsg);
-            request.getRequestDispatcher("/driverJourneys.jsp").forward(request, response);
-            
-        }
-        
-        else if (request.getParameter("tbl").equals("Update")){
-            request.getRequestDispatcher("WEB-INF/passwdChange.jsp").forward(request, response);
-        }
-        
-//        
-//        else{   
-//            request.setAttribute("msg", "del");
-//            request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response); 
-//        }
-//        Statement stmtName = null;
-//        String query="SELECT * from USERNAME.DRIVERS";
-//        try{
-////            driverName = connection.prepareStatement("SELECT NAME from USERNAME.DRIVERS", PreparedStatement.RETURN_GENERATED_KEYS);
-//            stmtName = connection.createStatement();
-//            ResultSet rs = stmtName.executeQuery(query);
-//            while(rs.next()){
-//                String driverName = rs.getString("NAME"); 
-//            }
-//       
-//        }catch (SQLException ex) {
-//            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

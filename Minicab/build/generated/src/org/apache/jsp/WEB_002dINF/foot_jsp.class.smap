@@ -1,0 +1,12 @@
+SMAP
+foot_jsp.java
+JSP
+*S JSP
+*F
++ 0 foot.jsp
+WEB-INF/foot.jsp
+*L
+5,5:44
+11,2:50
+12,9:52
+*E

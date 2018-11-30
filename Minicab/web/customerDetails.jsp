@@ -13,25 +13,54 @@
         <title>Customer Details</title>
     </head>
     <body>
-    <%@include  file="WEB-INF/newbar.html" %>
+        <%@include  file="WEB-INF/newbar.html" %>
         
     <div class="row justify-content-md-center">
-        <h1>Customer Details!</h1>
+        <h1>Customer Details</h1>
     </div>
+        <br><br><br>
        <%! ;
                 String str="CustomerDetails"; 
                 String url = "CustomerServlet.do";
                 %>
-        <div class="row justify-content-md-center">
+            
         <form method="POST" action="<%=url%>">
-            <%=(String)(request.getAttribute("customerDetailsqry"))%>
-        </form>
-        </div>
+            <div class="row justify-content-md-center">
+                <table>
+                    <tr>
+                        <td>User ID: </td>
+                    </tr>
+                    <tr>
+                        <td>Username: </td>
+                    </tr>
+                    <tr>
+                        <td>Customer ID: </td>
+                    </tr>
+                    <tr>
+                        <td>Customer Name: </td>
+                    </tr>
+                    <tr>
+                        <td>Customer E-mail: </td>
+                    </tr>
+                    <tr>
+                        <td>Customer Address:   </td>
+                    </tr>
+                </table>
+                <%=(String)(request.getAttribute("customerDetailsqry"))%>
+            </div>
+        </form><br><br><br>
+            <form method="POST" action="CustomerReceipts.do">
+            <div class="row justify-content-md-center">
+                <h3>Receipts</h3><br>
+                show bookings and receipts????
+                <%=(String)(request.getAttribute("customerDemands"))%>
+            </div>
+            </form>
         <br><br><br>
         <div class="row justify-content-md-center">
+            
          <a href="register.jsp" class="btn btn-success">Register</a>
-           <jsp:include page="WEB-INF/foot.jsp"/>
-           </div> 
+    </div> 
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

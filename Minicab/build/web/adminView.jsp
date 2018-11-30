@@ -43,7 +43,6 @@
         </div>
            <div class="row justify-content-md-center">
                 <button type="submit" value="Action" class="btn btn-success">Submit</button> 
-        </form>
                 <form method="POST" action="Logout.do">
                      <button type="submit" value="Logout" class="btn btn-danger">Log Out</button><br />
  </form> 

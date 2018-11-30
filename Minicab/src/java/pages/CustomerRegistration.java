@@ -41,39 +41,35 @@ public class CustomerRegistration extends HttpServlet {
         dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
 
-        String[] query = new String[7];
+        String[] query = new String[8];
         String[] query2 = new String[2];
         query[0] = (String) request.getParameter("fullname");
-        query[1] = (String) request.getParameter("houseNo");
-        query[2] = (String) request.getParameter("roadName");
-        query[3] = (String) request.getParameter("cityName");
-        query[4] = (String) request.getParameter("postcode");
-        query[5] = (String) request.getParameter("usernameReg");
-        query[6] = (String) request.getParameter("passwordReg");
+        query[1] = (String) request.getParameter("email");
+        query[2] = (String) request.getParameter("houseNo");
+        query[3] = (String) request.getParameter("roadName");
+        query[4] = (String) request.getParameter("cityName");
+        query[5] = (String) request.getParameter("postcode");
+        query[6] = (String) request.getParameter("usernameReg");
+        query[7] = (String) request.getParameter("passwordReg");
         query2[0] = (String) request.getParameter("usernameReg");
         query2[1] = (String) request.getParameter("passwordReg");
-        
-        UserObject userObject = new UserObject(query2);
-         session.setAttribute("user", userObject);
-        
         //String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('";
-
+         
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
-
+        UserObject userObject = new UserObject(query2);
+        session.setAttribute("user", userObject);
         if (jdbc == null) {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
         if (jdbc.exists(query[5])) {
-            request.setAttribute("message", query[5] + " is already taken as username");
-
+            request.setAttribute("message", query[6] + " is already taken as username");
+           
         } else {
             jdbc.registerCustomer(query);
-            request.setAttribute("message", query[5] + " is added");
-            request.getRequestDispatcher("customer.jsp").forward(request, response);
-
+            request.setAttribute("message", query[6] + " is added");
+            request.getRequestDispatcher("/customer.jsp").forward(request, response);
         }
-
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

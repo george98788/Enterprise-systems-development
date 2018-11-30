@@ -21,6 +21,7 @@
         <%@include  file="WEB-INF/newbar.html" %>
          <div class="centre">
         <h2>Successfully logged out!</h2>
+        
          <a href="login.jsp"> Back to Login </a>
          <div/>
     </body>

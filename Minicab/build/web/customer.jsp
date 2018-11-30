@@ -15,17 +15,16 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Customer Page</title><%
-            
             UserObject userObject = (UserObject) session.getAttribute("user");
             Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
             if (jdbc.role(userObject.getUsername(), userObject.getPassword()) == "driver" ) {
-                request.getRequestDispatcher("incorrectPermission.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
             }
         %>
     </head>
 
     <body>
-        <%@include  file="WEB-INF/newbar.html" %>
+       <%@include  file="WEB-INF/newbar.html" %>
         <div class="row justify-content-md-center">
             <header>
             <h2>Hello Customer</h2>
@@ -55,9 +54,7 @@
         
         <div class="row justify-content-md-center">
                 <button type="submit" value="Action" class="btn btn-success">Submit</button> 
-    </form>
                 <form method="POST" action="Logout.do">
-                    
                      <button type="submit" value="Logout" class="btn btn-danger">Log Out</button><br />
                 </form> 
             </form> 
