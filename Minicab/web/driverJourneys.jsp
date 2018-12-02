@@ -15,15 +15,48 @@
     </head>
     <body>
         <%@include  file="WEB-INF/newbar.html" %>
+        <div class="row justify-content-md-center">
         <h1>Driver Completed Journeys</h1>
          <%! ;
                 String str="driverJourney"; 
                 String url = "DriverJourneys.do";
                 %>
+        </div>
         
         <form method="POST" action="<%=url%>">
-            
+            <div class="row justify-content-md-center">
+                <table>
+                    <tr>
+                        <td>User ID:</td>
+                    </tr>
+                    <tr>
+                        <td>Username:</td>
+                    </tr>
+                    <tr>
+                        <td>Driver ID:  </td>
+                    </tr>
+                    <tr>
+                        <td>Driver Name:    </td>
+                    </tr>
+                    <tr>
+                        <td>Registration Number:    </td>
+                    </tr>
+                    <tr>
+                        <td>Destination:    </td>
+                    </tr>
+                    <tr>
+                        <td>Distance:   </td>
+                    </tr>
+                    <tr>
+                        <td>Journey Date:   </td>
+                    </tr>
+                    <tr>
+                        <td>Journey Time:   </td>
+                    </tr>
+                </table>
+                
             <%=(String)(request.getAttribute("journeyquery"))%>
+            </div>
         </form>
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

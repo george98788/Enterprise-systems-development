@@ -15,7 +15,7 @@
         <title>Change Password</title>
     </head>
     <body>
-         <%@include  file="WEB-INF/newbar.html" %>
+         <%@include  file="newbar.html" %>
          <div class="row justify-content-md-center">
         <h2>Password change</h2>
          </div>
@@ -38,9 +38,8 @@
                 <tr>
                     <td>New Password:</td>
                     <td>
-                        <input type="password" name="password"/>
-                        <input type="password" pattern=".{8,}"   required title="8 characters minimum">
-                        <input type="password" pattern=".{8,12}" required title="8 to 12 characters">
+                        <input type="password" name="password"  pattern=".{8,}"   required title="8 characters minimum"/>
+                       
                     </td>
                 </tr>
                 <tr>

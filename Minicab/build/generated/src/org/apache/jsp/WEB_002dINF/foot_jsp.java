@@ -3,6 +3,8 @@ package org.apache.jsp.WEB_002dINF;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import model.Jdbc;
+import model.UserObject;
 
 public final class foot_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,10 +46,24 @@ public final class foot_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
 
-//    String str="driverJourney"; 
-    String url = "customer.jsp";
+    
+    String url = "";
+    UserObject userObject = (UserObject) session.getAttribute("user");
+    Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
+            if (jdbc.role(userObject.getUsername(), userObject.getPassword()) == "customer" ) {
+                url = "customer.jsp";
+            }
+            else if (jdbc.role(userObject.getUsername(), userObject.getPassword()) == "driver" ){
+               
+                url = "driver.jsp";
+            } 
+            else{
+                url="adminView.jsp";
+            }
     
       out.write("\n");
       out.write("        \n");
@@ -55,8 +71,13 @@ public final class foot_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        \n");
       out.write("        <h6>Back to Main</h6>\n");
       out.write("    </form>-->\n");
-      out.write("\n");
-      out.write(" <a href=\"%=url%\"> Back to Main </a>\n");
+      out.write("<body>\n");
+      out.write("    <a href=\"");
+      out.print(url);
+      out.write("\"> Back to Main </a>\n");
+      out.write("</body>\n");
+      out.write(" \n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

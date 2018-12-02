@@ -48,7 +48,10 @@ public class DriverDetails extends HttpServlet {
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
         String userName = userObject.getUsername();
         
-        String journeyqry = "SELECT USERS.ID,USERS.USERNAME,DRIVERS.*,JOURNEYS.* FROM "
+        String journeyqry = "SELECT USERS.ID,USERS.USERNAME,"
+                + "DRIVERS.ID,DRIVERS.NAME, DRIVERS.REGISTRATION,"
+                + "JOURNEYS.DESTINATION, JOURNEYS.DISTANCE,"
+                + "JOURNEYS.JOURNEY_DATE, JOURNEYS.JOURNEY_TIME FROM "
                 + "(USERS INNER JOIN DRIVERS ON "
                 + "USERS.ID=DRIVERS.USERS_ID)" +
                 "LEFT OUTER JOIN JOURNEYS ON DRIVERS.ID = JOURNEYS.DRIVERS_ID "

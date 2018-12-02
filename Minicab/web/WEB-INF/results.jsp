@@ -13,15 +13,15 @@
         <title>DB Results</title>
     </head>
     <body>
-         <%@include  file="WEB-INF/newbar.html" %>
+         <%@include  file="newbar.html" %>
            <div class="row justify-content-md-center">
                 
-        <h1>The retrieved Data :</h1>
+        <h1>USERS DETAILS</h1>
            </div>
-<div class="row justify-content-md-center">
+        <div class="row justify-content-md-center">
                 
         <%=(String)(request.getAttribute("query"))%>
-</div>
+        </div>
 <div class="row justify-content-md-center">
                 
         <jsp:include page="foot.jsp"/>

@@ -21,12 +21,14 @@
         <h2>Admin View</h2>
         </header>
          </div>
+          <div class="row justify-content-md-center">
         <h1>   <%
             if ( request.getAttribute("message")!=null) {
                 out.println(request.getAttribute("message"));
        
             }
         %> </h1>
+          </div>
         <form method="POST" action="UserService.do">
         <p />
              <div class="row justify-content-md-center">

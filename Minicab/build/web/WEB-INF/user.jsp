@@ -15,7 +15,7 @@
         <title>Login Main Page</title>
     </head>
     <body>
-         <%@include  file="WEB-INF/newbar.html" %>
+         <%@include  file="newbar.html" %>
       <div class="row justify-content-md-center">
                 
         <h2>User's details:</h2>
