@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <%@include  file="WEB-INF/newbar.html" %>
 <!DOCTYPE html>
 <html>
@@ -7,6 +8,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mapping</title>
    
+=======
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Distance Matrix Service</title>
+>>>>>>> 84c6be8af5b70f7532180accaec72e0227054dd4
     <style>
       #right-panel {
         font-family: 'Roboto','sans-serif';
@@ -47,6 +55,7 @@
   <body>
     <div id="right-panel">
       <div id="inputs">
+<<<<<<< HEAD
       
       </div>
       <div>
@@ -58,6 +67,17 @@
                     <td><input type="text" name="Destination" placeholder="Destination" required/></td>
                 <button type="submit" value="Route" class="btn btn-success">Find Route / Cost</button>
                <button type="submit" value="Confirm" class="btn btn-success">Confirm</button>
+=======
+        <pre>
+var origin1 = {lat: 55.930, lng: -3.118};
+var origin2 = 'Greenwich, England';
+var destinationA = 'Stockholm, Sweden';
+var destinationB = {lat: 50.087, lng: 14.421};
+        </pre>
+      </div>
+      <div>
+        <strong>Results</strong>
+>>>>>>> 84c6be8af5b70f7532180accaec72e0227054dd4
       </div>
       <div id="output"></div>
     </div>
