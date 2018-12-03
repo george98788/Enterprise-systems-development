@@ -12,6 +12,11 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List<String> _jspx_dependants;
 
+  static {
+    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants.add("/WEB-INF/newbar.html");
+  }
+
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
@@ -55,9 +60,10 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>Request Cab</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("                 <nav class=\"navbar navbar-light bg-light\">\n");
+      out.write("       ");
+      out.write("<nav class=\"navbar navbar-light bg-light\">\n");
       out.write("  <a class=\"navbar-brand\" href=\"#\">\n");
-      out.write("    <img src=\"Alpha_Cab_Logo.png\" width=\"30\" height=\"30\" class=\"d-inline-block align-top\" alt=\"\">\n");
+      out.write("    <img src=\"https://i.ibb.co/ftp4NvG/Alpha-Cab-Logo.png\" width=\"80\" height=\"60\" class=\"d-inline-block align-top\" alt=\"\">\n");
       out.write("    logo\n");
       out.write("  </a>\n");
       out.write("  <a class=\"navbar-brand\" href=\"#\">Minicab</a>\n");
@@ -80,11 +86,14 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("      </li>\n");
       out.write("    </ul>\n");
       out.write("  </div>\n");
-      out.write("</nav>\n");
+      out.write("</nav>");
+      out.write("\n");
+      out.write("        \n");
       out.write("       <div class=\"row justify-content-md-center\">\n");
       out.write("        <h2>Request Cab</h2>\n");
-      out.write("        \n");
-      out.write("        <form method=\"POST\" action=\"CustomerServlet.do\">\n");
+      out.write("       </div>\n");
+      out.write("       <div class=\"row justify-content-md-center\">\n");
+      out.write("        <form method=\"POST\" action=\"CustomerRequestServlet.do\">\n");
       out.write("            <h2> Please provide your following details</h2>\n");
       out.write("            <table> \n");
       out.write("                <tr>\n");
@@ -98,7 +107,6 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
                         }
       out.write("</td>\n");
       out.write("                </tr>\n");
-      out.write("                \n");
       out.write("                <tr>\n");
       out.write("                    <td>Pick up Address:</td>\n");
       out.write("                    <td><input type=\"text\" name=\"pickUpAdd\" placeholder=\"PickUpAddress\" required/></td>\n");
@@ -117,15 +125,16 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </tr>\n");
       out.write("                <tr>\n");
       out.write("                    <td>Status: </td>\n");
-      out.write("                    <td name=\"status\">Outstanding</td>\n");
+      out.write("                    <td><input type=\"text\" name=\"status\"/></td>\n");
       out.write("                </tr>\n");
       out.write("                \n");
       out.write("            </table>\n");
       out.write("               <div class=\"col-md-10 col-md-offset-5\">\n");
       out.write("              <div class=\"text-center\">\n");
-      out.write("                <button type=\"submit\" value=\"Register\" class=\"btn btn-success\">Register</button>\n");
-      out.write("               \n");
+      out.write("                <button type=\"submit\" value=\"Register\" class=\"btn btn-success\">Book a cab</button>\n");
       out.write("              </div>\n");
+      out.write("             \n");
+      out.write("            </form>\n");
       out.write("               ");
       out.print(((String) (request.getAttribute("msg")) != null) ? (String) (request.getAttribute("msg")) : "");
       out.write("\n");
@@ -133,9 +142,9 @@ public final class requestCab_jsp extends org.apache.jasper.runtime.HttpJspBase
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "WEB-INF/foot.jsp", out, false);
       out.write("\n");
       out.write("               \n");
-      out.write("            </div>\n");
+      out.write("           </div>\n");
       out.write("          </div>\n");
-      out.write("        </form>\n");
+      out.write("       \n");
       out.write("       </div>\n");
       out.write("        \n");
       out.write("    </body>\n");

@@ -70,8 +70,13 @@ public class Jdbc {
     private String makeTable(ArrayList list) {
         StringBuilder b = new StringBuilder();
         String[] row;
-
-        b.append("<table>");
+        
+        b.append("<table width=\'40%\'>");
+        b.append("<tr>");
+        b.append("<th>USER ID   </th>");
+        b.append("<th>USERNAME  </th>");
+        b.append("<th>ROLE  </th>");
+        b.append("</tr>");
         for (Object s : list) {
           
             b.append("<tr>");
@@ -121,14 +126,17 @@ public class Jdbc {
         }
     }
     
-
     public String retrieve(String query) throws SQLException {
         String results = "";
         select(query);
 //        return makeTable(rsToList());//results;
         return displayDetails(rsToList());
     }
-    
+    public String tblretrieve(String query) throws SQLException {
+        String results = "";
+        select(query);
+        return makeTable(rsToList());//results;
+    }
 
     public boolean exists(String user) {
         boolean bool = false;

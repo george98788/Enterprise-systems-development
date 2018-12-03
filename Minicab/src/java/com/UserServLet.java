@@ -36,7 +36,7 @@ public class UserServLet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String qry = "select * from users";
+        String qry = "SELECT ID, USERNAME, ROLES FROM USERS";
         HttpSession session = request.getSession(); 
         response.setContentType("text/html;charset=UTF-8");
         
@@ -51,7 +51,7 @@ public class UserServLet extends HttpServlet {
         if (request.getParameter("tbl").equals("List")){
             String msg="No users";
             try {
-                msg = dbBean.retrieve(qry);
+                msg = dbBean.tblretrieve(qry);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
