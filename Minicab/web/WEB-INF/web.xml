@@ -56,6 +56,10 @@
         <servlet-name>CustomerReceipts</servlet-name>
         <servlet-class>pages.CustomerReceipts</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Maps</servlet-name>
+        <servlet-class>pages.Maps</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -108,9 +112,13 @@
         <servlet-name>CustomerReceipts</servlet-name>
         <url-pattern>/CustomerReceipts.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Maps</servlet-name>
+        <url-pattern>/Maps.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+           20
         </session-timeout>
     </session-config>
 </web-app>

@@ -1,4 +1,3 @@
-
 <<<<<<< HEAD
 <%@include  file="WEB-INF/newbar.html" %>
 <!DOCTYPE html>
@@ -21,15 +20,12 @@
         line-height: 30px;
         padding-left: 10px;
       }
-
       #right-panel select, #right-panel input {
         font-size: 15px;
       }
-
       #right-panel select {
         width: 100%;
       }
-
       #right-panel i {
         font-size: 12px;
       }
@@ -55,7 +51,7 @@
   <body>
     <div id="right-panel">
       <div id="inputs">
-<<<<<<< HEAD
+
       
       </div>
       <div>
@@ -67,17 +63,15 @@
                     <td><input type="text" name="Destination" placeholder="Destination" required/></td>
                 <button type="submit" value="Route" class="btn btn-success">Find Route / Cost</button>
                <button type="submit" value="Confirm" class="btn btn-success">Confirm</button>
-=======
+
         <pre>
-var origin1 = {lat: 55.930, lng: -3.118};
-var origin2 = 'Greenwich, England';
-var destinationA = 'Stockholm, Sweden';
-var destinationB = {lat: 50.087, lng: 14.421};
+
+
         </pre>
       </div>
       <div>
         <strong>Results</strong>
->>>>>>> 84c6be8af5b70f7532180accaec72e0227054dd4
+
       </div>
       <div id="output"></div>
     </div>
@@ -86,12 +80,10 @@ var destinationB = {lat: 50.087, lng: 14.421};
       function initMap() {
         var bounds = new google.maps.LatLngBounds;
         var markersArray = [];
-
-        var origin1 = {lat: 55.93, lng: -3.118};
-        var origin2 = 'Greenwich, England';
-        var destinationA = 'Stockholm, Sweden';
-        var destinationB = {lat: 50.087, lng: 14.421};
-
+        var origin1 = <%=session.getAttribute("des")%>
+     
+        var destinationA = <%=session.getAttribute("des2")%>
+     
         var destinationIcon = 'https://chart.googleapis.com/chart?' +
             'chst=d_map_pin_letter&chld=D|FF0000|000000';
         var originIcon = 'https://chart.googleapis.com/chart?' +
@@ -101,13 +93,12 @@ var destinationB = {lat: 50.087, lng: 14.421};
           zoom: 10
         });
         var geocoder = new google.maps.Geocoder;
-
         var service = new google.maps.DistanceMatrixService;
         service.getDistanceMatrix({
-          origins: [origin1, origin2],
-          destinations: [destinationA, destinationB],
+          origins: [origin1],
+          destinations: [destinationA],
           travelMode: 'DRIVING',
-          unitSystem: google.maps.UnitSystem.METRIC,
+          unitSystem: google.maps.UnitSystem.IMPERIAL,
           avoidHighways: false,
           avoidTolls: false
         }, function(response, status) {
@@ -119,7 +110,6 @@ var destinationB = {lat: 50.087, lng: 14.421};
             var outputDiv = document.getElementById('output');
             outputDiv.innerHTML = '';
             deleteMarkers(markersArray);
-
             var showGeocodedAddressOnMap = function(asDestination) {
               var icon = asDestination ? destinationIcon : originIcon;
               return function(results, status) {
@@ -135,7 +125,6 @@ var destinationB = {lat: 50.087, lng: 14.421};
                 }
               };
             };
-
             for (var i = 0; i < originList.length; i++) {
               var results = response.rows[i].elements;
               geocoder.geocode({'address': originList[i]},
@@ -151,7 +140,6 @@ var destinationB = {lat: 50.087, lng: 14.421};
           }
         });
       }
-
       function deleteMarkers(markersArray) {
         for (var i = 0; i < markersArray.length; i++) {
           markersArray[i].setMap(null);
@@ -163,5 +151,4 @@ var destinationB = {lat: 50.087, lng: 14.421};
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2mi0Jx73LoLwP8Z8b7oumqwxeDQdYXRk&callback=initMap">
     </script>
   </body>
-</html>
 </html>

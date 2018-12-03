@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.netbeans.saas.google.GoogleMapService;
+import org.netbeans.saas.RestResponse;
 
 /**
  *
@@ -46,7 +48,7 @@ public class Jdbc {
     private ArrayList rsToList() throws SQLException {
         ArrayList aList = new ArrayList();
         ArrayList aList2 = new ArrayList();
-        
+
         int cols = rs.getMetaData().getColumnCount();
         String columnName = rs.getMetaData().getColumnName(cols);
         while (rs.next()) {
@@ -55,22 +57,21 @@ public class Jdbc {
                 s[i - 1] = rs.getString(i);
             }
             aList.add(s);
-            
+
         } // while  
         return aList;
     } //rsToList
-    
+
 //    private ArrayList getColumnNames() throws SQLException {
 //        ArrayList aList = new ArrayList();
 //        int cols = rs.getMetaData().getColumnCount();
 //        String columnName = rs.getMetaData().getColumnName(cols);
 //        return columnName;
 //    } //rsToList
-
     private String makeTable(ArrayList list) {
         StringBuilder b = new StringBuilder();
         String[] row;
-        
+
         b.append("<table width=\'40%\'>");
         b.append("<tr>");
         b.append("<th>USER ID   </th>");
@@ -78,7 +79,7 @@ public class Jdbc {
         b.append("<th>ROLE  </th>");
         b.append("</tr>");
         for (Object s : list) {
-          
+
             b.append("<tr>");
             row = (String[]) s;
             for (String row1 : row) {
@@ -93,14 +94,14 @@ public class Jdbc {
         return b.toString();
     }//makeHtmlTable
 
-    private String displayDetails(ArrayList list){
+    private String displayDetails(ArrayList list) {
         StringBuilder b = new StringBuilder();
         String[] row;
         b.append("<table>");
         for (Object s : list) {
-            
-            row=(String[]) s; 
-            for  (String row1: row){
+
+            row = (String[]) s;
+            for (String row1 : row) {
                 b.append("<tr>");
                 b.append("<td>");
                 b.append(row1);
@@ -112,7 +113,7 @@ public class Jdbc {
         b.append("</table>");
         return b.toString();
     }
-    
+
     private void select(String query) {
         //Statement statement = null;
 
@@ -125,13 +126,14 @@ public class Jdbc {
             //results = e.toString();
         }
     }
-    
+
     public String retrieve(String query) throws SQLException {
         String results = "";
         select(query);
 //        return makeTable(rsToList());//results;
         return displayDetails(rsToList());
     }
+
     public String tblretrieve(String query) throws SQLException {
         String results = "";
         select(query);
@@ -228,23 +230,23 @@ public class Jdbc {
             ps.executeUpdate();
             ps2 = connection.prepareStatement("INSERT INTO CUSTOMERS(NAME,"
                     + "ADDRESS,USER_ID,EMAIL) VALUES (?,?,(SELECT ID from Users where "
-                    + "USERNAME='"+str[6]+"'),?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            
+                    + "USERNAME='" + str[6] + "'),?)", PreparedStatement.RETURN_GENERATED_KEYS);
+
             ps2.setString(1, str[0]);
-            ps2.setString(2, str[2]+", "+str[3] + ", " + str[4] + ", " + str[5] + ", ");
+            ps2.setString(2, str[2] + ", " + str[3] + ", " + str[4] + ", " + str[5] + ", ");
             ps2.setString(3, str[1]);
             ps2.executeUpdate();
             ps2.close();
             ps.close();
-            
+
             System.out.println("1 row added.");
         } catch (SQLException ex) {
             Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void requestCab(String[] str){
-        PreparedStatement ps = null;     
+
+    public void requestCab(String[] str) {
+        PreparedStatement ps = null;
         try {
 //            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME,"
 //                    + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
@@ -254,10 +256,10 @@ public class Jdbc {
             ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME,"
                     + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
                     + "STATUS) VALUES ((SELECT NAME from CUSTOMERS where "
-                    + "USER_ID =(SELECT ID from USERS where USERNAME='"+str[0]+"')),"
+                    + "USER_ID =(SELECT ID from USERS where USERNAME='" + str[0] + "')),"
                     + "(SELECT ID from CUSTOMERS where"
-                    + " USER_ID=(SELECT ID from USERS where USERNAME='"+str[0]+"')),"
-                            + "?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    + " USER_ID=(SELECT ID from USERS where USERNAME='" + str[0] + "')),"
+                    + "?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, str[1]); //address
             ps.setString(2, str[2]); //destination
             ps.setString(3, str[3]); //str[3]
@@ -265,14 +267,12 @@ public class Jdbc {
             ps.setString(5, str[5]); //status
             ps.executeUpdate();
             ps.close();
-            
+
             System.out.println("1 row added.");
         } catch (SQLException ex) {
             Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-   
 
     public void update(String[] str) {
         PreparedStatement ps = null;
@@ -291,9 +291,9 @@ public class Jdbc {
 
     public void delete(String[] user) {
 
-        String query="DELETE FROM CUSTOMERS where CUSTOMERS.USER_ID ="
+        String query = "DELETE FROM CUSTOMERS where CUSTOMERS.USER_ID ="
                 + "(SELECT ID FROM USERS WHERE USERNAME='" + user[0] + "')";
-        String query2 ="DELETE FROM USERS where USERNAME='" + user[0] + "';" ;
+        String query2 = "DELETE FROM USERS where USERNAME='" + user[0] + "';";
 
         try {
             statement = connection.createStatement();
@@ -378,5 +378,24 @@ public class Jdbc {
         jdbc.closeAll();
 
     }
-} //class
+ public void map(){
+try {
+                 String address = "16 Network Circle, Menlo Park";
+                 java.lang.Integer zoom = 15;
+                 String iframe = "false";
 
+             RestResponse result = GoogleMapService.getGoogleMap(address, zoom, iframe);
+             //TODO - Uncomment the print Statement below to print result.
+             //System.out.println("The SaasService returned: "+result.getDataAsString());
+        } catch (Exception ex) {
+             ex.printStackTrace();
+        }
+ }
+
+//    private static double calculateFee(int distance) {
+//        org.me.calculator.CalculatorWS_Service service = new org.me.calculator.CalculatorWS_Service();
+//        org.me.calculator.CalculatorWS port = service.getCalculatorWSPort();
+//        return port.calculateFee(distance);
+//    }
+ 
+}
