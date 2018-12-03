@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <%@include  file="WEB-INF/newbar.html" %>
 <!DOCTYPE html>
 <html>
@@ -7,13 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mapping</title>
    
-=======
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Distance Matrix Service</title>
->>>>>>> 84c6be8af5b70f7532180accaec72e0227054dd4
     <style>
       #right-panel {
         font-family: 'Roboto','sans-serif';
@@ -54,30 +48,22 @@
 
       
       </div>
+
       <div>
         <strong>Results</strong>
-        <td>Starting Point:</td>
-                    <td><input type="text" name="Start" placeholder="Start" required/></td>
-                
-                    <td>Destination:</td>
-                    <td><input type="text" name="Destination" placeholder="Destination" required/></td>
-                <button type="submit" value="Route" class="btn btn-success">Find Route / Cost</button>
-               <button type="submit" value="Confirm" class="btn btn-success">Confirm</button>
-
-        <pre>
-
-
-        </pre>
+        <p id="totalDistanceP" name="showTotalDistance"></p>
+        
+        
       </div>
-      <div>
-        <strong>Results</strong>
-
-      </div>
-      <div id="output"></div>
+        <div id="output">
+            
+            
+        </div>
     </div>
-    <div id="map"></div>
+    <div id="map"></div> <!--this displays the map-->
     <script>
       function initMap() {
+        var totalDistance = 0;
         var bounds = new google.maps.LatLngBounds;
         var markersArray = [];
         var origin1 = <%=session.getAttribute("des")%>
@@ -132,9 +118,11 @@
               for (var j = 0; j < results.length; j++) {
                 geocoder.geocode({'address': destinationList[j]},
                     showGeocodedAddressOnMap(true));
+                    totalDistance = results[j].distance;
                 outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
                     ': ' + results[j].distance.text + ' in ' +
                     results[j].duration.text + '<br>';
+                totalDistanceP.innerHTML = totalDistance.text;
               }
             }
           }
@@ -150,5 +138,7 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2mi0Jx73LoLwP8Z8b7oumqwxeDQdYXRk&callback=initMap">
     </script>
+    
+    
   </body>
 </html>

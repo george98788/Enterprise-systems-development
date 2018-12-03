@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pages;
+package com;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,13 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
-import model.UserObject;
 
 /**
  *
- * @author georg
+ * @author saphi
  */
-public class Maps extends HttpServlet {
+public class PriceChange extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,14 +47,6 @@ public class Maps extends HttpServlet {
          session.setAttribute("des", query[0]);
          session.setAttribute("des2", query[1]);
          session.setAttribute("totalDistanceP", query[2]);
-//        CustomerObject customerObject = new CustomerObject();
-            if (jdbc == null) {
-            request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
-        }
-        if (query[0] != null) {
-            request.getRequestDispatcher("/maps.jsp").forward(request, response); 
-        } 
-            
        
     }
 

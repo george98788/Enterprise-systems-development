@@ -60,6 +60,10 @@
         <servlet-name>Maps</servlet-name>
         <servlet-class>pages.Maps</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PriceChange</servlet-name>
+        <servlet-class>com.PriceChange</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -115,6 +119,10 @@
     <servlet-mapping>
         <servlet-name>Maps</servlet-name>
         <url-pattern>/Maps.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PriceChange</servlet-name>
+        <url-pattern>/PriceChange.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

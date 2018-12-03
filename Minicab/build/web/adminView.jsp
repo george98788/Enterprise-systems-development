@@ -40,6 +40,9 @@
          <div class="row justify-content-md-center">
             <input type="radio" name="tbl" value="Update">Password Change<br />
         </div>
+        <div class="row justify-content-md-center">
+            <input type="radio" name="tbl" value="Modify">Modify<br />
+        </div>
          <div class="row justify-content-md-center">
             <input type="radio" name="tbl" value="Delete">Delete a User<br />
         </div>
