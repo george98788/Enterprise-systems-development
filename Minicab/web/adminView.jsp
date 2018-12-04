@@ -43,6 +43,9 @@
         <div class="row justify-content-md-center">
             <input type="radio" name="tbl" value="Modify">Modify<br />
         </div>
+          <div class="row justify-content-md-center">
+            <input type="radio" name="tbl" value="Allocation">Assign a driver<br />
+            </div>
          <div class="row justify-content-md-center">
             <input type="radio" name="tbl" value="Delete">Delete a User<br />
         </div>

@@ -44,6 +44,7 @@ public class UserServLet extends HttpServlet {
         dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
 
+        String allocationquery = "SELECT * from DEMANDS";
         if((Connection)request.getServletContext().getAttribute("connection")==null){
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
@@ -66,6 +67,16 @@ public class UserServLet extends HttpServlet {
         }
         else if(request.getParameter("tbl").equals("Modify")){
             request.getRequestDispatcher("/modify.jsp").forward(request, response);
+        } 
+        else if(request.getParameter("tbl").equals("Allocation")){
+            String allocationMsg = "No allocation available";
+            try {
+                allocationMsg = dbBean.retrieve(allocationquery);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            request.setAttribute("allocationquery", allocationMsg);
+            request.getRequestDispatcher("/allocation.jsp").forward(request, response);
         } 
         else {
             request.setAttribute("msg", "del");

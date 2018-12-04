@@ -5,9 +5,13 @@
  */
 package pages;
 
+import com.UserServLet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,17 +46,21 @@ public class Maps extends HttpServlet {
        
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
          String[] query = new String[3];
+//         String[] query2 = new String[3];
         query[0] = "'"+ (String) request.getParameter("des") +"'";
         query[1] = "'"+ (String) request.getParameter("des2") +"'";
-        query[2] = "'"+ (String) request.getParameter("totalDistanceP") +"'";
+        query[2] = (String) request.getParameter("showTotalDistanceInput");
+
          session.setAttribute("des", query[0]);
          session.setAttribute("des2", query[1]);
-         session.setAttribute("totalDistanceP", query[2]);
+         session.setAttribute("showTotalDistanceInput", query[2]);
+         
 //        CustomerObject customerObject = new CustomerObject();
             if (jdbc == null) {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
         if (query[0] != null) {
+//            jdbc.storePrice(query);
             request.getRequestDispatcher("/maps.jsp").forward(request, response); 
         } 
             

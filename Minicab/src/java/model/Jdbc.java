@@ -93,6 +93,31 @@ public class Jdbc {
         b.append("</table>");
         return b.toString();
     }//makeHtmlTable
+    
+    private String assignDriver(ArrayList list) {
+        StringBuilder b = new StringBuilder();
+        String[] row;
+        b.append("<table>");
+         b.append("<table width=\'40%\'>");
+        b.append("<tr>");
+        b.append("<th>USER ID   </th>");
+        b.append("<th>USERNAME  </th>");
+        b.append("<th>ROLE  </th>");
+        b.append("</tr>");
+        for (Object s : list) {
+            row = (String[]) s;
+            for (String row1 : row) {
+                b.append("<tr>");
+                b.append("<td>");
+                b.append(row1);
+                b.append("<br>");
+                b.append("</td>");
+                b.append("</tr>");
+            }
+        }
+        b.append("</table>");
+        return b.toString();
+    }
 
     private String displayDetails(ArrayList list) {
         StringBuilder b = new StringBuilder();
@@ -270,6 +295,24 @@ public class Jdbc {
 
             System.out.println("1 row added.");
         } catch (SQLException ex) {
+            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void storePrice(String[] str){
+        PreparedStatement ps = null;
+        try{
+            String a ="1";
+            ps = connection.prepareStatement("INSERT INTO CALCULATIONS"
+                    + "(Destination1, Destination2, Price) VALUES(?,?,?)");
+//        
+            ps.setString(1, str[0]);
+            ps.setString(2, str[1]);
+            ps.setInt(3, Integer.parseInt(str[2]));
+//            ps.setInt(3, str[2]);
+            ps.executeUpdate();
+            ps.close();
+        }catch (SQLException ex) {
             Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -51,12 +51,13 @@
 
       <div>
         <strong>Results</strong>
-        <p id="totalDistanceP" name="showTotalDistance"></p>
-        
-        
+        <form method="POST" action="Maps.do">
+        <p>TOTAL PRICE: </p>
+        <p id="totalDistanceP" name="showTotalDistance"></p> 
+        <p id="totalDistanceInput" name="showTotalDistanceInput"></p>
+        </form>
       </div>
         <div id="output">
-            
             
         </div>
     </div>
@@ -122,7 +123,12 @@
                 outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
                     ': ' + results[j].distance.text + ' in ' +
                     results[j].duration.text + '<br>';
+                
+//                totalDistanceP.valueOf()= totalDistance.text;
                 totalDistanceP.innerHTML = totalDistance.text;
+                totalDistance = totalDistanceP.innerHTML;
+                document.getElementById("totalDistanceInput").value = document.getElementById("totalDistanceP").text
+                
               }
             }
           }
@@ -138,7 +144,9 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2mi0Jx73LoLwP8Z8b7oumqwxeDQdYXRk&callback=initMap">
     </script>
-    
-    
   </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 </html>

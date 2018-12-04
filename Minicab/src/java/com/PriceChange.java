@@ -32,7 +32,7 @@ public class PriceChange extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+       response.setContentType("text/html;charset=UTF-8");
        HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
         Jdbc dbBean = new Jdbc();
@@ -40,16 +40,20 @@ public class PriceChange extends HttpServlet {
         session.setAttribute("dbbean", dbBean);
        
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
-         String[] query = new String[3];
-        query[0] = "'"+ (String) request.getParameter("des") +"'";
-        query[1] = "'"+ (String) request.getParameter("des2") +"'";
-        query[2] = "'"+ (String) request.getParameter("totalDistanceP") +"'";
-         session.setAttribute("des", query[0]);
-         session.setAttribute("des2", query[1]);
-         session.setAttribute("totalDistanceP", query[2]);
-       
-    }
+        String[] query = new String[1];
 
+        query[0] = (String) request.getParameter("showTotalDistance");
+        
+        session.setAttribute("showTotalDistance", query[0]);
+//        CustomerObject customerObject = new CustomerObject();
+            if (jdbc == null) {
+            request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
+        }
+        if (query[0] != null) {
+//            jdbc.storePrice(query);
+            request.getRequestDispatcher("/maps.jsp").forward(request, response); 
+        } 
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

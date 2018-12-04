@@ -20,27 +20,17 @@
             //    request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
             //}
         %>
-        <title>Admin</title>
+        <title>Assign a driver</title>
     </head>
-    <h1> Change mileage price </h1>
+    <div class="row justify-content-md-center">
+    <h1> Assign a driver </h1>
       <body>
-          <div class="row justify-content-md-center">
-          <label> The current price per mile is </label>
-          
-          <label> 10£ for 5 miles </label>
-          <!-- base value, short distance price change £5 admin permissions, -->
-          
-   
-            To change short distance price, please input new price.
-            <form method="POST" action="Maps.do">
-                
-            <input type="text" name="priceChange"/>
-            <input type="submit" name="priceChangeBtn"/>
-            </form>
-        </div>
-        <div class="row justify-content-md-center">
         
-        </div>
+          PUT ALLOCATION HERE!!!! get from demands<br>
+   
+          <%=(String)(request.getAttribute("allocationquery"))%>
+          
+    </div>
     </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
