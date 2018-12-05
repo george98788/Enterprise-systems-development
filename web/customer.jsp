@@ -2,7 +2,6 @@
     Document   : customer
     Created on : 10-Nov-2018, 21:32:24
     Author     : georg
-    Comments   : Customer is able to book a cab, view their details or change their password.
 --%>
 
 <%@page import="model.CustomerObject"%>

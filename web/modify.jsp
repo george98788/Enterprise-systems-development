@@ -2,7 +2,6 @@
     Document   : modify
     Created on : 03-Dec-2018, 14:28:20
     Author     : lizziecrouch
-    Comment    : User is able to adjust the cost of journey if distance is lower than 5 miles
 --%>
 
 <%@page import="model.Jdbc"%>

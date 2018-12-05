@@ -2,7 +2,6 @@
     Document   : logout
     Created on : 11-Nov-2018, 20:48:11
     Author     : saphi
-    Comments   : Logs user out of the system.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

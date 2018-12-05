@@ -1,10 +1,3 @@
-<%-- 
-    Document   : modify
-    Created on : 03-Dec-2018, 14:28:20
-    Author     : saph, liz, george, jeniel, rhys
-    Comments   : LOGIN HERE. password must be over 8 characters long, when logged in user goes to either ADMIN, DRIVER or customer.
---%>
-
 <%@page import="model.Jdbc"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
