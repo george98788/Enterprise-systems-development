@@ -1,3 +1,9 @@
+<%-- 
+    Comments: Shows cost of journey.
+              Shows route of journey.
+              Showd distance of journey.
+--%>
+
 <%@page import="model.Journey"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="model.Jdbc"%>
@@ -70,10 +76,10 @@
             var = "" + i;
             session.setAttribute("distance", var);
             out.println(session.getAttribute("des") + " to " + session.getAttribute("des2") + " is " + session.getAttribute("des") + " " + session.getAttribute("distance") + " Miles");%> <br><%
-                out.println("This will cost: £" + cost + " Tax : £" +(cost*0.2));
+                out.println("This will cost: Â£" + cost + " Tax : Â£" +(cost*0.2));
         %> <br> <%
                              cost = cost * 1.2;
-                             out.println("Total  £" + cost);
+                             out.println("Total  Â£" + cost);
 
         %> <br> <%                Journey journey = (Journey) session.getAttribute("Journey");
                 journey.setDistance(var);
