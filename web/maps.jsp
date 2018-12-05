@@ -1,3 +1,10 @@
+<%-- 
+    Document   : maps
+    Created on : 03-Dec-2018, 14:28:20
+    Author     : all
+    Comments   : google maps linking to the google api web services.
+                 pinpoints the original location and the destination.
+--%>
 <%@page import="model.Jdbc"%>
 <%@include  file="WEB-INF/newbar.html" %>
 <%! String str=""; %>
