@@ -2,6 +2,7 @@
     Document   : turnover
     Created on : 04-Dec-2018, 23:09:27
     Author     : georg
+    Comments: Money made from a day. Daily turnover. Available for ADMINS, Head Office
 --%>
 
 <%@page import="model.Jdbc"%>
