@@ -2,6 +2,7 @@
     Document   : customerDetails
     Created on : 20-Nov-2018, 16:59:31
     Author     : georg
+    Comments   : Shows customers details, but also lists their invoices for them to see.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
