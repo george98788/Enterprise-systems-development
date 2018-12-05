@@ -2,6 +2,7 @@
     Document   : driverDetails
     Created on : 13-Nov-2018, 19:26:32
     Author     : saphi
+    Comments   : Driver is able to modify their details here, updates the database when complete.
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
