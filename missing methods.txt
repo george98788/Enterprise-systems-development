@@ -1,0 +1,28 @@
+ 
+ For the JDBC file
+ 
+ public double retrieve2(String query) throws SQLException {
+        String results = "";
+        select(query);
+
+        return displayDetailsV(rsToList());
+        
+    }
+	
+	 private double displayDetailsV(ArrayList list) {
+        StringBuilder b = new StringBuilder();
+        String[] row;
+        double total =0;
+        b.append("<table>");
+        for (Object s : list) {
+
+            row = (String[]) s;
+            for (String row1 : row) {
+                total += Double.parseDouble(row1);
+                b.append(row1);
+                
+            }
+        }
+      
+        return total;
+    }
