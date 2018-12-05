@@ -23,14 +23,46 @@
         <title>Assign a driver</title>
     </head>
     <div class="row justify-content-md-center">
-    <h1> Assign a driver </h1>
-      <body>
-        
-          PUT ALLOCATION HERE!!!! get from demands<br>
-   
-          <%=(String)(request.getAttribute("allocationquery"))%>
-          
+        <h1> Assign a driver </h1><br><br>
     </div>
+      <body>
+     <form method="POST" action="DriverAllocation.do">
+        <div class="row justify-content-md-center">
+            <%=(String)(request.getAttribute("allocationquery"))%>  
+<!--            <table>
+                <tr>
+                    <td>
+                        <select name="assignDriverSelect">
+                            <option value="1">1</option>
+                            
+                        </select>
+                    </td>
+                    b.append("<td>");
+            b.append("<select name=\'assignDriverSelect\'>");
+            b.append("<option>1</option>"); //value=\'1\'
+            b.append("<option>2</option>");
+            b.append("<option>3</option>");
+            b.append("</select>");
+            b.append("</td>");
+                </tr>
+            </table>-->
+        </div><br><br>
+        <div class="row justify-content-md-center">
+        <h3>Available Drivers</h3>
+        </div>
+        <div class="row justify-content-md-center">
+            <%=(String)(request.getAttribute("driverAvailable"))%> 
+        </div>
+        
+<!--        <div class="row justify-content-md-center">
+            
+        </div>-->
+   
+        <div class="row justify-content-md-center">
+            <input type="submit" name="assign" value="Assign a driver"/>
+        </div>
+    </form>
+        
     </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

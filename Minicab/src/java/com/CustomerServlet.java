@@ -57,7 +57,8 @@ public class CustomerServlet extends HttpServlet {
                 + "Users.ID = Customers.USER_ID) where USERS.USERNAME='"+userName+"'";
        
         String customerDemands="SELECT * FROM DEMANDS where CUSTOMER_ID ="
-                + "(SELECT ID FROM CUSTOMERS WHERE USER_ID=(SELECT ID FROM USERS WHERE USERNAME='"+userName+"'))";
+                + "(SELECT ID FROM CUSTOMERS WHERE USER_ID=(SELECT ID FROM USERS"
+                + " WHERE USERNAME='"+userName+"'))";
 
         
         if ((Connection) request.getServletContext().getAttribute("connection") == null) {
@@ -74,9 +75,7 @@ public class CustomerServlet extends HttpServlet {
             String msg="No Customer";
             String customerdemandsmsg="No receipts";
             try {
-//                msg = dbBean.retrieve(customerDetailsqry);
-                msg = dbBean.retrieve(customerDetailsqry);
-                
+                msg = dbBean.retrieve(customerDetailsqry);    
                 customerdemandsmsg = dbBean.retrieve(customerDemands);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);

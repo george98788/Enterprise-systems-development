@@ -64,6 +64,18 @@
         <servlet-name>PriceChange</servlet-name>
         <servlet-class>com.PriceChange</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DriverAllocation</servlet-name>
+        <servlet-class>com.DriverAllocation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DriverRegistration</servlet-name>
+        <servlet-class>pages.DriverRegistration</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DriverDelete</servlet-name>
+        <servlet-class>pages.DriverDelete</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -123,6 +135,18 @@
     <servlet-mapping>
         <servlet-name>PriceChange</servlet-name>
         <url-pattern>/PriceChange.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverAllocation</servlet-name>
+        <url-pattern>/DriverAllocation.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverRegistration</servlet-name>
+        <url-pattern>/DriverRegistration.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverDelete</servlet-name>
+        <url-pattern>/DriverDelete.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -47,6 +47,8 @@ public class DriverDetails extends HttpServlet {
         UserObject userObject = (UserObject) session.getAttribute("user");
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
         String userName = userObject.getUsername();
+        String allDemandsqry = "SELECT ID, CUSTOMER_NAME,DESTINATION, DEMANDS_DATE,"
+                + " DEMANDS_TIME, STATUS from DEMANDS";
         
         String journeyqry = "SELECT USERS.ID,USERS.USERNAME,"
                 + "DRIVERS.ID,DRIVERS.NAME, DRIVERS.REGISTRATION,"
@@ -73,13 +75,17 @@ public class DriverDetails extends HttpServlet {
             
         if (request.getParameter("tbl").equals("UserDetails")){
             String Drivermsg="No users";
+            String demandsDriver="No jobs available";
             try {
                 Drivermsg = dbBean.retrieve(driverDetailsqry);
+                demandsDriver= dbBean.assignretrieve(allDemandsqry);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.setAttribute("driverDetailsqry", Drivermsg);
+            request.setAttribute("allDemandsqry", demandsDriver);
             request.getRequestDispatcher("/driverDetails.jsp").forward(request, response);
+            
         }
         
         else if (request.getParameter("tbl").equals("jobDone")){

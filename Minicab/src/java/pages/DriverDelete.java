@@ -8,7 +8,6 @@ package pages;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +16,9 @@ import model.Jdbc;
 
 /**
  *
- * @author me-aydin
+ * @author saphi
  */
-@WebServlet(name = "Delete", urlPatterns = {"/Delete.do"})
-public class Delete extends HttpServlet {
+public class DriverDelete extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,12 +46,11 @@ public class Delete extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         
         if(query[0]==null) {
-            
             request.setAttribute("message", "Username cannot be NULL");
         } 
         else if(jdbc.exists(query[0])){
-            jdbc.delete(query);
-            request.setAttribute("message", "User with "+query[0]+" username is deleted");
+            jdbc.deleteDriver(query);
+            request.setAttribute("newDriver", "User with "+query[0]+" username is deleted");
         }
         else {
             request.setAttribute("message", query[0]+" does not exist");

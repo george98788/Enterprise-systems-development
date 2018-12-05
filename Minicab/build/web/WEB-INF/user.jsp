@@ -28,13 +28,16 @@
                 str = "Delete";
                 url = "Delete.do";
             }
+//            else if((String)request.getAttribute("newDriver")=="newDriver"){
+//                url="DriverDelete.do";
+//            }
             else {
                 str="Register";
                 url = "NewUser.do";
             } 
         %>
       </div>
-        <form method="POST" action="<%=url%>">     
+        <form method="POST" action="Delete.do">    
             <div class="row justify-content-md-center">
                 <h3> Please provide your following details </h3>
             </div>

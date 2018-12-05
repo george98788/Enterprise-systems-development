@@ -44,7 +44,10 @@ public class UserServLet extends HttpServlet {
         dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
 
-        String allocationquery = "SELECT * from DEMANDS";
+        String allocationquery = "SELECT ID, CUSTOMER_NAME,DESTINATION, DEMANDS_DATE,"
+                + " DEMANDS_TIME, STATUS from DEMANDS";
+        
+        String driverAvailable ="SELECT NAME from DRIVERS";
         if((Connection)request.getServletContext().getAttribute("connection")==null){
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
@@ -62,6 +65,11 @@ public class UserServLet extends HttpServlet {
         else if(request.getParameter("tbl").equals("NewUser")){
             request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
         } 
+        else if(request.getParameter("tbl").equals("NewDriver")){
+            String newDriver = "newDriver";
+            request.setAttribute("newDriver", newDriver);
+            request.getRequestDispatcher("/driverRegister.jsp").forward(request, response);
+        } 
         else if(request.getParameter("tbl").equals("Update")){
             request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response);    
         }
@@ -70,12 +78,15 @@ public class UserServLet extends HttpServlet {
         } 
         else if(request.getParameter("tbl").equals("Allocation")){
             String allocationMsg = "No allocation available";
+            String driverAvailMsg = "No drivers available";
             try {
-                allocationMsg = dbBean.retrieve(allocationquery);
+                allocationMsg = dbBean.assignretrieve(allocationquery);
+                driverAvailMsg=dbBean.driverretrieve(driverAvailable);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.setAttribute("allocationquery", allocationMsg);
+            request.setAttribute("driverAvailable", driverAvailMsg);
             request.getRequestDispatcher("/allocation.jsp").forward(request, response);
         } 
         else {

@@ -47,10 +47,9 @@ public class Jdbc {
 
     private ArrayList rsToList() throws SQLException {
         ArrayList aList = new ArrayList();
-        ArrayList aList2 = new ArrayList();
 
         int cols = rs.getMetaData().getColumnCount();
-        String columnName = rs.getMetaData().getColumnName(cols);
+
         while (rs.next()) {
             String[] s = new String[cols];
             for (int i = 1; i <= cols; i++) {
@@ -94,26 +93,63 @@ public class Jdbc {
         return b.toString();
     }//makeHtmlTable
     
-    private String assignDriver(ArrayList list) {
+    private String assignDemand(ArrayList list) {
         StringBuilder b = new StringBuilder();
         String[] row;
-        b.append("<table>");
-         b.append("<table width=\'40%\'>");
+        
+//        String[] driverrow;
+        b.append("<table width=\'50%\' border=\'1\'>");
         b.append("<tr>");
-        b.append("<th>USER ID   </th>");
-        b.append("<th>USERNAME  </th>");
-        b.append("<th>ROLE  </th>");
+        b.append("<th>DEMAND ID   </th>");
+        b.append("<th>CUSTOMER NAME   </th>");
+        b.append("<th>DESTINATION  </th>");
+        b.append("<th>DATE  </th>");
+        b.append("<th>TIME  </th>");
+        b.append("<th>STATUS  </th>");
+        b.append("<th>DRIVER  </th>");
         b.append("</tr>");
         for (Object s : list) {
             row = (String[]) s;
-            for (String row1 : row) {
-                b.append("<tr>");
+            b.append("<tr>");
+            for (String row1 : row) { 
                 b.append("<td>");
                 b.append(row1);
-                b.append("<br>");
-                b.append("</td>");
-                b.append("</tr>");
+                b.append("</td>"); 
             }
+
+            b.append("<td>");
+            b.append("<select name=\'assignDriverSelect\'>");
+            b.append("<option value=\'1\'>1</option>"); //value=\'1\'
+            b.append("<option value=\'2\'>2</option>");
+            b.append("<option value=\'3\'>3</option>");
+            b.append("</select>");
+            b.append("</td>");
+            b.append("</tr>\n");
+        }
+        b.append("</table>");
+        return b.toString();
+    }
+    private String assignDriver(ArrayList list) {
+        StringBuilder b = new StringBuilder();
+        String[] row;
+        int driverNumber = 1;
+        b.append("<table width=\'50%\' border=\'1\'>");
+        b.append("<tr>");
+        b.append("<th>DRIVER NO.   </th>");
+        b.append("<th>DRIVER NAME   </th>");
+        b.append("</tr>");
+        for (Object s : list) {
+            row = (String[]) s;
+            b.append("<tr>");
+            b.append("<td>");
+            b.append(driverNumber++);
+            b.append("</td>");
+            for (String row1 : row) { 
+                b.append("<td>");
+                b.append(row1);
+                b.append("</td>");
+            }
+            b.append("</tr>\n");
         }
         b.append("</table>");
         return b.toString();
@@ -141,7 +177,6 @@ public class Jdbc {
 
     private void select(String query) {
         //Statement statement = null;
-
         try {
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
@@ -152,6 +187,7 @@ public class Jdbc {
         }
     }
 
+    
     public String retrieve(String query) throws SQLException {
         String results = "";
         select(query);
@@ -163,6 +199,18 @@ public class Jdbc {
         String results = "";
         select(query);
         return makeTable(rsToList());//results;
+    }
+    public String assignretrieve(String query) throws SQLException {
+        String results = "";
+        select(query);
+//        select(query2);
+        return assignDemand(rsToList());//results;
+    }
+    public String driverretrieve(String query) throws SQLException {
+        String results = "";
+        select(query);
+        
+        return assignDriver(rsToList());//results;
     }
 
     public boolean exists(String user) {
@@ -240,6 +288,19 @@ public class Jdbc {
 
     }
 
+    public void insertAllocation(String[] str) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement("UPDATE DEMANDS set DRIVER_ID=? where ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,Integer.parseInt(str[0]));//str[0] -> value of the select option
+            ps.setInt(2, Integer.parseInt(str[1]));
+            ps.executeUpdate();
+            ps.close();
+            System.out.println("1 row updated.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      *
      * @param str
@@ -256,10 +317,35 @@ public class Jdbc {
             ps2 = connection.prepareStatement("INSERT INTO CUSTOMERS(NAME,"
                     + "ADDRESS,USER_ID,EMAIL) VALUES (?,?,(SELECT ID from Users where "
                     + "USERNAME='" + str[6] + "'),?)", PreparedStatement.RETURN_GENERATED_KEYS);
-
+            
             ps2.setString(1, str[0]);
             ps2.setString(2, str[2] + ", " + str[3] + ", " + str[4] + ", " + str[5] + ", ");
             ps2.setString(3, str[1]);
+            ps2.executeUpdate();
+            ps2.close();
+            ps.close();
+
+            System.out.println("1 row added.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void registerDriver(String[] str) {
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        try {
+            ps = connection.prepareStatement("INSERT INTO Users(USERNAME,PASSWORD,ROLES) VALUES (?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, str[2].trim());
+            ps.setString(2, str[3]);
+            ps.setString(3, "driver");
+            ps.executeUpdate();
+            ps2 = connection.prepareStatement("INSERT INTO DRIVERS(NAME,REGISTRATION, USERS_ID) "
+                    + "VALUES (?,?,(SELECT ID from Users where "
+                    + "USERNAME='" + str[2] + "'))", PreparedStatement.RETURN_GENERATED_KEYS);
+            
+            ps2.setString(1, str[0]);
+            ps2.setString(2, str[1]);
+//            ps2.setString(3, str[1]);
             ps2.executeUpdate();
             ps2.close();
             ps.close();
@@ -333,10 +419,26 @@ public class Jdbc {
     }
 
     public void delete(String[] user) {
-
+ 
         String query = "DELETE FROM CUSTOMERS where CUSTOMERS.USER_ID ="
                 + "(SELECT ID FROM USERS WHERE USERNAME='" + user[0] + "')";
         String query2 = "DELETE FROM USERS where USERNAME='" + user[0] + "';";
+
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+            statement.executeUpdate(query2);
+        } catch (SQLException e) {
+            System.out.println("way way" + e);
+        }
+        
+    }
+    
+     public void deleteDriver(String[] user) {
+
+        String query = "DELETE FROM DRIVERS where DRIVERS.USER_ID ="
+                + "(SELECT ID FROM USERS WHERE USERNAME='" + user[0] + "')";
+        String query2 = "DELETE FROM USERS where USERNAME='" + user[0] + "'";
 
         try {
             statement = connection.createStatement();

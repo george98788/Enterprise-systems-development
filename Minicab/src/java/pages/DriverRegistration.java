@@ -7,20 +7,20 @@ package pages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
+import model.UserObject;
 
 /**
  *
- * @author me-aydin
+ * @author saphi
  */
-@WebServlet(name = "Delete", urlPatterns = {"/Delete.do"})
-public class Delete extends HttpServlet {
+public class DriverRegistration extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,32 +34,38 @@ public class Delete extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-           HttpSession session = request.getSession(false);
-        
-        String [] query = new String[2];
-        query[0] = (String)request.getParameter("username");
-        query[1] = (String)request.getParameter("password");
-//        query[2] = (String)request.getParameter("role");
+
+        HttpSession session = request.getSession();
+
+        Jdbc dbBean = new Jdbc();
+        dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
+        session.setAttribute("dbbean", dbBean);
+
+        String[] query = new String[4];
+        String[] query2 = new String[2];
+        query[0] = (String) request.getParameter("fullname");
+        query[1] = (String) request.getParameter("registration");
+        query[2] = (String) request.getParameter("usernameReg");
+        query[3] = (String) request.getParameter("passwordReg");
+        query2[0] = (String) request.getParameter("usernameReg");
+        query2[1] = (String) request.getParameter("passwordReg");
         //String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('";
-      
-        Jdbc jdbc = (Jdbc)session.getAttribute("dbbean"); 
-        
-        if (jdbc == null)
-            request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
-        
-        if(query[0]==null) {
-            
-            request.setAttribute("message", "Username cannot be NULL");
-        } 
-        else if(jdbc.exists(query[0])){
-            jdbc.delete(query);
-            request.setAttribute("message", "User with "+query[0]+" username is deleted");
-        }
-        else {
-            request.setAttribute("message", query[0]+" does not exist");
-        }
          
-        request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
+        Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
+        UserObject userObject = new UserObject(query2);
+        session.setAttribute("user", userObject);
+        if (jdbc == null) {
+            request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
+        }
+        if (jdbc.exists(query[2])) {
+            request.setAttribute("message", query[2] + " is already taken as username");
+           
+        } else {
+            jdbc.registerDriver(query);
+            request.setAttribute("message", query[2] + " is added");
+            request.getRequestDispatcher("/driver.jsp").forward(request, response);
+        }
+        request.getRequestDispatcher("/driverRegister.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

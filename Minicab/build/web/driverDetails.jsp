@@ -45,6 +45,12 @@
                 </table>
             <%=(String)(request.getAttribute("driverDetailsqry"))%>
             </div>
+            <div class="row justify-content-md-center">
+            <h3>Available jobs</h3><br>
+            </div>
+            <div class="row justify-content-md-center"> 
+            <%=(String)(request.getAttribute("allDemandsqry"))%>
+            </div>
         </form>
         </div>
     </body>

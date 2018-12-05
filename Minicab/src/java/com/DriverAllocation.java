@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pages;
+package com;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +20,9 @@ import model.Jdbc;
 
 /**
  *
- * @author me-aydin
+ * @author saphi
  */
-@WebServlet(name = "Delete", urlPatterns = {"/Delete.do"})
-public class Delete extends HttpServlet {
+public class DriverAllocation extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,33 +35,33 @@ public class Delete extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(); 
         response.setContentType("text/html;charset=UTF-8");
-           HttpSession session = request.getSession(false);
         
-        String [] query = new String[2];
-        query[0] = (String)request.getParameter("username");
-        query[1] = (String)request.getParameter("password");
-//        query[2] = (String)request.getParameter("role");
-        //String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('";
-      
-        Jdbc jdbc = (Jdbc)session.getAttribute("dbbean"); 
+        Jdbc dbBean = new Jdbc();
+        dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
+        session.setAttribute("dbbean", dbBean);
+        Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
         
-        if (jdbc == null)
+//        String updateDriver = "UPDATE DEMANDS set DRIVER_ID=4 where ID=1";
+        String[] query = new String[2];
+        query[0] = request.getParameter("assignDriverSelect"); //option value
+        query[1] = request.getParameter("assignDriverSelect"); //userID ?
+//        query[0] = "1";
+//        query[1] = "2";
+//        query[2] = "3";
+        if((Connection)request.getServletContext().getAttribute("connection")==null){
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
-        
-        if(query[0]==null) {
+        }
+        else{
             
-            request.setAttribute("message", "Username cannot be NULL");
-        } 
-        else if(jdbc.exists(query[0])){
-            jdbc.delete(query);
-            request.setAttribute("message", "User with "+query[0]+" username is deleted");
+            String msg=query[0];
+        
+            jdbc.insertAllocation(query);
+            
+            request.setAttribute("assignDriver",msg);
+            request.getRequestDispatcher("/customer.jsp").forward(request, response);
         }
-        else {
-            request.setAttribute("message", query[0]+" does not exist");
-        }
-         
-        request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
