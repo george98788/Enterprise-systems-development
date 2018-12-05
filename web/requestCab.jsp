@@ -2,6 +2,7 @@
     Document   : requestCab
     Created on : 19-Nov-2018, 11:32:41
     Author     : georg
+    Comments   : Customer types in starting point and destination and links to next page which calculates cost and shows distance.
 --%>
 
 <%@page import="model.UserObject"%>
