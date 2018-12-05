@@ -2,6 +2,7 @@
     Document   : register
     Created on : 11-Nov-2018, 16:59:58
     Author     : georg, liz, saph, rhys, jeniel 
+    Comment    : user enters all details and then stored in database.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
