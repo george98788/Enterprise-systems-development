@@ -2,6 +2,7 @@
     Document   : selection
     Created on : 10-Nov-2018, 19:34:32
     Author     : georg
+    Comments   : Admin homepage (if admin), buttons to different pages.
 --%>
 
 
