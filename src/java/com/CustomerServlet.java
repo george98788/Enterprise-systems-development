@@ -49,40 +49,40 @@ public class CustomerServlet extends HttpServlet {
         UserObject userObject = (UserObject) session.getAttribute("user");
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
         
-        String userName = userObject.getUsername();
+        String userName = "'"+ userObject.getUsername()+ "'";
 
         String customerDetailsqry="SELECT USERS.ID,USERS.USERNAME,CUSTOMERS.ID, "
                 + "CUSTOMERS.\"NAME\",CUSTOMERS.EMAIL, CUSTOMERS.ADDRESS"
                 + " from (USERS INNER JOIN CUSTOMERS On "
-                + "Users.ID = Customers.USER_ID) where USERS.USERNAME='"+userName+"'";
+                + "Users.ID = Customers.USER_ID) where USERS.USERNAME="+userName+"";
        
-//        String customerDemands ="SELECT * FROM DEMANDS where CUSTOMER_ID = "
-//                + "(SELECT ID FROM CUSTOMERS WHERE USER_ID="
-//                + "(SELECT ID FROM USERS WHERE USERNAME='"+userName+"')";
+        String customerDemands="SELECT * FROM Group10.DEMANDS where CUSTOMER_ID ="
+                + "(SELECT ID FROM CUSTOMERS WHERE USER_ID=(SELECT ID FROM USERS WHERE USERNAME="+userName+"))";
+
         
         if ((Connection) request.getServletContext().getAttribute("connection") == null) {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
         if (request.getParameter("tbl").equals("RequestCab")) { //insert into demands
 //            jdbc.requestCab(demandsquery);
-            request.getRequestDispatcher("requestCab.jsp").forward(request, response);
+            request.getRequestDispatcher("testdest.jsp").forward(request, response);
         } 
         else if (request.getParameter("tbl").equals("Update")) {
             request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response);
         } 
         else if (request.getParameter("tbl").equals("UserDetails")) {
             String msg="No Customer";
-//            String customerdemandsmsg="";
+            String customerdemandsmsg="No receipts";
             try {
 //                msg = dbBean.retrieve(customerDetailsqry);
                 msg = dbBean.retrieve(customerDetailsqry);
                 
-//                customerdemandsmsg = dbBean.retrieve(customerDemands);
+                customerdemandsmsg = dbBean.retrieve(customerDemands);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.setAttribute("customerDetailsqry", msg);
-//            request.setAttribute("customerDemands",customerdemandsmsg);
+            request.setAttribute("customerDemands",customerdemandsmsg);
             request.getRequestDispatcher("customerDetails.jsp").forward(request, response);
         }
 

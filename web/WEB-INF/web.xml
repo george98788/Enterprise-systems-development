@@ -57,9 +57,22 @@
         <servlet-class>pages.CustomerReceipts</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Maps</servlet-name>
-        <servlet-class>pages.Maps</servlet-class>
+        <servlet-name>Maps2</servlet-name>
+        <servlet-class>pages.Maps2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PriceChange</servlet-name>
+        <servlet-class>com.PriceChange</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DriverJourneys_1</servlet-name>
+        <servlet-class>pages.DriverJourneys_1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>turnover</servlet-name>
+        <servlet-class>pages.turnover</servlet-class>
+    </servlet>
+   
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -113,12 +126,22 @@
         <url-pattern>/CustomerReceipts.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Maps</servlet-name>
-        <url-pattern>/Maps.do</url-pattern>
+        <servlet-name>Maps2</servlet-name>
+        <url-pattern>/Maps2.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PriceChange</servlet-name>
+        <url-pattern>/PriceChange.do</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>DriverJourneys_1</servlet-name>
+        <url-pattern>/DriverJourneys_1.do</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>turnover</servlet-name>
+        <url-pattern>/turnover.do</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-           20
-        </session-timeout>
+        <session-timeout>20</session-timeout>
     </session-config>
 </web-app>

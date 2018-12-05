@@ -3,27 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com;
+package pages;
 
 import java.io.IOException;
-//import java.io.PrintWriter;
+import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
+import model.Journey;
+import model.UserObject;
 
 /**
  *
- * @author me-aydin
+ * @author georg
  */
-public class UserServLet extends HttpServlet {
+public class Maps2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,57 +34,33 @@ public class UserServLet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String qry = "SELECT ID, USERNAME, ROLES FROM USERS";
-        HttpSession session = request.getSession(); 
         response.setContentType("text/html;charset=UTF-8");
-        
+       HttpSession session = request.getSession(false);
+        response.setContentType("text/html;charset=UTF-8");
         Jdbc dbBean = new Jdbc();
-        dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
+        dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
-
-        String allocationquery = "SELECT * from DEMANDS";
-        if((Connection)request.getServletContext().getAttribute("connection")==null){
+       
+        Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
+        
+         String[] query = new String[3];
+        query[0] = "'"+ (String) request.getParameter("des") +"'";
+         query[1] = "'"+ (String) request.getParameter("des2") +"'";
+         ;
+         session.setAttribute("des", query[0]);
+         session.setAttribute("des2", query[1]);
+          session.setAttribute("distance", query[2]);
+            Journey journey = new Journey(request.getParameter("des"),request.getParameter("des2"),request.getParameter("time"),request.getParameter("date"));
+            session.setAttribute("Journey", journey);
+            if (jdbc == null) {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
+        if (query[0] != null) {
+            request.getRequestDispatcher("/maps.jsp").forward(request, response); 
+        } 
             
-        if (request.getParameter("tbl").equals("List")){
-            String msg="No users";
-            try {
-                msg = dbBean.tblretrieve(qry);
-            } catch (SQLException ex) {
-                Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            request.setAttribute("query", msg);
-            request.getRequestDispatcher("/WEB-INF/results.jsp").forward(request, response);
-        }
-        else if(request.getParameter("tbl").equals("NewUser")){
-            request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
-        } 
-        else if(request.getParameter("tbl").equals("Update")){
-            request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response);    
-        }
-         else if(request.getParameter("tbl").equals("Turnover")){
-            request.getRequestDispatcher("turnover.jsp").forward(request, response);    
-        }
-        else if(request.getParameter("tbl").equals("Modify")){
-            request.getRequestDispatcher("/modify.jsp").forward(request, response);
-        } 
-        else if(request.getParameter("tbl").equals("Allocation")){
-            String allocationMsg = "No allocation available";
-            try {
-                allocationMsg = dbBean.retrieve(allocationquery);
-            } catch (SQLException ex) {
-                Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            request.setAttribute("allocationquery", allocationMsg);
-            request.getRequestDispatcher("/allocation.jsp").forward(request, response);
-        } 
-        else {
-            request.setAttribute("msg", "del");
-            request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response); 
-        }
+       
     }
-      
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

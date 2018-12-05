@@ -15,6 +15,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Time;
 import static java.sql.Types.NULL;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -93,6 +94,31 @@ public class Jdbc {
         b.append("</table>");
         return b.toString();
     }//makeHtmlTable
+
+    private String assignDriver(ArrayList list) {
+        StringBuilder b = new StringBuilder();
+        String[] row;
+        b.append("<table>");
+        b.append("<table width=\'40%\'>");
+        b.append("<tr>");
+        b.append("<th>USER ID   </th>");
+        b.append("<th>USERNAME  </th>");
+        b.append("<th>ROLE  </th>");
+        b.append("</tr>");
+        for (Object s : list) {
+            row = (String[]) s;
+            for (String row1 : row) {
+                b.append("<tr>");
+                b.append("<td>");
+                b.append(row1);
+                b.append("<br>");
+                b.append("</td>");
+                b.append("</tr>");
+            }
+        }
+        b.append("</table>");
+        return b.toString();
+    }
 
     private String displayDetails(ArrayList list) {
         StringBuilder b = new StringBuilder();
@@ -245,8 +271,9 @@ public class Jdbc {
         }
     }
 
-    public void requestCab(String[] str) {
+    public void requestCab(UserObject userobject, Journey journey) {
         PreparedStatement ps = null;
+        String O ="Outstanding";
         try {
 //            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME,"
 //                    + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
@@ -255,20 +282,39 @@ public class Jdbc {
 //                    + "?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME,"
                     + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
-                    + "STATUS) VALUES ((SELECT NAME from CUSTOMERS where "
-                    + "USER_ID =(SELECT ID from USERS where USERNAME='" + str[0] + "')),"
+                    + "STATUS,COST) VALUES ((SELECT NAME from CUSTOMERS where "
+                    + "USER_ID =(SELECT ID from USERS where USERNAME='" + userobject.username + "')),"
                     + "(SELECT ID from CUSTOMERS where"
-                    + " USER_ID=(SELECT ID from USERS where USERNAME='" + str[0] + "')),"
-                    + "?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, str[1]); //address
-            ps.setString(2, str[2]); //destination
-            ps.setString(3, str[3]); //str[3]
-            ps.setString(4, str[4]); //str[4]
-            ps.setString(5, str[5]); //status
+                    + " USER_ID=(SELECT ID from USERS where USERNAME='" + userobject.username + "')),"
+                    + "?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, journey.pickUpPoint); //address
+            ps.setString(2, journey.destination); //destination
+            ps.setString(3, journey.date); //str[3]
+            ps.setString(4, journey.time); //str[4]
+            ps.setString(5, O); //status
+            ps.setString(6, journey.cost); //status
             ps.executeUpdate();
             ps.close();
 
             System.out.println("1 row added.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void storePrice(String[] str) {
+        PreparedStatement ps = null;
+        try {
+            String a = "1";
+            ps = connection.prepareStatement("INSERT INTO CALCULATIONS"
+                    + "(Destination1, Destination2, Price) VALUES(?,?,?)");
+//        
+            ps.setString(1, str[0]);
+            ps.setString(2, str[1]);
+            ps.setInt(3, Integer.parseInt(str[2]));
+//            ps.setInt(3, str[2]);
+            ps.executeUpdate();
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -378,23 +424,33 @@ public class Jdbc {
         jdbc.closeAll();
 
     }
- public void map(){
-try {
-                 String address = "16 Network Circle, Menlo Park";
-                 java.lang.Integer zoom = 15;
-                 String iframe = "false";
 
-             RestResponse result = GoogleMapService.getGoogleMap(address, zoom, iframe);
-             //TODO - Uncomment the print Statement below to print result.
-             //System.out.println("The SaasService returned: "+result.getDataAsString());
+    public void map() {
+        try {
+            String address = "16 Network Circle, Menlo Park";
+            java.lang.Integer zoom = 15;
+            String iframe = "false";
+
+            RestResponse result = GoogleMapService.getGoogleMap(address, zoom, iframe);
+            //TODO - Uncomment the print Statement below to print result.
+            //System.out.println("The SaasService returned: "+result.getDataAsString());
         } catch (Exception ex) {
-             ex.printStackTrace();
+            ex.printStackTrace();
         }
- }
-
-    private static double calculateFee(int distance) {
-        org.me.calculator.CalculatorWS_Service service = new org.me.calculator.CalculatorWS_Service();
-        org.me.calculator.CalculatorWS port = service.getCalculatorWSPort();
-        return port.calculateFee(distance);
     }
+
+    public static double calculateFee(double distance) {
+        double rate = 2.00;
+        double fee = distance * rate;
+        if (distance < 5) {
+            fee = 10;
+        } else {
+            fee = (10 + (distance - 5) * rate);
+        }
+
+        DecimalFormat f = new DecimalFormat("##.00");
+        fee = Double.parseDouble(f.format(fee));
+        return fee;
+    }
+
 }

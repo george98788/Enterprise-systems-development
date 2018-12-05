@@ -49,18 +49,43 @@
                 <%=(String)(request.getAttribute("customerDetailsqry"))%>
             </div>
         </form><br><br><br>
-            <form method="POST" action="CustomerReceipts.do">
+            <!--<form method="POST" action="CustomerReceipts.do">-->
             <div class="row justify-content-md-center">
-                <h3>Receipts</h3><br>
-                show bookings and receipts????
+                <h3>Receipts</h3><br><br>
+                <table>
+                    <tr>
+                        <td>Invoice ID: </td>
+                    </tr>
+                    <tr>
+                        <td>Customer Name: </td>
+                    </tr>
+                    <tr>
+                        <td>Customer ID: </td>
+                    </tr>
+                    <tr>
+                        <td>Address: </td>
+                    </tr>
+                    <tr>
+                        <td>Destination: </td>
+                    </tr>
+                    <tr>
+                        <td>Demands Date:   </td>
+                    </tr>
+                    <tr>
+                        <td>Demands Time:   </td>
+                    </tr>
+                    <tr>
+                        <td>Status:   </td>
+                    </tr>
+                     <tr>
+                        <td>Price (Inc. Tax):  </td>
+                    </tr>
+                </table>
                 <%=(String)(request.getAttribute("customerDemands"))%>
             </div>
-            </form>
+           
         <br><br><br>
-        <div class="row justify-content-md-center">
-            
-         <a href="register.jsp" class="btn btn-success">Register</a>
-    </div> 
+       
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

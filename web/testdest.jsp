@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form method="POST" action="Maps.do">
+        <form method="POST" action="Maps2.do">
                     <div class="col-md-12 col-md-offset-5">
                         <h3> Please provide your following details </h3>
                     </div>
@@ -20,13 +20,25 @@
                     <div class="col-md-10 col-md-offset-5">
                         <table>
                             <tr>
-                                <td>Destination</td>
+                                <td>Destination:</td>
                                 <td><input type="text" name="des" placeholder="Destination" /></td>
                             </tr>
                             <tr>
-                                <td>Destination</td>
+                                <td>Destination:</td>
                                 <td>
                                     <input type="text" name="des2" placeholder="Destination" />
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>Date:</td>
+                                <td>
+                                    <input type="date" name="date"/>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>Time:</td>
+                                <td>
+                                    <input type="time" name="time"/>
                                 </td>
                             </tr>
                         </table>
@@ -40,6 +52,5 @@
                         </div>
                     </div>
                 </form>
-
     </body>
 </html>

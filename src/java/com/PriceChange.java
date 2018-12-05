@@ -14,13 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
-import model.UserObject;
 
 /**
  *
  * @author saphi
  */
-public class CustomerRequestServlet extends HttpServlet {
+public class PriceChange extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,34 +32,28 @@ public class CustomerRequestServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+       response.setContentType("text/html;charset=UTF-8");
+       HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
         Jdbc dbBean = new Jdbc();
         dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
+       
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
-        UserObject userObject = (UserObject) session.getAttribute("user");
-//        session.setAttribute("user", userObject);
-        String userName = userObject.getUsername();
-        String[] demandsquery = new String[6];
-//        demandsquery[0] = (String) request.getParameter("user");
-        demandsquery[0] = userName;
-        demandsquery[1] = (String) request.getParameter("pickUpAdd");
-        demandsquery[2] = (String) request.getParameter("destination");
-        demandsquery[3] = (String) request.getParameter("demands_date");
-        demandsquery[4] = (String) request.getParameter("demands_time");
-        demandsquery[5] = (String) request.getParameter("status");
-        
-        if (jdbc == null) {
-            request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
-        }else{
-            
-            //jdbc.requestCab(demandsquery); 
-            request.getRequestDispatcher("/requestCab.jsp").forward(request, response);
-        }
-        request.getRequestDispatcher("/requestCab.jsp").forward(request, response);
-    }
+        String[] query = new String[1];
 
+        query[0] = (String) request.getParameter("showTotalDistance");
+        
+        session.setAttribute("showTotalDistance", query[0]);
+//        CustomerObject customerObject = new CustomerObject();
+            if (jdbc == null) {
+            request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
+        }
+        if (query[0] != null) {
+//            jdbc.storePrice(query);
+            request.getRequestDispatcher("/maps.jsp").forward(request, response); 
+        } 
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

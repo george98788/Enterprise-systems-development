@@ -40,8 +40,18 @@
          <div class="row justify-content-md-center">
             <input type="radio" name="tbl" value="Update">Password Change<br />
         </div>
+        <div class="row justify-content-md-center">
+            <input type="radio" name="tbl" value="Modify">Modify<br />
+        </div>
+          <div class="row justify-content-md-center">
+            <input type="radio" name="tbl" value="Allocation">Assign a driver<br />
+            </div>
          <div class="row justify-content-md-center">
             <input type="radio" name="tbl" value="Delete">Delete a User<br />
+        </div>
+           </div>
+         <div class="row justify-content-md-center">
+            <input type="radio" name="tbl" value="Turnover">View Turnover<br />
         </div>
            <div class="row justify-content-md-center">
                 <button type="submit" value="Action" class="btn btn-success">Submit</button> 
