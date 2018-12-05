@@ -50,7 +50,7 @@ public class Delete extends HttpServlet {
             request.setAttribute("message", "Username cannot be NULL");
         } 
         else if(jdbc.exists(query[0])){
-            jdbc.delete(query[0]);
+            jdbc.delete(query);
             request.setAttribute("message", "User with "+query[0]+" username is deleted");
         }
         else {

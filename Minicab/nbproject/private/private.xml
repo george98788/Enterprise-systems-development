@@ -2,26 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group/>
-=======
-        <group>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/src/java/pages/loginP.java</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/src/java/pages/Update.java</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/web/WEB-INF/foot.jsp</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/web/register.jsp</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/web/login.jsp</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/web/WEB-INF/user.jsp</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/web/customer.jsp</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/src/java/com/UserServLet.java</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/src/java/model/Jdbc.java</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/src/java/pages/Delete.java</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/src/java/pages/NewUser.java</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/web/index.jsp</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/src/java/com/UserServletListener.java</file>
-            <file>file:/C:/Users/georg/OneDrive/Documents/NetBeansProjects/Minicab/src/java/pages/CustomerRegistration.java</file>
-        </group>
->>>>>>> parent of 59300a6... Merge pull request #10 from george98788/lizziebranch
     </open-files>
 </project-private>

@@ -43,7 +43,7 @@ public class DriverJourneys extends HttpServlet {
         session.setAttribute("dbbean", dbBean);
         
         Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
-        String jqry = "select * from USERNAME.Journey";
+        String jqry = "select * from Journeys";
         
         response.setContentType("text/html;charset=UTF-8");
 

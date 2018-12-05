@@ -34,7 +34,7 @@
     </servlet>
     <servlet>
         <servlet-name>DriverDetails</servlet-name>
-        <servlet-class>pages.DriverDetails</servlet-class>
+        <servlet-class>com.DriverDetails</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DriverJourneys</servlet-name>
@@ -44,6 +44,35 @@
         <servlet-name>DriverPassword</servlet-name>
         <servlet-class>pages.DriverPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-class>com.CustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerRequestServlet</servlet-name>
+        <servlet-class>com.CustomerRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerReceipts</servlet-name>
+        <servlet-class>pages.CustomerReceipts</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Maps2</servlet-name>
+        <servlet-class>pages.Maps2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PriceChange</servlet-name>
+        <servlet-class>com.PriceChange</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DriverJourneys_1</servlet-name>
+        <servlet-class>pages.DriverJourneys_1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>turnover</servlet-name>
+        <servlet-class>pages.turnover</servlet-class>
+    </servlet>
+   
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -73,6 +102,10 @@
         <url-pattern>/Logout.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/CustomerServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DriverDetails</servlet-name>
         <url-pattern>/DriverDetails.do</url-pattern>
     </servlet-mapping>
@@ -84,9 +117,31 @@
         <servlet-name>DriverPassword</servlet-name>
         <url-pattern>/DriverPassword.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerRequestServlet</servlet-name>
+        <url-pattern>/CustomerRequestServlet.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerReceipts</servlet-name>
+        <url-pattern>/CustomerReceipts.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Maps2</servlet-name>
+        <url-pattern>/Maps2.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PriceChange</servlet-name>
+        <url-pattern>/PriceChange.do</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>DriverJourneys_1</servlet-name>
+        <url-pattern>/DriverJourneys_1.do</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>turnover</servlet-name>
+        <url-pattern>/turnover.do</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>20</session-timeout>
     </session-config>
 </web-app>

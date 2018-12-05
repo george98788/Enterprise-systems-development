@@ -27,12 +27,12 @@ public class UserServletListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext sc = sce.getServletContext();
-        String db = sc.getInitParameter("MiniCabDatabase");
+        String db = sc.getInitParameter("AlphaCab");
         
         try {
             //Class.forName("com.mysql.jdbc.Driver");
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/MiniCabdatabase","username","password");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/AlphaCab","group10","groupten");
             
         }
         catch(ClassNotFoundException | SQLException e){

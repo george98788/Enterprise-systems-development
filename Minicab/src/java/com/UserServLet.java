@@ -36,8 +36,7 @@ public class UserServLet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String qry = "select * from users";
-        String qry = "select * from Drivers";
+        String qry = "SELECT ID, USERNAME, ROLES FROM USERS";
         HttpSession session = request.getSession(); 
         response.setContentType("text/html;charset=UTF-8");
         
@@ -45,6 +44,9 @@ public class UserServLet extends HttpServlet {
         dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
 
+        String allocationquery = "SELECT ID, CUSTOMER_NAME,DESTINATION, "
+                + "DEMANDS_DATE,DEMANDS_TIME, STATUS from DEMANDS";
+        String driverAvailable ="SELECT NAME from DRIVERS";
         if((Connection)request.getServletContext().getAttribute("connection")==null){
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         }
@@ -52,7 +54,7 @@ public class UserServLet extends HttpServlet {
         if (request.getParameter("tbl").equals("List")){
             String msg="No users";
             try {
-                msg = dbBean.retrieve(qry);
+                msg = dbBean.tblretrieve(qry);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -62,9 +64,33 @@ public class UserServLet extends HttpServlet {
         else if(request.getParameter("tbl").equals("NewUser")){
             request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
         } 
+        else if(request.getParameter("tbl").equals("NewDriver")){
+            String newDriver = "newDriver";
+            request.setAttribute("newDriver", newDriver);
+            request.getRequestDispatcher("/driverRegister.jsp").forward(request, response);
+        } 
         else if(request.getParameter("tbl").equals("Update")){
             request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response);    
         }
+         else if(request.getParameter("tbl").equals("Turnover")){
+            request.getRequestDispatcher("turnover.jsp").forward(request, response);    
+        }
+        else if(request.getParameter("tbl").equals("Modify")){
+            request.getRequestDispatcher("/modify.jsp").forward(request, response);
+        } 
+        else if(request.getParameter("tbl").equals("Allocation")){
+            String allocationMsg = "No allocation available";
+            String driverAvailMsg = "No drivers available";
+            try {
+                allocationMsg = dbBean.assignretrieve(allocationquery);
+                driverAvailMsg=dbBean.driverretrieve(driverAvailable);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            request.setAttribute("allocationquery", allocationMsg);
+            request.setAttribute("driverAvailable", driverAvailMsg);
+            request.getRequestDispatcher("/allocation.jsp").forward(request, response);
+        } 
         else {
             request.setAttribute("msg", "del");
             request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response); 

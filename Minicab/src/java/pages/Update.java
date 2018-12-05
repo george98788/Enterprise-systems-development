@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
+import model.UserObject;
 
 /**
  *
@@ -40,8 +41,9 @@ public class Update extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
         else {
             String [] query = new String[3];
-        
-            query[0] = (String)request.getParameter("username");
+              UserObject userObject = (UserObject) session.getAttribute("user");
+                         
+            query[0] = (String)userObject.getUsername();
             query[1] = (String)request.getParameter("password");
             query[2] = (String)request.getParameter("newpasswd");  
             
@@ -51,10 +53,10 @@ public class Update extends HttpServlet {
             }
              else {
                 jdbc.update(query);
-                
                 request.setAttribute("msg", ""+query[0]+"'s passwd is changed</br>");
                 request.getRequestDispatcher("/WEB-INF/passwdChange.jsp").forward(request, response);
             }
+            
         }
     }
 
