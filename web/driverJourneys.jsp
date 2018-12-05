@@ -2,6 +2,7 @@
     Document   : driverJourneys
     Created on : 19-Nov-2018, 12:01:08
     Author     : saphi
+    Comments   : lists all the journeys the driver has taken, just for the records.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
