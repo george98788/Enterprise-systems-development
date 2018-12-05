@@ -40,20 +40,9 @@ public class Maps extends HttpServlet {
         dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);
        
-        Jdbc jdbc = (Jdbc) session.getAttribute("dbbean");
-         String[] query = new String[2];
-        query[0] = "'"+ (String) request.getParameter("des") +"'";
-         query[1] = "'"+ (String) request.getParameter("des2") +"'";
-         session.setAttribute("des", query[0]);
-         session.setAttribute("des2", query[1]);
-//        CustomerObject customerObject = new CustomerObject();
-            if (jdbc == null) {
-            request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
-        }
-        if (query[0] != null) {
-            request.getRequestDispatcher("/maps.jsp").forward(request, response); 
-        } 
-            
+        String[] query = new String[1];
+        query[1] = (String) request.getParameter("priceChange");
+        
        
     }
 

@@ -49,10 +49,13 @@
                 <%=(String)(request.getAttribute("customerDetailsqry"))%>
             </div>
         </form><br><br><br>
-            <!--<form method="POST" action="CustomerReceipts.do">-->
+          
             <div class="row justify-content-md-center">
-                <h3>Receipts</h3><br><br>
-                <table>
+            <h3>Receipts</h3>
+            </div>
+            <div class="row justify-content-md-center">
+                
+<!--                <table>
                     <tr>
                         <td>Invoice ID: </td>
                     </tr>
@@ -77,10 +80,13 @@
                     <tr>
                         <td>Status:   </td>
                     </tr>
+                    <tr>
+                        <td>Driver ID:   </td>
+                    </tr>
                      <tr>
                         <td>Price (Inc. Tax):  </td>
                     </tr>
-                </table>
+                </table>-->
                 <%=(String)(request.getAttribute("customerDemands"))%>
             </div>
            

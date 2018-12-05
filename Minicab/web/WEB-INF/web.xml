@@ -72,7 +72,10 @@
         <servlet-name>turnover</servlet-name>
         <servlet-class>pages.turnover</servlet-class>
     </servlet>
-   
+    <servlet>
+        <servlet-name>DriverRegistration</servlet-name>
+        <servlet-class>pages.DriverRegistration</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UserServLet</servlet-name>
         <url-pattern>/UserService.do</url-pattern>
@@ -133,13 +136,17 @@
         <servlet-name>PriceChange</servlet-name>
         <url-pattern>/PriceChange.do</url-pattern>
     </servlet-mapping>
-      <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DriverJourneys_1</servlet-name>
         <url-pattern>/DriverJourneys_1.do</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>turnover</servlet-name>
         <url-pattern>/turnover.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DriverRegistration</servlet-name>
+        <url-pattern>/DriverRegistration.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>20</session-timeout>

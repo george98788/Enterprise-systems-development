@@ -5,26 +5,20 @@
  */
 package pages;
 
-import com.UserServLet;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Jdbc;
-import model.UserObject;
 
 /**
  *
  * @author saphi
  */
-public class turnover extends HttpServlet {
+public class DriverRegistration extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,36 +31,34 @@ public class turnover extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
         response.setContentType("text/html;charset=UTF-8");
-        Jdbc dbBean = new Jdbc();
-        dbBean.connect((Connection) request.getServletContext().getAttribute("connection"));
-        session.setAttribute("dbbean", dbBean);
-        UserObject userObject = (UserObject) session.getAttribute("user");
-        Jdbc dbbean = (Jdbc) session.getAttribute("dbbean");
-        double turnovermsg2 = 0;
-        String[] query = new String[2];
-//        query[0] = "'" + (String) request.getParameter("date") + "'";
-        query[0] = (String) request.getParameter("date");
-
-        String customerDemands = "SELECT * FROM Group10.JOURNEYS where JOURNEY_DATE ='"+query[0]+"'";
-        String total = "SELECT COST FROM Group10.JOURNEYS";
         
-        if (dbbean == null) {
+        HttpSession session = request.getSession(false);
+        
+        String [] query = new String[5];
+        query[0] = (String)request.getParameter("driverName");
+        query[1] = (String)request.getParameter("registration");
+         query[2] = (String)request.getParameter("username");
+         query[3] = (String)request.getParameter("password");
+         query[4] = (String)request.getParameter("role");
+      
+        Jdbc jdbc = (Jdbc)session.getAttribute("dbbean"); 
+        
+        if (jdbc == null)
             request.getRequestDispatcher("/WEB-INF/conErr.jsp").forward(request, response);
-        } else {
-
-            String turnovermsg = "";
-            try {
-                turnovermsg = dbBean.retrieve(customerDemands);
-                turnovermsg2 = dbBean.retrieve2(total);
-            } catch (SQLException ex) {
-                Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-             request.setAttribute("Turnover2", turnovermsg2);
-            request.setAttribute("Turnover", turnovermsg);
-            request.getRequestDispatcher("/turnover.jsp").forward(request, response);
+        
+        if(query[2].equals("") ) {
+            request.setAttribute("message", "Username cannot be NULL");
+        } 
+        else if(jdbc.exists(query[2])){
+            request.setAttribute("message", query[2]+" is already taken as username");
         }
+        else {
+            jdbc.insertDriver(query);
+            request.setAttribute("message", query[2]+" is added");
+        }
+         
+        request.getRequestDispatcher("/driver.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

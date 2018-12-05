@@ -22,22 +22,24 @@
         %>
         <title>Admin</title>
     </head>
+    <div class="row justify-content-md-center">
     <h1> Change mileage price </h1>
+    </div><br><br>
       <body>
           <div class="row justify-content-md-center">
-          <label> The current price per mile is </label>
-          
-          <label> 10£ for 5 miles </label>
+          <h3> Current price per mile: £5.00 </h3>
           <!-- base value, short distance price change £5 admin permissions, -->
-          
-   
-            To change short distance price, please input new price.
+          </div><br>
+          <div class="row justify-content-md-center">
+          <h4>To change short distance price, please input new price.</h4>
+          </div>
+          <div class="row justify-content-md-center">
             <form method="POST" action="Maps.do">
                 
             <input type="text" name="priceChange"/>
             <input type="submit" name="priceChangeBtn"/>
             </form>
-        </div>
+            </div>
         <div class="row justify-content-md-center">
         
         </div>

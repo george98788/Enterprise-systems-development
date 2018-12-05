@@ -95,6 +95,36 @@ public class Jdbc {
         b.append("</table>");
         return b.toString();
     }//makeHtmlTable
+    private String makeInvoice(ArrayList list) {
+        StringBuilder b = new StringBuilder();
+        String[] row;
+
+        b.append("<table width=\'50%\' border=\'1\'>");
+        b.append("<tr>");
+        b.append("<th>INVOICE ID   </th>");
+        b.append("<th>CUSTOMER NAME </th>");
+        b.append("<th>CUSTOMER ID   </th>");
+        b.append("<th>ADDRESS   </th>");
+        b.append("<th>DESTINATION   </th>");
+        b.append("<th>DATE  </th>");
+        b.append("<th>TIME  </th>");
+        b.append("<th>COST  </th>");
+        b.append("</tr>");
+        for (Object s : list) {
+
+            b.append("<tr>");
+            row = (String[]) s;
+            for (String row1 : row) {
+                b.append("<td>");
+                b.append(row1);
+                b.append("</td>");
+                b.append("<br>");
+            }
+            b.append("</tr>\n");
+        } // for
+        b.append("</table>");
+        return b.toString();
+    }//makeHtmlTable
 
     private String assignDriver(ArrayList list) {
         StringBuilder b = new StringBuilder();
@@ -111,7 +141,7 @@ public class Jdbc {
             b.append("<td>");
             b.append(driverNumber++);
             b.append("</td>");
-            for (String row1 : row) { 
+            for (String row1 : row) {
                 b.append("<td>");
                 b.append(row1);
                 b.append("</td>");
@@ -141,10 +171,11 @@ public class Jdbc {
         b.append("</table>");
         return b.toString();
     }
+
     private String assignDemand(ArrayList list) {
         StringBuilder b = new StringBuilder();
         String[] row;
-        
+
 //        String[] driverrow;
         b.append("<table width=\'50%\' border=\'1\'>");
         b.append("<tr>");
@@ -159,10 +190,10 @@ public class Jdbc {
         for (Object s : list) {
             row = (String[]) s;
             b.append("<tr>");
-            for (String row1 : row) { 
+            for (String row1 : row) {
                 b.append("<td>");
                 b.append(row1);
-                b.append("</td>"); 
+                b.append("</td>");
             }
 
             b.append("<td>");
@@ -179,7 +210,6 @@ public class Jdbc {
         b.append("</table>");
         return b.toString();
     }
-    
 
     private void select(String query) {
         //Statement statement = null;
@@ -197,25 +227,32 @@ public class Jdbc {
     public String retrieve(String query) throws SQLException {
         String results = "";
         select(query);
-//        return makeTable(rsToList());//results;
         return displayDetails(rsToList());
     }
-
+    
     public String tblretrieve(String query) throws SQLException {
         String results = "";
         select(query);
         return makeTable(rsToList());//results;
     }
+
     public String assignretrieve(String query) throws SQLException {
         String results = "";
         select(query);
         return assignDemand(rsToList());//results;
     }
+
     public String driverretrieve(String query) throws SQLException {
         String results = "";
         select(query);
-        
+
         return assignDriver(rsToList());//results;
+    }
+    public String invoiceretrieve(String query) throws SQLException {
+        String results = "";
+        select(query);
+//        return makeTable(rsToList());//results;
+        return makeInvoice(rsToList());
     }
 
     public boolean exists(String user) {
@@ -284,20 +321,36 @@ public class Jdbc {
             ps.setString(2, str[1]);
             ps.setString(3, str[2].toLowerCase());
             ps.executeUpdate();
-
             ps.close();
+
+            System.out.println("1 row added.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void insertDriver(String[] str) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement("INSERT INTO DRIVERS(\"NAME\", REGISTRATION,USERS_ID) "
+                    + "VALUES(?,?,(SELECT ID FROM USERS WHERE USERNAME='" + str[2] + "'))", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, str[0].trim()); //name
+            ps.setString(2, str[1]); //registration
+            ps.executeUpdate();
+            ps.close();
+
             System.out.println("1 row added.");
         } catch (SQLException ex) {
             Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    
+
     public void insertAllocation(String[] str) {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement("UPDATE DEMANDS set DRIVER_ID=? where ID=?", PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,Integer.parseInt(str[0]));//str[0] -> value of the select option
+            ps.setInt(1, Integer.parseInt(str[0]));//str[0] -> value of the select option
             ps.setInt(2, Integer.parseInt(str[1]));
             ps.executeUpdate();
             ps.close();
@@ -326,7 +379,7 @@ public class Jdbc {
 
             ps2.setString(1, str[0]);
             ps2.setString(2, str[2] + ", " + str[3] + ", " + str[4] + ", " + str[5] + ", ");
-            ps2.setString(3, str[1]);
+            ps2.setString(3, str[1]);//email
             ps2.executeUpdate();
             ps2.close();
             ps.close();
@@ -339,7 +392,7 @@ public class Jdbc {
 
     public void requestCab(UserObject userobject, Journey journey) {
         PreparedStatement ps = null;
-        String O ="Outstanding";
+        String O = "Outstanding";
         try {
 //            ps = connection.prepareStatement("INSERT INTO Demands(CUSTOMER_NAME,"
 //                    + "CUSTOMER_ID,ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,"
@@ -368,24 +421,47 @@ public class Jdbc {
         }
     }
 
-    public void storePrice(String[] str) {
-        PreparedStatement ps = null;
-        try {
-            String a = "1";
-            ps = connection.prepareStatement("INSERT INTO CALCULATIONS"
-                    + "(Destination1, Destination2, Price) VALUES(?,?,?)");
-//        
-            ps.setString(1, str[0]);
-            ps.setString(2, str[1]);
-            ps.setInt(3, Integer.parseInt(str[2]));
-//            ps.setInt(3, str[2]);
-            ps.executeUpdate();
-            ps.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public double retrieve2(String query) throws SQLException {
+        String results = "";
+        select(query);
+        return displayDetailsV(rsToList());
     }
 
+    private double displayDetailsV(ArrayList list) {
+        StringBuilder b = new StringBuilder();
+        String[] row;
+        double total = 0;
+        b.append("<table>");
+        for (Object s : list) {
+
+            row = (String[]) s;
+            for (String row1 : row) {
+                total += Double.parseDouble(row1);
+                b.append(row1);
+
+            }
+        }
+
+        return total;
+    }
+
+//    public void storePrice(String[] str) {
+//        PreparedStatement ps = null;
+//        try {
+//            String a = "1";
+//            ps = connection.prepareStatement("INSERT INTO CALCULATIONS"
+//                    + "(Destination1, Destination2, Price) VALUES(?,?,?)");
+////        
+//            ps.setString(1, str[0]);
+//            ps.setString(2, str[1]);
+//            ps.setInt(3, Integer.parseInt(str[2]));
+////            ps.setInt(3, str[2]);
+//            ps.executeUpdate();
+//            ps.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Jdbc.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     public void update(String[] str) {
         PreparedStatement ps = null;
         try {
@@ -402,19 +478,27 @@ public class Jdbc {
     }
 
     public void delete(String[] user) {
-
+        //if role=customer do this...
         String query = "DELETE FROM CUSTOMERS where CUSTOMERS.USER_ID ="
                 + "(SELECT ID FROM USERS WHERE USERNAME='" + user[0] + "')";
         String query2 = "DELETE FROM USERS where USERNAME='" + user[0] + "';";
 
+        String driverQ = "DELETE FROM DRIVERS where DRIVERS.USERS_ID ="
+                + "(SELECT ID FROM USERS WHERE USERNAME='" + user[0] + "')";
         try {
-            statement = connection.createStatement();
-            statement.executeUpdate(query);
+            if (user[2] == "customer") {
+                statement = connection.createStatement();
+                statement.executeUpdate(query);
+            } else {
+                statement = connection.createStatement();
+                statement.executeUpdate(driverQ);
+            }
             statement.executeUpdate(query2);
         } catch (SQLException e) {
             System.out.println("way way" + e);
             //results = e.toString();
         }
+
     }
 
     public void closeAll() {

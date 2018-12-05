@@ -13,25 +13,32 @@
         <title>Turnover Page</title>
     </head>
     <body>
+        <div class="row justify-content-md-center">
         <h1>Turnover Page!</h1>
+        </div>
+        <div class="row justify-content-md-center">
         <form method="POST" action="turnover.do">
+    <!--<table>-->
     <td>Date:</td>
     <td>
         <input type="text" name="date" placeholder="YYYY-MM-DD"/>
     </td>
+    <!--</table>-->
       <button type="submit" value="Submit" class="btn btn-success">Submit</button>
+        
     </form>
-
         <form method="POST" action="turnover.do">
                 <tr>
                     <td>Daily Turnover : £</td>
                         <td>
-                             <%=(request.getAttribute("Turnover2"))%>
+                            <%=(request.getAttribute("Turnover2"))%>
         </form>
+        <div class="row justify-content-md-center">
+            <table>
                         <td>All Daily Invoices Below</td>
-                 <div class="row justify-content-md-center">
+                
                 <h3>Receipts</h3><br><br>
-                <table>
+              
                     <tr>
                         <td>Journey ID: </td>
                     </tr>
@@ -53,11 +60,11 @@
                     <tr>
                         <td>Price (Inc. Tax):   </td>
                     </tr>
-                      
+                      <%=(String)(request.getAttribute("Turnover"))%>
                 </table>
-                <%=(String)(request.getAttribute("Turnover"))%>
+                
                  </div>
-          </form>
-         
+          <!--</form>-->
+    </div>
 </body>
 </html>

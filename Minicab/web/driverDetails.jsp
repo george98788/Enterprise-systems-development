@@ -45,6 +45,9 @@
                 </table>
             <%=(String)(request.getAttribute("driverDetailsqry"))%>
             </div>
+            <div class="row justify-content-md-center">
+                <%=(String)(request.getAttribute("journeyquery"))%>
+            </div>
         </form>
         </div>
     </body>

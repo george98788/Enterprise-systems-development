@@ -36,9 +36,10 @@ public class Delete extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
            HttpSession session = request.getSession(false);
         
-        String [] query = new String[2];
+        String [] query = new String[3];
         query[0] = (String)request.getParameter("username");
         query[1] = (String)request.getParameter("password");
+        query[2] = (String) request.getParameter("role");
         //String insert = "INSERT INTO `Users` (`username`, `password`) VALUES ('";
       
         Jdbc jdbc = (Jdbc)session.getAttribute("dbbean"); 

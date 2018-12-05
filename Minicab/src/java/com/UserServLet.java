@@ -62,11 +62,13 @@ public class UserServLet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/results.jsp").forward(request, response);
         }
         else if(request.getParameter("tbl").equals("NewUser")){
-            request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
+//            request.getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
+              request.getRequestDispatcher("/register.jsp").forward(request, response);
         } 
         else if(request.getParameter("tbl").equals("NewDriver")){
-            String newDriver = "newDriver";
-            request.setAttribute("newDriver", newDriver);
+            
+//            String newDriver = "newDriver";
+//            request.setAttribute("newDriver", newDriver);
             request.getRequestDispatcher("/driverRegister.jsp").forward(request, response);
         } 
         else if(request.getParameter("tbl").equals("Update")){

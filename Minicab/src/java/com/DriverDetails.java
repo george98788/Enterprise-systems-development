@@ -57,12 +57,15 @@ public class DriverDetails extends HttpServlet {
                 "LEFT OUTER JOIN JOURNEYS ON DRIVERS.ID = JOURNEYS.DRIVERS_ID "
                 + "WHERE USERS.USERNAME='"+userName+"'";
         
+        //--THIS IS WORKING IF WE WANT TO GET DATA FROM THE DEMANDS TABLE--//
+//        String journeyqry="SELECT * FROM DEMANDS WHERE DRIVER_ID="
+//                + "(SELECT ID FROM DRIVERS WHERE USERS_ID=(SELECT ID FROM USERS "
+//                + "WHERE USERNAME='"+userName+"'))";
 
         String driverDetailsqry="SELECT USERS.ID,USERS.USERNAME, DRIVERS.ID,"
                 + "DRIVERS.\"NAME\", DRIVERS.REGISTRATION"
                 + " from (USERS INNER JOIN DRIVERS On "
-                + "USERS.ID = DRIVERS.USERS_ID) where USERS.USERNAME='"+userName+"'";//
-       
+                + "USERS.ID = DRIVERS.USERS_ID) where USERS.USERNAME='"+userName+"'";
 
         dbBean.connect((Connection)request.getServletContext().getAttribute("connection"));
         session.setAttribute("dbbean", dbBean);

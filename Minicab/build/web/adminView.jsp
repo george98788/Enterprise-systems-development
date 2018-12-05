@@ -35,7 +35,10 @@
                 <input type="radio" name="tbl" value="List">List Users<br />
             </div>
             <div class="row justify-content-md-center">
-                <input type="radio" name="tbl" value="NewUser">New User<br />
+                <input type="radio" name="tbl" value="NewUser">New Customer<br />
+            </div>
+            <div class="row justify-content-md-center">
+                <input type="radio" name="tbl" value="NewDriver">New Driver<br />
             </div>
             <div class="row justify-content-md-center">
                 <input type="radio" name="tbl" value="Update">Password Change<br />

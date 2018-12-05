@@ -56,7 +56,9 @@ public class CustomerServlet extends HttpServlet {
                 + " from (USERS INNER JOIN CUSTOMERS On "
                 + "Users.ID = Customers.USER_ID) where USERS.USERNAME="+userName+"";
        
-        String customerDemands="SELECT * FROM Group10.DEMANDS where CUSTOMER_ID ="
+        String customerDemands="SELECT ID, CUSTOMER_NAME, CUSTOMER_ID,"
+                + "ADDRESS,DESTINATION,DEMANDS_DATE,DEMANDS_TIME,COST"
+                + " FROM Group10.DEMANDS where CUSTOMER_ID ="
                 + "(SELECT ID FROM CUSTOMERS WHERE USER_ID=(SELECT ID FROM USERS WHERE USERNAME="+userName+"))";
 
         
@@ -74,10 +76,9 @@ public class CustomerServlet extends HttpServlet {
             String msg="No Customer";
             String customerdemandsmsg="No receipts";
             try {
-//                msg = dbBean.retrieve(customerDetailsqry);
                 msg = dbBean.retrieve(customerDetailsqry);
                 
-                customerdemandsmsg = dbBean.retrieve(customerDemands);
+                customerdemandsmsg = dbBean.invoiceretrieve(customerDemands);
             } catch (SQLException ex) {
                 Logger.getLogger(UserServLet.class.getName()).log(Level.SEVERE, null, ex);
             }
