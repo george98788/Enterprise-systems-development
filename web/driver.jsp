@@ -2,6 +2,7 @@
     Document   : driver
     Created on : 10-Nov-2018, 21:31:49
     Author     : georg
+    Comments   : Driver can access their completed journeys,change details. Only drivers can see this page.
 --%>
 
 <%@page import="model.Jdbc"%>
