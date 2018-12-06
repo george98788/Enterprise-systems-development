@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author saphi
  */
+// demands db linked.queries set up.
 @Entity
 @Table(name = "DEMANDS")
 @XmlRootElement
