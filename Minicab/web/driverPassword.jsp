@@ -2,6 +2,7 @@
     Document   : driverPassword
     Created on : 19-Nov-2018, 15:23:37
     Author     : saphi
+    Comments   : change password, updates db.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
