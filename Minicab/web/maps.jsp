@@ -1,3 +1,9 @@
+<%-- 
+    Document   : maps.jsp
+    Created on : 10-Nov-2018, 19:34:32
+    Author     : georg, saph, liz
+    Comments   : creates the map to show the user the journey.
+--%>
 <%@page import="model.Jdbc"%>
 <%@include  file="WEB-INF/newbar.html" %>
 <%! String str=""; %>
