@@ -2,6 +2,7 @@
     Document   : turnover
     Created on : 04-Dec-2018, 23:09:27
     Author     : georg
+    Comments   : Shows the daily turnover, money made from the day from the drivers.
 --%>
 
 <%@page import="model.Jdbc"%>
