@@ -2,6 +2,7 @@
     Document   : driver
     Created on : 10-Nov-2018, 21:31:49
     Author     : georg
+    Comments   : Only drivers can see this page. able to see their journeys for their records.
 --%>
 
 <%@page import="model.Jdbc"%>
