@@ -1,7 +1,8 @@
 <%-- 
-    Document   : selection
+    Document   : Adminview.jsp
     Created on : 10-Nov-2018, 19:34:32
     Author     : georg
+    Comments   : Admin users only, able to change details, assign drivers to jobs, view daily turnover.
 --%>
 
 
