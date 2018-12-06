@@ -1,3 +1,9 @@
+<%-- 
+    Document   : login.jsp
+    Created on : 10-Nov-2018, 19:34:32
+    Author     : liz, georg, saph, rhys
+    Comments   : Login into mini cab service
+--%>
 <%@page import="model.Jdbc"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
