@@ -2,6 +2,7 @@
     Document   : customer
     Created on : 10-Nov-2018, 21:32:24
     Author     : georg
+    Comments   : Only the customer can see this page, able to book a cab and change their details.
 --%>
 
 <%@page import="model.CustomerObject"%>
