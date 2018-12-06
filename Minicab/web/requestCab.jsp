@@ -2,6 +2,7 @@
     Document   : requestCab
     Created on : 19-Nov-2018, 11:32:41
     Author     : georg
+    Comments   :once registered a customer can request a cab for a journey.
 --%>
 
 <%@page import="model.UserObject"%>
