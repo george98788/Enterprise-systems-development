@@ -1,7 +1,8 @@
 <%-- 
-    Document   : modify
+    Document   : allocation
     Created on : 03-Dec-2018, 14:28:20
     Author     : lizziecrouch
+    Comments   : Finds available drivers, so that they can be allocated to jobs.
 --%>
 
 <%@page import="model.Jdbc"%>
