@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author saphi
  */
+// Collects the data from JOURNEYS.
 @Entity
 @Table(name = "JOURNEYS")
 @XmlRootElement
