@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author saphi
  */
+// Everything user related is mentioned below. queries are able to find certain users.
 @Entity
 @Table(name = "USERS")
 @XmlRootElement
