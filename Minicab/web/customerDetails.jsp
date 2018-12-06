@@ -2,6 +2,7 @@
     Document   : customerDetails
     Created on : 20-Nov-2018, 16:59:31
     Author     : georg
+    Comments   : Shows all the details of the customer, able to edit them.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
