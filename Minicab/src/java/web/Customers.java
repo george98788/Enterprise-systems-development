@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author saphi
  */
+// customer queries set up
 @Entity
 @Table(name = "CUSTOMERS")
 @XmlRootElement
