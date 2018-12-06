@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author saphi
  */
+// drivers info stored in db.
 @Entity
 @Table(name = "DRIVERS")
 @XmlRootElement
