@@ -2,6 +2,7 @@
     Document   : modify
     Created on : 03-Dec-2018, 14:28:20
     Author     : lizziecrouch
+    comments   : Change the milage price in here. 
 --%>
 
 <%@page import="model.Jdbc"%>
