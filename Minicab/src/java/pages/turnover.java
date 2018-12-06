@@ -24,6 +24,7 @@ import model.UserObject;
  *
  * @author saphi
  */
+// getting all info about journeys completed in the day so turnover can be calculated.
 public class turnover extends HttpServlet {
 
     /**
